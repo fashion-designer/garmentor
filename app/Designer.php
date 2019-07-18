@@ -1,11 +1,14 @@
-<?php
+<?php namespace App;
 
-namespace App;
+/**
+ * Class Designer
+ * @package App
+ */
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class Designer extends Authenticatable
 {
     use Notifiable;
 
@@ -19,9 +22,11 @@ class User extends Authenticatable
         'last_name',
         'email',
         'phone',
+        'portfolio_name',
         'gender_id',
         'is_active',
         'is_verified',
+        'display_image',
         'password'
     ];
 
