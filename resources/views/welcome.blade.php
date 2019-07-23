@@ -74,8 +74,10 @@
                 <div class="links">
                     <a href="{{ url('/login') }}">User Login</a>
                     <a href="{{ url('admin/login') }}">Admin Login</a>
+                    <a href="{{ url('designer/login') }}">Designer Login</a>
                     <a href="{{ url('/register') }}">User Register</a>
                     <a href="{{ url('admin/register') }}">Admin Register</a>
+                    <a href="{{ url('designer/register') }}">Designer Register</a>
                 </div>
             </div>
         </div>

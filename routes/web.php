@@ -1,42 +1,63 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
+/**
+ * Welcome Page Routes
+ */
 Route::group(['middleware' => 'guest'], function()
 {
     Route::get('/', 'WelcomeController@welcome');
 });
 
+/**
+ * User Authentication Routes
+ */
 Auth::routes();
 
+/**
+ * Designer, Admin Authentication Routes
+ */
 Route::group(['namespace' => 'Auth', 'as' => 'auth.', 'middleware' => 'guest'], function()
 {
     Route::get('admin/register', 'AdminRegisterController@showRegistrationForm')->name('admin.register');
     Route::post('admin/register-post', 'AdminRegisterController@register')->name('admin.register-post');
     Route::get('admin/login', 'AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('admin/login-post', 'AdminLoginController@login')->name('admin.login-post');
+
+    Route::get('designer/register', 'DesignerRegisterController@showRegistrationForm')->name('designer.register');
+    Route::post('designer/register-post', 'DesignerRegisterController@register')->name('designer.register-post');
+    Route::get('designer/login', 'DesignerLoginController@showLoginForm')->name('designer.login');
+    Route::post('designer/login-post', 'DesignerLoginController@login')->name('designer.login-post');
 });
 
-Route::group(['namespace' => 'Auth', 'middleware' => 'admin'], function()
+/**
+ * Logout Routes Admin, Designer
+ */
+Route::group(['namespace' => 'Auth'], function()
 {
-    Route::post('admin/logout', 'AdminLoginController@logout')->name('admin.logout');
+    Route::post('admin/logout', 'AdminLoginController@logout')->name('admin.logout')->middleware('admin');
+    Route::post('designer/logout', 'DesignerLoginController@logout')->name('designer.logout')->iddleware('designer');
 });
 
+/**
+ * Admin Routes Group
+ */
 Route::group(['namespace' => 'Admin', 'as' => 'admin.', 'middleware' => 'admin'], function()
 {
     Route::get('admin/dashboard', 'AdminDashboardController@getDashboard')->name('admin.dashboard');
 });
 
+/**
+ * User Routes Group
+ */
 Route::group(['namespace' => 'User', 'as' => 'user.', 'middleware' => 'auth'], function()
 {
     Route::get('user/dashboard', 'UserDashboardController@getDashboard')->name('user.dashboard');
+});
+
+/**
+ * Designer Routes Group
+ */
+Route::group(['namespace' => 'Designer', 'as' => 'designer.', 'middleware' => 'designer'], function()
+{
+    Route::get('designer/dashboard', 'DesignerDashboardController@getDashboard')->name('designer.dashboard');
 });

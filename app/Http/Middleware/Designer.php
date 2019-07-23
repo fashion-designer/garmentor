@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class Admin
+class Designer
 {
     /**
      * Handle an incoming request.
@@ -15,9 +15,9 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        if(!auth()->guard('admin')->check())
+        if(!auth()->guard('designer')->check())
         {
-            return redirect('admin/login');
+            return redirect('designer/login');
         }
 
         return $next($request);
