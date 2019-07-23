@@ -62,6 +62,14 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            .auth-links {
+                background-color: antiquewhite;
+                padding: 10px !important;
+            }
+            .auth-links :hover {
+                background-color: #2a88bd;
+            }
         </style>
     </head>
     <body>
@@ -72,12 +80,12 @@
                 </div>
 
                 <div class="links">
-                    <a href="{{ url('/login') }}">User Login</a>
-                    <a href="{{ url('admin/login') }}">Admin Login</a>
-                    <a href="{{ url('designer/login') }}">Designer Login</a>
-                    <a href="{{ url('/register') }}">User Register</a>
-                    <a href="{{ url('admin/register') }}">Admin Register</a>
-                    <a href="{{ url('designer/register') }}">Designer Register</a>
+                    <a class="auth-links" href="{{ url('/login') }}">User Login</a>
+                    <a class="auth-links" href="{{ url('admin/login') }}">Admin Login</a>
+                    <a class="auth-links" href="{{ url('designer/login') }}">Designer Login</a>
+                    <a class="auth-links" href="{{ url('/register') }}">User Register</a>
+                    <a class="auth-links" href="{{ url('admin/register') }}">Admin Register</a>
+                    <a class="auth-links" href="{{ url('designer/register') }}">Designer Register</a>
                 </div>
             </div>
         </div>
