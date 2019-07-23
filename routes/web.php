@@ -35,7 +35,7 @@ Route::group(['namespace' => 'Auth', 'as' => 'auth.', 'middleware' => 'guest'], 
 Route::group(['namespace' => 'Auth'], function()
 {
     Route::post('admin/logout', 'AdminLoginController@logout')->name('admin.logout')->middleware('admin');
-    Route::post('designer/logout', 'DesignerLoginController@logout')->name('designer.logout')->iddleware('designer');
+    Route::post('designer/logout', 'DesignerLoginController@logout')->name('designer.logout')->middleware('designer');
 });
 
 /**
