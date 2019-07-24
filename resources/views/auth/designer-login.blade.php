@@ -1,22 +1,25 @@
 @extends('auth.layout')
 
-@section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Designer Login</div>
+@section('title')
+    Designer Login - HYD
+@stop
 
-                    <div class="panel-body">
+@section('content')
+    <div class="card">
+        <div class="card-header">
+            <a href="{!! url('/') !!}">Hire Your Designer</a>
+        </div>
+        <div class="card-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5 mx-auto">
+                        <h2 class="text-center">Login Designer</h2>
                         <form class="form-horizontal" method="POST" action="{{ route('auth.designer.login-post') }}">
                             {{ csrf_field() }}
-
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                                <div class="col-md-6">
+                                <label for="email" class="col-md-12 control-label">E-Mail Address</label>
+                                <div class="col-md-12">
                                     <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-
                                     @if ($errors->has('email'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -24,13 +27,10 @@
                                     @endif
                                 </div>
                             </div>
-
                             <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                <label for="password" class="col-md-4 control-label">Password</label>
-
-                                <div class="col-md-6">
+                                <label for="password" class="col-md-12 control-label">Password</label>
+                                <div class="col-md-12">
                                     <input id="password" type="password" class="form-control" name="password" required>
-
                                     @if ($errors->has('password'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
@@ -38,20 +38,9 @@
                                     @endif
                                 </div>
                             </div>
-
                             <div class="form-group">
-                                <div class="col-md-6 col-md-offset-4">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-md-8 col-md-offset-4">
-                                    <button type="submit" class="btn btn-primary">
+                                <div class="col-md-12 col-md-offset-4">
+                                    <button type="submit" class="btn btn-primary w-100">
                                         Login
                                     </button>
                                 </div>
