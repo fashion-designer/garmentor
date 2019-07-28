@@ -10,7 +10,7 @@ class DesignerDashboardController extends Controller
 {
     public function __construct()
     {
-
+        $this->middleware('designer');
     }
 
     public function getDashboard()

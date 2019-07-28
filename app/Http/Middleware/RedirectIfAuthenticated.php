@@ -25,6 +25,10 @@ class RedirectIfAuthenticated
         {
             return redirect('admin/dashboard');
         }
+        elseif(Auth::guard('designer')->check())
+        {
+            return redirect('designer/dashboard');
+        }
 
         return $next($request);
     }
