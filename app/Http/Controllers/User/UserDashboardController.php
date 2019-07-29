@@ -15,6 +15,6 @@ class UserDashboardController extends Controller
 
     public function getDashboard()
     {
-        return view('user.dashboard');
+        return view('user.dashboard.dashboard');
     }
 }

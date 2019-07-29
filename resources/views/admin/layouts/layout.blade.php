@@ -15,21 +15,17 @@
 <!-- Topbar Header -->
 <header class="app-header">
     <!-- Logo Name -->
-    <a class="app-header__logo" href="{{ url('/') }}">
-        Hire Your Designer
-    </a>
+    <a class="app-header__logo" href="{{ url('/') }}">Hire Your Designer</a>
     <!-- Sidebar Toggle Button -->
-    <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar">
-        <i class="fas fa-stream"></i>
-    </a>
+    <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"><i class="fas fa-stream"></i></a>
     <!-- Topbar -->
     <ul class="app-nav">
         <!-- Logout Button -->
         <li>
-            <a class="app-nav__item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            <a class="app-nav__item" href="{{ route('admin.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="fa fa-sign-out fa-lg"></i> Logout
             </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
                 {{ csrf_field() }}
             </form>
         </li>
@@ -39,32 +35,7 @@
 <!-- Sidebar Navigation -->
 <aside class="app-sidebar">
     <ul class="app-menu">
-        <!-- Dashboard -->
-        <li>
-            <a class="app-menu__item active" href="{{ url('/') }}">
-                <i class="fa fa-dashboard"></i>
-                <span class="app-menu__label">
-                      Dashboard
-                </span>
-            </a>
-        </li>
-        <!-- Pages -->
-        <li class="treeview">
-            <a class="app-menu__item" href="#" data-toggle="treeview">
-                <i class="fa fa-file-text"></i>
-                <span class="app-menu__label">
-                      Pages
-                  </span>
-                <i class="treeview-indicator fa fa-angle-right"></i>
-            </a>
-            <ul class="treeview-menu">
-                <li>
-                    <a class="treeview-item" href="#">
-                        <i class="icon fa fa-circle-o"></i> Login Page
-                    </a>
-                </li>
-            </ul>
-        </li>
+        @include('admin.layouts.sidebar-navigation')
     </ul>
 </aside>
 

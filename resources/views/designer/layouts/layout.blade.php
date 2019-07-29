@@ -26,10 +26,10 @@
     <ul class="app-nav">
         <!-- Logout Button -->
         <li>
-            <a class="app-nav__item" href="{{ route('admin.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            <a class="app-nav__item" href="{{ route('designer.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="fa fa-sign-out fa-lg"></i> Logout
             </a>
-            <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+            <form id="logout-form" action="{{ route('designer.logout') }}" method="POST" style="display: none;">
                 {{ csrf_field() }}
             </form>
         </li>
@@ -39,35 +39,7 @@
 <!-- Sidebar Navigation -->
 <aside class="app-sidebar">
     <ul class="app-menu">
-        <!-- Dashboard -->
-        <li>
-            <a class="app-menu__item active" href="{{ url('/') }}">
-                <i class="fa fa-dashboard"></i>
-                <span class="app-menu__label">
-                      Dashboard
-                </span>
-            </a>
-        </li>
-        <!-- Measurements -->
-        <li class="treeview">
-            <a class="app-menu__item" href="#" data-toggle="treeview">
-                <i class="fas fa-ruler-combined"></i>
-                <span class="app-menu__label">Measurements</span>
-                <i class="treeview-indicator fa fa-angle-right"></i>
-            </a>
-            <ul class="treeview-menu">
-                <li>
-                    <a class="treeview-item" href="{{ url('admin/measurements/list') }}">
-                        <i class="fas fa-list"></i> List
-                    </a>
-                </li>
-                <li>
-                    <a class="treeview-item" href="{{ url('admin/measurements/create') }}">
-                        <i class="fas fa-plus-circle"></i> Create New
-                    </a>
-                </li>
-            </ul>
-        </li>
+        @include('designer.layouts.sidebar-navigation')
     </ul>
 </aside>
 

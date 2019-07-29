@@ -1,4 +1,4 @@
-@extends('designer.layout')
+@extends('designer.layouts.layout')
 
 @section('content')
     <div class="app-title">

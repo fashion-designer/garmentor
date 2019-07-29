@@ -15,6 +15,6 @@ class DesignerDashboardController extends Controller
 
     public function getDashboard()
     {
-        return view('designer.dashboard');
+        return view('designer.dashboard.dashboard');
     }
 }

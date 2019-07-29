@@ -1,8 +1,8 @@
-@extends('user.layout')
+@extends('admin.layouts.layout')
 
 @section('content')
     <div class="app-title">
-        <h1><i class="fa fa-dashboard"></i> User Dashboard</h1>
+        <h1><i class="fa fa-dashboard"></i> Designer Dashboard</h1>
     </div>
     <div class="container">
         <div class="row">
