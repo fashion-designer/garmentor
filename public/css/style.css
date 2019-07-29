@@ -135,12 +135,12 @@
 
 .app-sidebar__toggle {
     padding: 0 15px;
-    font-family: fontAwesome;
     color: #fff;
     line-height: 2.4;
     -webkit-transition: background-color 0.3s ease;
     -o-transition: background-color 0.3s ease;
     transition: background-color 0.3s ease;
+    font-size: 20px;
 }
 
 @media (max-width: 767px) {
@@ -149,11 +149,6 @@
         -ms-flex-order: -1;
         order: -1;
     }
-}
-
-.app-sidebar__toggle:before {
-    content: "\f0c9";
-    font-size: 21px;
 }
 
 .app-sidebar__toggle:focus, .app-sidebar__toggle:hover {
@@ -184,6 +179,10 @@
 .list-unstyled, .app-nav, .app-menu, .treeview-menu {
     padding-left: 0;
     list-style: none;
+}
+
+a {
+    text-decoration: none;
 }
 
 .app-nav__item {
@@ -671,6 +670,10 @@
     color: #fff;
 }
 
+.app-menu__item i {
+    margin-right: 5px;
+}
+
 .app-menu__label {
     white-space: nowrap;
     -webkit-box-flex: 1;
@@ -712,6 +715,10 @@
     padding: 5px 5px 5px 20px;
     font-size: 1em;
     color: #fff;
+}
+
+.treeview-item i {
+    margin-right: 5px;
 }
 
 .treeview-item.active, .treeview-item:hover, .treeview-item:focus {

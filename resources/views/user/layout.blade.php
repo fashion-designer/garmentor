@@ -8,9 +8,6 @@
 
     <!-- Style CSS -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-
-    <!-- Font-icon css -->
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body class="app sidebar-mini">
@@ -22,7 +19,9 @@
         Hire Your Designer
     </a>
     <!-- Sidebar Toggle Button -->
-    <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
+    <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar">
+        <i class="fas fa-stream"></i>
+    </a>
     <!-- Topbar -->
     <ul class="app-nav">
         <!-- Logout Button -->
@@ -77,6 +76,7 @@
 <!-- Scripts -->
 <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<script src="https://kit.fontawesome.com/3e79d2ba2e.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function($)

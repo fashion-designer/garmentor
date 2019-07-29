@@ -8,9 +8,6 @@
 
     <!-- Style CSS -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-
-    <!-- Font-icon css -->
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body class="app sidebar-mini">
@@ -22,7 +19,9 @@
         Hire Your Designer
     </a>
     <!-- Sidebar Toggle Button -->
-    <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
+    <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar">
+        <i class="fas fa-stream"></i>
+    </a>
     <!-- Topbar -->
     <ul class="app-nav">
         <!-- Logout Button -->
@@ -49,19 +48,22 @@
                 </span>
             </a>
         </li>
-        <!-- Pages -->
+        <!-- Measurements -->
         <li class="treeview">
             <a class="app-menu__item" href="#" data-toggle="treeview">
-                <i class="fa fa-file-text"></i>
-                <span class="app-menu__label">
-                      Pages
-                  </span>
+                <i class="fas fa-ruler-combined"></i>
+                <span class="app-menu__label">Measurements</span>
                 <i class="treeview-indicator fa fa-angle-right"></i>
             </a>
             <ul class="treeview-menu">
                 <li>
-                    <a class="treeview-item" href="#">
-                        <i class="icon fa fa-circle-o"></i> Login Page
+                    <a class="treeview-item" href="{{ url('admin/measurements/list') }}">
+                        <i class="fas fa-list"></i> List
+                    </a>
+                </li>
+                <li>
+                    <a class="treeview-item" href="{{ url('admin/measurements/create') }}">
+                        <i class="fas fa-plus-circle"></i> Create New
                     </a>
                 </li>
             </ul>
@@ -77,6 +79,7 @@
 <!-- Scripts -->
 <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<script src="https://kit.fontawesome.com/3e79d2ba2e.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function($)

@@ -44,6 +44,10 @@ Route::group(['namespace' => 'Auth'], function()
 Route::group(['namespace' => 'Admin', 'as' => 'admin.', 'middleware' => 'admin'], function()
 {
     Route::get('admin/dashboard', 'AdminDashboardController@getDashboard')->name('admin.dashboard');
+
+    Route::get('admin/measurements/list', 'AdminMeasurementChartsController@list')->name('admin.measurements.list');
+    Route::get('admin/measurements/create', 'AdminMeasurementChartsController@create')->name('admin.measurements.create');
+    Route::post('admin/measurements/post', 'AdminMeasurementChartsController@post')->name('admin.measurements.post');
 });
 
 /**
