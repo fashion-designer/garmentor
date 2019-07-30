@@ -15,7 +15,7 @@
     <ul class="treeview-menu">
         <!-- List -->
         <li>
-            <a class="treeview-item" href="{{ url('admin/measurements/list') }}">
+            <a class="treeview-item" href="{{ url('admin/measurements/index') }}">
                 <i class="fas fa-list"></i> List
             </a>
         </li>

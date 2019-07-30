@@ -27,4 +27,8 @@ class MeasurementChart extends Model
         'thumb',
         'image'
     ];
+
+    protected $gaurded = [
+        'id'
+    ];
 }
