@@ -16,11 +16,12 @@ class CreateMeasurementChartsTable extends Migration
         Schema::create('measurement_charts', function (Blueprint $table)
         {
             $table->increments('id');
-            $table->string('chart_id')->unique();
+            $table->bigInteger('chart_id')->unique();
             $table->string('title', '20');
             $table->text('description');
             $table->binary('thumb')->nullable();
             $table->binary('image');
+            $table->string('file_extension', 10);
             $table->timestamps();
             $table->softDeletes();
         });
