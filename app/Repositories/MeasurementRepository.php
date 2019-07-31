@@ -23,11 +23,14 @@ class MeasurementRepository
 
     /**
      * @param $input
+     * @param $chartFile
      * @return MeasurementChart|\Illuminate\Database\Eloquent\Model
      */
-    public function create($input)
+    public function create($input, $chartFile)
     {
-        $input['image'] = file_get_contents($input['chart_file']);
+        $input['chart_id']  = '2';
+        $input['image']     = file_get_contents($chartFile);
+        $input['thumb']     = null;
 
         return $this->model->create($input);
     }
@@ -41,7 +44,7 @@ class MeasurementRepository
 
         foreach($items as $item)
         {
-            $item['image'] = '';
+            $item['chartFile'] = "data:image/png;base64,".base64_encode($item->image);
         }
 
         return $items;

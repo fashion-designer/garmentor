@@ -16,7 +16,7 @@
         <!-- List -->
         <li>
             <a class="treeview-item" href="{{ url('admin/measurements/index') }}">
-                <i class="fas fa-list"></i> List
+                <i class="fas fa-list"></i> Charts list
             </a>
         </li>
         <!-- Create New -->

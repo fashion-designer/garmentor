@@ -13,16 +13,16 @@
                         <th>Chart</th>
                         <th>Title</th>
                         <th>Description</th>
+                        <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($list as $item)
                         <tr>
-                            <td style="max-height: 200px; max-width: 200px">
-                                <img src="{!! $item->image !!}" alt="{{$item->title}}" />
-                            </td>
+                            <td><img src="{!! $item->chartFile !!}" style="max-height: 150px; max-width: 150px"/></td>
                             <td>{!! $item->title !!}</td>
                             <td>{!! $item->description !!}</td>
+                            <td><a class="btn btn-info" href="#">View</a></td>
                         </tr>
                     @endforeach
                     </tbody>

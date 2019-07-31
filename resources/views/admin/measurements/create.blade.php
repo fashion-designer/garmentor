@@ -5,7 +5,7 @@
         {!! csrf_field() !!}
     <div class="app-title">
         <h1><i class="fas fa-plus-circle"></i> Create Measurement Chart</h1>
-        <button class="btn btn-success">Upload</button>
+        <button class="btn btn-success" type="submit">Upload</button>
     </div>
     <div class="content-container card">
         <div class="row">
