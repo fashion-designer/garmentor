@@ -4,7 +4,11 @@
     <div class="app-title">
         <h1><i class="fa fa-dashboard"></i> Dashboard</h1>
     </div>
-    <div>
-        You are logged in!
+    <div class="content-container card">
+        <div class="row">
+            <div class="col-lg-12">
+
+            </div>
+        </div>
     </div>
 @endsection
