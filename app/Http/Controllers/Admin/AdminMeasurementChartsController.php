@@ -27,6 +27,8 @@ class AdminMeasurementChartsController extends Controller
     }
 
     /**
+     * View All List
+     *
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -40,6 +42,8 @@ class AdminMeasurementChartsController extends Controller
     }
 
     /**
+     * Create Form
+     *
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -49,6 +53,8 @@ class AdminMeasurementChartsController extends Controller
     }
 
     /**
+     * Save
+     *
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
@@ -59,9 +65,39 @@ class AdminMeasurementChartsController extends Controller
 
         if($result)
         {
-            return redirect('admin/measurements/index');
+            return redirect(route('admin.measurements.index'));
         }
 
         return redirect()->back()->withInput();
+    }
+
+    /**
+     * Edit
+     *
+     * @param int $id
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function edit($id, Request $request)
+    {
+        $item = $this->repository->getConfigData($id);
+
+        return view('admin.measurements.edit')->with([
+            'item' => $item
+        ]);
+    }
+
+    /**
+     * Update
+     *
+     * @param int $id
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function update($id, Request $request)
+    {
+        $result = $this->repository->update($id, $request->all());
+
+        return redirect(route('admin.measurements.index'));
     }
 }

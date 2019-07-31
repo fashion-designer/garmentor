@@ -19,10 +19,10 @@
                     <tbody>
                     @foreach($list as $item)
                         <tr>
-                            <td><img src="{!! $item->chartFile !!}" style="max-height: 150px; max-width: 150px"/></td>
+                            <td><img src="{!! $item->image !!}" style="max-height: 150px; max-width: 150px"/></td>
                             <td>{!! $item->title !!}</td>
                             <td>{!! $item->description !!}</td>
-                            <td><a class="btn btn-info" href="#">View</a></td>
+                            <td><a class="btn btn-info" href="{!! route('admin.measurements.edit', $item->id) !!}">Edit</a></td>
                         </tr>
                     @endforeach
                     </tbody>
