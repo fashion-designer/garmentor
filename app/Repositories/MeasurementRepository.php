@@ -1,6 +1,5 @@
 <?php namespace App\Repositories;
 
-
 use App\Models\MeasurementChart\MeasurementChart;
 
 /**
@@ -33,9 +32,11 @@ class MeasurementRepository
      */
     public function create($input, $chartFile)
     {
-        $input['chart_id']  = '2';
-        $input['image']     = file_get_contents($chartFile);
-        $input['thumb']     = null;
+        $input['chart_id']          = 2;
+        $input['image']             = file_get_contents($chartFile);
+        $input['thumb']             = null;
+        $fileName                   = $chartFile->getClientOriginalName();
+        $input['file_extension']    = substr($fileName, strpos($fileName, '.') + 1);
 
         return $this->model->create($input);
     }

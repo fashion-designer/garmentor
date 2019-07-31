@@ -2,7 +2,7 @@
 
 return [
 
-    '1' => [
+    1 => [
         1 => 'neck',
         2 => 'over bust',
         3 => 'bust',
