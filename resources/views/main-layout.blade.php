@@ -11,6 +11,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/3e79d2ba2e.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
+
+    @yield('js_files')
 
     <!-- Style CSS -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
@@ -72,5 +75,8 @@
         $("[data-toggle='tooltip']").tooltip();
     });
 </script>
+
+@yield('footer_scripts')
+
 </body>
 </html>

@@ -1,6 +1,9 @@
 <?php namespace App\Http\Controllers\Designer;
 
 use App\Http\Controllers\Controller;
+use App\Models\Gender\Gender;
+use App\Models\MeasurementChart\MeasurementChart;
+use App\Repositories\DesignerUserRepository;
 use Illuminate\Http\Request;
 
 /**
@@ -9,23 +12,45 @@ use Illuminate\Http\Request;
  */
 class DesignerUsersController extends Controller
 {
+    /**
+     * DesignerUser Repository
+     *
+     * @var DesignerUserRepository
+     */
+    public $repository;
+
+    /**
+     * DesignerUsersController constructor.
+     */
     public function __construct()
     {
-
+        $this->repository = new DesignerUserRepository();
     }
 
-    public function index(Request $request)
-    {
-
-    }
-
+    /**
+     * Create New
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create()
     {
-        return view('designer.users.create');
+        $measurementsCharts = (new MeasurementChart())->get();
+        $chartImages        = [];
+
+        foreach($measurementsCharts as $measurementsChart)
+        {
+            $chartImages[$measurementsChart->id] = $measurementsChart->getChartImage();
+        }
+
+        return view('designer.users.create')->with([
+            'genders'               => (new Gender())->get(),
+            'measurementCharts'     => $measurementsCharts,
+            'chartImages'           => $chartImages
+        ]);
     }
 
     public function post(Request $request)
     {
-        dd($request->all());
+        $result = $this->repository->create($request->all());
     }
 }

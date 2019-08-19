@@ -32,4 +32,19 @@ class MeasurementChart extends Model
     protected $gaurded = [
         'id'
     ];
+
+    /**
+     * Get Chart Image
+     *
+     * @return \Illuminate\Contracts\Routing\UrlGenerator|string
+     */
+    public function getChartImage()
+    {
+        if($this->image)
+        {
+            return "data:image/png;base64," . base64_encode($this->image);
+        }
+
+        return url('public/images/default_image.jpeg');
+    }
 }
