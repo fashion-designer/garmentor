@@ -29,11 +29,6 @@ class CreateDesignerOrdersTable extends Migration
 
         Schema::table('designer_orders', function (Blueprint $table)
         {
-            $table->foreign('designer_user_id')->references('id')->on('designer_users');
-        });
-
-        Schema::table('designer_orders', function (Blueprint $table)
-        {
             $table->foreign('designer_id')->references('id')->on('designers');
         });
 

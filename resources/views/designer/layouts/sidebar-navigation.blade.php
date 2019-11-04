@@ -15,13 +15,13 @@
     <ul class="treeview-menu">
         <!-- List -->
         <li>
-            <a class="treeview-item" href="{!! route('designer.users.index') !!}">
+            <a class="treeview-item" href="#">
                 <i class="fas fa-list"></i> Users list
             </a>
         </li>
         <!-- Create New -->
         <li>
-            <a class="treeview-item" href="{!! route('designer.users.create') !!}">
+            <a class="treeview-item" href="#">
                 <i class="fas fa-plus-circle"></i> Create New
             </a>
         </li>

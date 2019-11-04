@@ -5,8 +5,7 @@
  * @package App\Models\Measurement
  */
 
-use App\Models\DesignerOrder\DesignerOrder;
-use App\Models\DesignerUser\DesignerUser;
+use App\Models\DesignerOrder\DesignerOrder;;
 use App\Models\MeasurementChart\MeasurementChart;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
@@ -55,16 +54,6 @@ class Measurement extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
-    }
-
-    /**
-     * Relation With Designer User
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function designerUser()
-    {
-        return $this->belongsTo(DesignerUser::class, 'designer_user_id');
     }
 
     /**

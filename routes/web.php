@@ -69,8 +69,4 @@ Route::group(['namespace' => 'Designer', 'as' => 'designer.', 'middleware' => 'd
 
     Route::get('designer/orders/create', 'DesignerOrdersController@create')->name('orders.create');
     Route::post('designer/orders/post', 'DesignerOrdersController@post')->name('orders.post');
-
-    Route::get('designer/users/index', 'DesignerUsersController@index')->name('users.index');
-    Route::get('designer/users/create', 'DesignerUsersController@create')->name('users.create');
-    Route::post('designer/users/post', 'DesignerUsersController@post')->name('users.post');
 });
