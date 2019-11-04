@@ -43,7 +43,7 @@
         </li>
         <!-- Create New -->
         <li>
-            <a class="treeview-item" href="{{ route('designer.orders.create') }}">
+            <a class="treeview-item" href="#">
                 <i class="fas fa-plus-circle"></i> Create New
             </a>
         </li>

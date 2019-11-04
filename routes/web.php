@@ -66,7 +66,4 @@ Route::group(['namespace' => 'User', 'as' => 'user.', 'middleware' => 'auth'], f
 Route::group(['namespace' => 'Designer', 'as' => 'designer.', 'middleware' => 'designer'], function()
 {
     Route::get('designer/dashboard', 'DesignerDashboardController@getDashboard')->name('dashboard');
-
-    Route::get('designer/orders/create', 'DesignerOrdersController@create')->name('orders.create');
-    Route::post('designer/orders/post', 'DesignerOrdersController@post')->name('orders.post');
 });

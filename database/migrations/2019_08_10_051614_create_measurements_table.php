@@ -34,11 +34,6 @@ class CreateMeasurementsTable extends Migration
         {
             $table->foreign('user_id')->references('id')->on('users');
         });
-
-        Schema::table('measurements', function (Blueprint $table)
-        {
-            $table->foreign('designer_order_id')->references('id')->on('designer_orders');
-        });
     }
 
     /**
