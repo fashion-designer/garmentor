@@ -1,5 +1,6 @@
 <?php namespace App\Models\Gender;
 
+use App\Designer;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -23,4 +24,12 @@ class Gender extends Model
     protected $fillable = [
         'name',
     ];
+
+    /**
+     * Designers Gender
+     */
+    public function getDesignerGender()
+    {
+        return $this->hasMany(Designer::class);
+    }
 }

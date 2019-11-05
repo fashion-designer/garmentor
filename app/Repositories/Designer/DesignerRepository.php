@@ -24,7 +24,7 @@ class DesignerRepository
 
     public function getList()
     {
-        $list = $this->model->get()->toArray();
+        $list = $this->model->with(['getGender'])->get();
 
         return $list;
     }
