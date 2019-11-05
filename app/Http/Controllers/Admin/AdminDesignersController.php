@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use App\Repositories\Designer\DesignerRepository;
+use Illuminate\Http\Request;
 
 /**
  * Class AdminDashboardController
@@ -32,5 +33,11 @@ class AdminDesignersController extends Controller
         $list = $this->repository->getList();
 
         return view('admin.designers.list')->with(['list' => $list]);
+    }
+
+    public function edit(Request $request, $id)
+    {
+        return view('admin.designers.edit');
+        dd($id);
     }
 }

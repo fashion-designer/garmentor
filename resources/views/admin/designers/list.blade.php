@@ -4,7 +4,7 @@
     <div class="app-title">
         <h1><i class="fas fa-list"></i> Designers List</h1>
     </div>
-    <div class="app-container">
+    <div class="hyd-p-5 background-white hyd-m-6">
         <table class="table">
             <thead class="thead-dark">
             <tr>
@@ -14,17 +14,19 @@
                 <th>Gender</th>
                 <th class="text-center">Verified</th>
                 <th class="text-center">Active</th>
+                <th class="text-center">Actions</th>
             </tr>
             </thead>
             <tbody>
             @foreach($list as $item)
                 <tr>
-                    <th scope="row">{!! $item->first_name !!} {!! $item->last_name !!}</th>
+                    <td>{!! $item->first_name !!} {!! $item->last_name !!}</td>
                     <td>{!! $item->email !!}</td>
                     <td>{!! $item->phone !!}</td>
                     <td>{!! $item->getGender->name !!}</td>
                     <td class="text-center">{!! ($item->is_verified) ? '<i class="fas fa-check-circle"></i>' : '<i class="fas fa-times-circle"></i>' !!}</td>
                     <td class="text-center">{!! ($item->is_active) ? '<i class="fas fa-check-circle"></i>' : '<i class="fas fa-times-circle"></i>' !!}</td>
+                    <td class="text-center"><a class="btn btn-info btn-sm" href="{!! route('admin.designers-list.edit', $item->id) !!}">Edit</a></td>
                 </tr>
             @endforeach
             </tbody>
