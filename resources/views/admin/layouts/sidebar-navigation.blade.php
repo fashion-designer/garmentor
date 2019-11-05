@@ -1,8 +1,15 @@
 <!-- Dashboard -->
 <li>
-    <a class="app-menu__item active" href="{{ url('/') }}">
+    <a class="app-menu__item {!! ($activeTab === 'dashboard') ? 'active' : '' !!}" href="{{ url('/') }}">
         <i class="fa fa-dashboard"></i>
         <span class="app-menu__label">Dashboard</span>
+    </a>
+</li>
+<!-- Designers List -->
+<li>
+    <a class="app-menu__item {!! ($activeTab === 'designers') ? 'active' : '' !!}" href="{{ route('admin.designers-list') }}">
+        <i class="fas fa-list"></i>
+        <span class="app-menu__label">Designers List</span>
     </a>
 </li>
 <!-- Demo -->

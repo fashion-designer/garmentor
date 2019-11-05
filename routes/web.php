@@ -44,6 +44,7 @@ Route::group(['namespace' => 'Auth'], function()
 Route::group(['namespace' => 'Admin', 'as' => 'admin.', 'middleware' => 'admin'], function()
 {
     Route::get('admin/dashboard', 'AdminDashboardController@getDashboard')->name('dashboard');
+    Route::get('admin/designers-list', 'AdminDesignersController@getList')->name('designers-list');
 });
 
 /**
