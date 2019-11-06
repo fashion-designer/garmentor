@@ -896,3 +896,7 @@ body {
 .hyd-m-l-3 {
     margin-left: 3px;
 }
+
+.border-radius-5 {
+    border-radius: 5px;
+}

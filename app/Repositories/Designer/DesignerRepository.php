@@ -28,4 +28,11 @@ class DesignerRepository
 
         return $list;
     }
+
+    public function getDesignerProfile($id)
+    {
+        $profile = $this->model->where('id', $id)->with(['getGender'])->get();
+
+        return $profile;
+    }
 }

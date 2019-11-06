@@ -37,7 +37,8 @@ class AdminDesignersController extends Controller
 
     public function edit(Request $request, $id)
     {
-        return view('admin.designers.edit');
-        dd($id);
+        $profile = $this->repository->getDesignerProfile($id);
+
+        return view('admin.designers.edit')->with(['profile' => $profile[0]]);
     }
 }
