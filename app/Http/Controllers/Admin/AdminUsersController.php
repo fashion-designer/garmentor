@@ -1,26 +1,26 @@
 <?php namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Repositories\Admin\DesignerRepository;
+use App\Repositories\Admin\UserRepository;
 use Illuminate\Http\Request;
 
 /**
- * Class AdminDashboardController
+ * Class AdminUsersController
  * @package App\Http\Controllers\Admin
  */
-class AdminDesignersController extends Controller
+class AdminUsersController extends Controller
 {
     /**
-     * @var DesignerRepository
+     * @var UserRepository
      */
     public $repository;
 
     /**
-     * AdminDesignersController constructor.
+     * AdminUsersController constructor.
      */
     public function __construct()
     {
-        $this->repository = new DesignerRepository();
+        $this->repository = new UserRepository();
         $this->middleware('admin');
     }
 
@@ -32,7 +32,7 @@ class AdminDesignersController extends Controller
     {
         $list = $this->repository->getList();
 
-        return view('admin.designers.list')->with(['list' => $list]);
+        return view('admin.users.list')->with(['list' => $list]);
     }
 
     /**
@@ -44,7 +44,7 @@ class AdminDesignersController extends Controller
     {
         $profile = $this->repository->getDesignerProfile($id);
 
-        return view('admin.designers.edit')->with(['profile' => $profile[0]]);
+        return view('admin.users.edit')->with(['profile' => $profile[0]]);
     }
 
     /**
@@ -56,6 +56,6 @@ class AdminDesignersController extends Controller
     {
         $this->repository->updateDesignerProfile($id, $request->all());
 
-        return redirect()->route('admin.designers-list.edit', $id);
+        return redirect()->route('admin.users-list.edit', $id);
     }
 }

@@ -1,6 +1,7 @@
 <?php namespace App\Models\Gender;
 
 use App\Designer;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -31,5 +32,13 @@ class Gender extends Model
     public function getDesignerGender()
     {
         return $this->hasMany(Designer::class);
+    }
+
+    /**
+     * Users Gender
+     */
+    public function getUserGender()
+    {
+        return $this->hasMany(User::class);
     }
 }

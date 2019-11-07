@@ -1,4 +1,4 @@
-<?php namespace App\Repositories\Designer;
+<?php namespace App\Repositories\Admin;
 
 use App\Designer;
 

@@ -45,6 +45,6 @@ class Designer extends Authenticatable
      */
     public function getGender()
     {
-        return $this->belongsTo(Gender::class, 'id');
+        return $this->belongsTo(Gender::class, 'gender_id');
     }
 }

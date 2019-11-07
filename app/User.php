@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Gender\Gender;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -33,4 +34,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Get Gender
+     */
+    public function getGender()
+    {
+        return $this->belongsTo(Gender::class, 'gender_id');
+    }
 }
