@@ -46,6 +46,7 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.', 'middleware' => 'admin']
     Route::get('admin/dashboard', 'AdminDashboardController@getDashboard')->name('dashboard');
     Route::get('admin/designers-list', 'AdminDesignersController@getList')->name('designers-list');
     Route::get('admin/designers-list/edit/{id}', 'AdminDesignersController@edit')->name('designers-list.edit');
+    Route::post('admin/designers-list/update/{id}', 'AdminDesignersController@update')->name('designers-list.update');
 });
 
 /**

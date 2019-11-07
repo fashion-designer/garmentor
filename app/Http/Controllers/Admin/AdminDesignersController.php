@@ -35,10 +35,27 @@ class AdminDesignersController extends Controller
         return view('admin.designers.list')->with(['list' => $list]);
     }
 
+    /**
+     * @param Request $request
+     * @param int $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function edit(Request $request, $id)
     {
         $profile = $this->repository->getDesignerProfile($id);
 
         return view('admin.designers.edit')->with(['profile' => $profile[0]]);
+    }
+
+    /**
+     * @param Request $request
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(Request $request, $id)
+    {
+        $this->repository->updateDesignerProfile($id, $request->all());
+
+        return redirect()->route('admin.designers-list.edit', $id);
     }
 }
