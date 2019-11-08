@@ -1,6 +1,7 @@
 <?php namespace App\Repositories\Admin;
 
 use App\Designer;
+use App\Models\Gender\Gender;
 
 /**
  * Class DesignerRepository
@@ -73,5 +74,42 @@ class DesignerRepository
         unset($input['_token']);
 
         return $this->model->where('id', $id)->update($input);
+    }
+
+    /**
+     * @param $input
+     * @return Designer|\Illuminate\Database\Eloquent\Model
+     */
+    public function save($input)
+    {
+        if(!array_key_exists('is_active', $input))
+        {
+            $input['is_active'] = 0;
+        }
+        else
+        {
+            $input['is_active'] = 1;
+        }
+
+        if(!array_key_exists('is_verified', $input))
+        {
+            $input['is_verified'] = 0;
+        }
+        else
+        {
+            $input['is_verified'] = 1;
+        }
+
+        return $this->model->create($input);
+    }
+
+    /**
+     * Get All Genders
+     *
+     * @return Gender[]|\Illuminate\Database\Eloquent\Collection
+     */
+    public function getAllGenders()
+    {
+        return (new Gender())->get(['id', 'name']);
     }
 }

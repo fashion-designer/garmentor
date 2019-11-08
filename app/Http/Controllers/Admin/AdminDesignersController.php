@@ -58,4 +58,26 @@ class AdminDesignersController extends Controller
 
         return redirect()->route('admin.designers-list.edit', $id);
     }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function create(Request $request)
+    {
+        $genders = $this->repository->getAllGenders();
+
+        return view('admin.designers.create')->with(['genders' => $genders]);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function save(Request $request)
+    {
+        $this->repository->save($request->all());
+
+        return redirect()->route('admin.designers-list');
+    }
 }

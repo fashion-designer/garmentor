@@ -3,6 +3,9 @@
 @section('content')
     <div class="app-title">
         <h1><i class="fas fa-list"></i> Designers List</h1>
+        <span class="pull-right">
+            <a href="{!! route('admin.designers-list.create') !!}" class="btn btn-info">Create New Designer Account</a>
+        </span>
     </div>
     <div class="hyd-p-5 background-white hyd-m-6">
         <table class="table">

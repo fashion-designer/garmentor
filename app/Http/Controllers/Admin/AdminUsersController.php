@@ -58,4 +58,26 @@ class AdminUsersController extends Controller
 
         return redirect()->route('admin.users-list.edit', $id);
     }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function create(Request $request)
+    {
+        $genders = $this->repository->getAllGenders();
+
+        return view('admin.users.create')->with(['genders' => $genders]);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function save(Request $request)
+    {
+        $this->repository->save($request->all());
+
+        return redirect()->route('admin.users-list');
+    }
 }

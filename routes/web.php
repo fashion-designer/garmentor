@@ -45,10 +45,14 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.', 'middleware' => 'admin']
 {
     Route::get('admin/dashboard', 'AdminDashboardController@getDashboard')->name('dashboard');
 
+    Route::get('admin/designers-list/create', 'AdminDesignersController@create')->name('designers-list.create');
+    Route::post('admin/designers-list/save', 'AdminDesignersController@save')->name('designers-list.save');
     Route::get('admin/designers-list', 'AdminDesignersController@getList')->name('designers-list');
     Route::get('admin/designers-list/edit/{id}', 'AdminDesignersController@edit')->name('designers-list.edit');
     Route::post('admin/designers-list/update/{id}', 'AdminDesignersController@update')->name('designers-list.update');
 
+    Route::get('admin/users-list/create', 'AdminUsersController@create')->name('users-list.create');
+    Route::post('admin/users-list/save', 'AdminUsersController@save')->name('users-list.save');
     Route::get('admin/users-list', 'AdminUsersController@getList')->name('users-list');
     Route::get('admin/users-list/edit/{id}', 'AdminUsersController@edit')->name('users-list.edit');
     Route::post('admin/users-list/update/{id}', 'AdminUsersController@update')->name('users-list.update');
