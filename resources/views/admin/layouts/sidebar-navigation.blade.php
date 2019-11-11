@@ -19,6 +19,13 @@
         <span class="app-menu__label">Users List</span>
     </a>
 </li>
+<!-- Admins List -->
+<li>
+    <a class="app-menu__item {!! ($activeTab === 'admins') ? 'active' : '' !!}" href="{{ route('admin.admins-list') }}">
+        <i class="fas fa-list"></i>
+        <span class="app-menu__label">Admins List</span>
+    </a>
+</li>
 <!-- Demo -->
 <li class="treeview">
     <a class="app-menu__item" href="#" data-toggle="treeview">

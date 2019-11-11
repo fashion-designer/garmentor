@@ -1,5 +1,6 @@
 <?php namespace App\Models\Gender;
 
+use App\Admin;
 use App\Designer;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
@@ -40,5 +41,13 @@ class Gender extends Model
     public function getUserGender()
     {
         return $this->hasMany(User::class);
+    }
+
+    /**
+     * Admins Gender
+     */
+    public function getAdminGender()
+    {
+        return $this->hasMany(Admin::class);
     }
 }
