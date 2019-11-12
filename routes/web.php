@@ -62,6 +62,9 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.', 'middleware' => 'admin']
     Route::get('admin/users-list', 'AdminUsersController@getList')->name('users-list');
     Route::get('admin/users-list/edit/{id}', 'AdminUsersController@edit')->name('users-list.edit');
     Route::post('admin/users-list/update/{id}', 'AdminUsersController@update')->name('users-list.update');
+
+    Route::get('admin/profile/edit', 'AdminAdminsController@editMyProfile')->name('profile.edit');
+    Route::post('admin/profile/update', 'AdminAdminsController@updateMyProfile')->name('profile.update');
 });
 
 /**

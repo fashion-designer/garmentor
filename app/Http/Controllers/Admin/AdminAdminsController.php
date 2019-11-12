@@ -42,6 +42,11 @@ class AdminAdminsController extends Controller
      */
     public function edit(Request $request, $id)
     {
+        if($id == auth('admin')->id())
+        {
+            return redirect()->route('admin.profile.edit');
+        }
+
         $profile = $this->repository->getAdminProfile($id);
 
         return view('admin.admins.edit')->with(['profile' => $profile[0]]);
@@ -79,5 +84,31 @@ class AdminAdminsController extends Controller
         $this->repository->save($request->all());
 
         return redirect()->route('admin.admins-list');
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function editMyProfile(Request $request)
+    {
+        $profileData = $this->repository->getProfile();
+        $genders = $this->repository->getAllGenders();
+
+        return view('admin.profile.profile')->with([
+            'profile' => $profileData,
+            'genders' => $genders
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateMyProfile(Request $request)
+    {
+        $this->repository->updateProfile($request->all());
+
+        return redirect()->route('admin.profile.edit');
     }
 }

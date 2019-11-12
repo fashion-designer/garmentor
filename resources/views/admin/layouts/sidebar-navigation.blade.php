@@ -26,6 +26,13 @@
         <span class="app-menu__label">Admins List</span>
     </a>
 </li>
+<!-- My Profile -->
+<li>
+    <a class="app-menu__item {!! ($activeTab === 'profile') ? 'active' : '' !!}" href="{{ route('admin.profile.edit') }}">
+        <i class="fas fa-id-card"></i>
+        <span class="app-menu__label">My Profile</span>
+    </a>
+</li>
 <!-- Demo -->
 <li class="treeview">
     <a class="app-menu__item" href="#" data-toggle="treeview">

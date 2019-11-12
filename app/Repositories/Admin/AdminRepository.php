@@ -2,7 +2,6 @@
 
 use App\Admin;
 use App\Models\Gender\Gender;
-use Illuminate\Support\Facades\Auth;
 
 /**
  * Class AdminRepository
@@ -102,6 +101,50 @@ class AdminRepository
         }
 
         return $this->model->create($input);
+    }
+
+    /**
+     * @return Admin|mixed
+     */
+    public function getProfile()
+    {
+        $id = auth('admin')->id();
+
+        $data = $this->model->where('id', $id)->get();
+
+        return $data[0];
+    }
+
+    /**
+     * @param array $input
+     * @return bool
+     */
+    public function updateProfile($input)
+    {
+        $id = auth('admin')->id();
+
+        if(!array_key_exists('is_active', $input))
+        {
+            $input['is_active'] = 0;
+        }
+        else
+        {
+            $input['is_active'] = 1;
+        }
+
+        if(!array_key_exists('is_verified', $input))
+        {
+            $input['is_verified'] = 0;
+        }
+        else
+        {
+            $input['is_verified'] = 1;
+        }
+
+        unset($input['_token']);
+        unset($input['password']);
+
+        return $this->model->where('id', $id)->update($input);
     }
 
     /**
