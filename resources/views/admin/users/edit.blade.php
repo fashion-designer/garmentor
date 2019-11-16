@@ -54,7 +54,9 @@
                 <div class="hyd-m-t-6 hyd-m-b-6 hyd-m-l-3 hyd-m-r-6 hyd-p-6 border-radius-5 background-white">
                     <div class="card">
                         <div class="card-body">
-                            <img style="width: 80%; height: 80%;" src="{!! asset('\images\default_image.jpeg') !!}" alt="Default Image">
+                            <div class="border rounded-lg text-center hyd-p-6">
+                                <img id="displayImage"  style="width: 80%; height: 80%;" src="{!! asset('\images\default_image.jpeg') !!}" alt="No Image Available">
+                            </div>
                         </div>
                     </div>
                 </div>
