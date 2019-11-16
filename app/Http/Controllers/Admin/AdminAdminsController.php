@@ -92,7 +92,7 @@ class AdminAdminsController extends Controller
      */
     public function editMyProfile(Request $request)
     {
-        $profileData = $this->repository->getProfile();
+        $profileData = $this->repository->getMyProfile();
         $genders = $this->repository->getAllGenders();
 
         return view('admin.profile.profile')->with([
@@ -107,7 +107,7 @@ class AdminAdminsController extends Controller
      */
     public function updateMyProfile(Request $request)
     {
-        $this->repository->updateProfile($request->all());
+        $this->repository->updateMyProfile($request->all());
 
         return redirect()->route('admin.profile.edit');
     }

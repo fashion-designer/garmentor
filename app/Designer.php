@@ -27,7 +27,6 @@ class Designer extends Authenticatable
         'gender_id',
         'is_active',
         'is_verified',
-        'display_image',
         'password'
     ];
 

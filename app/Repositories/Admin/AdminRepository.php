@@ -15,12 +15,19 @@ class AdminRepository
      * @var Admin
      */
     public $model;
+
+    /**
+     * @var Gender
+     */
+    public $genderModel;
+
     /**
      * AdminRepository constructor.
      */
     public function __construct()
     {
         $this->model = new Admin();
+        $this->genderModel = new Gender();
     }
 
     /**
@@ -106,7 +113,7 @@ class AdminRepository
     /**
      * @return Admin|mixed
      */
-    public function getProfile()
+    public function getMyProfile()
     {
         $id = auth('admin')->id();
 
@@ -119,7 +126,7 @@ class AdminRepository
      * @param array $input
      * @return bool
      */
-    public function updateProfile($input)
+    public function updateMyProfile($input)
     {
         $id = auth('admin')->id();
 
@@ -154,6 +161,6 @@ class AdminRepository
      */
     public function getAllGenders()
     {
-        return (new Gender())->get(['id', 'name']);
+        return $this->genderModel->get(['id', 'name']);
     }
 }
