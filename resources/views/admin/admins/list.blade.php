@@ -23,7 +23,7 @@
             <tbody>
             @foreach($list as $item)
                 <tr>
-                    <td>{!! $item->first_name !!} {!! $item->last_name !!}</td>
+                    <td>{!! $item->first_name !!} {!! $item->last_name !!} {!! (auth('admin')->id() === $item->id) ? '<span class="badge badge-pill badge-dark">My Profile</span>' : '' !!} </td>
                     <td>{!! $item->email !!}</td>
                     <td>{!! $item->phone !!}</td>
                     <td>{!! $item->getGender->name !!}</td>
