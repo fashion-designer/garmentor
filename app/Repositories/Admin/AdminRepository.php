@@ -1,7 +1,9 @@
 <?php namespace App\Repositories\Admin;
 
 use App\Admin;
+use App\Models\DisplayImage\DisplayImage;
 use App\Models\Gender\Gender;
+use Intervention\Image\ImageManagerStatic as Image;
 
 /**
  * Class AdminRepository
@@ -22,12 +24,33 @@ class AdminRepository
     public $genderModel;
 
     /**
+     * @var DisplayImage
+     */
+    public $displayImageModel;
+
+    /**
+     * Display Image Folder Name
+     * @var string
+     */
+    public $displayImagesFolder;
+
+    /**
+     * Display Thumb Folder Name
+     *
+     * @var string
+     */
+    public $displayThumbsFolder;
+
+    /**
      * AdminRepository constructor.
      */
     public function __construct()
     {
         $this->model = new Admin();
         $this->genderModel = new Gender();
+        $this->displayImageModel = new DisplayImage();
+        $this->displayImagesFolder = storage_path('DisplayImages/');
+        $this->displayThumbsFolder = storage_path('DisplayThumbs/');
     }
 
     /**
@@ -148,8 +171,26 @@ class AdminRepository
             $input['is_verified'] = 1;
         }
 
+        $input['gender_id'] = intval($input['gender_id']);
         unset($input['_token']);
         unset($input['password']);
+
+        if(array_key_exists('display_image_file_input', $input))
+        {
+            $displayImageFile = $input['display_image_file_input'];
+            $extension = $displayImageFile->getClientOriginalExtension();
+            $imageFile = Image::make($displayImageFile);
+            $imageFile->resize(600, 600)->save($this->displayImagesFolder . auth('admin')->id() . '.' . $extension);
+            $imageFile->resize(200, 200)->save($this->displayThumbsFolder . auth('admin')->id() . '.' . $extension);
+
+            $this->displayImageModel->create([
+                'admin_id'          => auth('admin')->id(),
+                'image_name'        => auth('admin')->id(),
+                'image_extension'   => $displayImageFile->getClientOriginalExtension()
+            ]);
+        }
+
+        unset($input['display_image_file_input']);
 
         return $this->model->where('id', $id)->update($input);
     }

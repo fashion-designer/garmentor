@@ -38,7 +38,7 @@
                                 <label>Gender</label>
                                 <select name="gender_id" class="form-control" required>
                                     @foreach($genders as $gender)
-                                        <option value="{{$gender->id}}" {!! ($gender->id === $profile->gender_id) ? 'selected' : '' !!}>{{$gender->name}}</option>
+                                        <option value={{$gender->id}} {!! ($gender->id === $profile->gender_id) ? 'selected' : '' !!}>{{$gender->name}}</option>
                                     @endforeach
                                 </select>
                             </div>

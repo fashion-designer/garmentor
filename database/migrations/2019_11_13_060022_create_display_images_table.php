@@ -19,9 +19,8 @@ class CreateDisplayImagesTable extends Migration
             $table->bigInteger('admin_id')->nullable();
             $table->bigInteger('designer_id')->nullable();
             $table->bigInteger('user_id')->nullable();
-            $table->binary('display_thumb')->nullable();
-            $table->binary('display_image');
-            $table->string('image_extension');
+            $table->string('image_name', 30);
+            $table->string('image_extension', 10);
             $table->timestamps();
         });
 

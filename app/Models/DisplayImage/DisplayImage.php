@@ -20,7 +20,7 @@ class DisplayImage extends Model
         'admin_id',
         'designer_id',
         'user_id',
-        'display_thumb',
-        'display_image'
+        'image_name',
+        'image_extension'
     ];
 }
