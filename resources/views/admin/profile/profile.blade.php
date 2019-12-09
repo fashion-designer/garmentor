@@ -58,7 +58,10 @@
                 <div class="hyd-m-t-6 hyd-m-b-6 hyd-m-l-3 hyd-m-r-6 hyd-p-6 border-radius-5 background-white">
                     <div class="card">
                         <div class="card-body">
-                            @include('shared.profile-image')
+                            @include('shared.profile-image', [
+                            'imageSource' => $profile['display_image'],
+                            'defaultImage' => $profile['default_image']
+                            ])
                         </div>
                     </div>
                 </div>

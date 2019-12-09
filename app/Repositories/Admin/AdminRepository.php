@@ -1,9 +1,8 @@
 <?php namespace App\Repositories\Admin;
 
 use App\Admin;
-use App\Models\DisplayImage\DisplayImage;
 use App\Models\Gender\Gender;
-use Intervention\Image\ImageManagerStatic as Image;
+use App\Repositories\Common\DisplayImageRepository;
 
 /**
  * Class AdminRepository
@@ -24,33 +23,12 @@ class AdminRepository
     public $genderModel;
 
     /**
-     * @var DisplayImage
-     */
-    public $displayImageModel;
-
-    /**
-     * Display Image Folder Name
-     * @var string
-     */
-    public $displayImagesFolder;
-
-    /**
-     * Display Thumb Folder Name
-     *
-     * @var string
-     */
-    public $displayThumbsFolder;
-
-    /**
      * AdminRepository constructor.
      */
     public function __construct()
     {
-        $this->model = new Admin();
-        $this->genderModel = new Gender();
-        $this->displayImageModel = new DisplayImage();
-        $this->displayImagesFolder = storage_path('DisplayImages/');
-        $this->displayThumbsFolder = storage_path('DisplayThumbs/');
+        $this->model        = new Admin();
+        $this->genderModel  = new Gender();
     }
 
     /**
@@ -138,9 +116,16 @@ class AdminRepository
      */
     public function getMyProfile()
     {
-        $id = auth('admin')->id();
+        $id                         = auth('admin')->id();
+        $data                       = $this->model->where('id', $id)->get();
+        $data[0]['display_image']   = (new DisplayImageRepository('admin_id', auth('admin')->id()))->getDisplayImageData();
+        $data[0]['default_image']   = false;
 
-        $data = $this->model->where('id', $id)->get();
+        if($data[0]['display_image'] === false)
+        {
+            $data[0]['default_image'] = true;
+            $data[0]['display_image'] = hyd_get_default_display_image();
+        }
 
         return $data[0];
     }
@@ -172,24 +157,19 @@ class AdminRepository
         }
 
         $input['gender_id'] = intval($input['gender_id']);
-        unset($input['_token']);
-        unset($input['password']);
 
-        if(array_key_exists('display_image_file_input', $input))
+        if(array_key_exists('remove_display_image', $input) && $input['remove_display_image'] === '1')
         {
-            $displayImageFile = $input['display_image_file_input'];
-            $extension = $displayImageFile->getClientOriginalExtension();
-            $imageFile = Image::make($displayImageFile);
-            $imageFile->resize(600, 600)->save($this->displayImagesFolder . auth('admin')->id() . '.' . $extension);
-            $imageFile->resize(200, 200)->save($this->displayThumbsFolder . auth('admin')->id() . '.' . $extension);
-
-            $this->displayImageModel->create([
-                'admin_id'          => auth('admin')->id(),
-                'image_name'        => auth('admin')->id(),
-                'image_extension'   => $displayImageFile->getClientOriginalExtension()
-            ]);
+            (new DisplayImageRepository('admin_id', auth('admin')->id()))->removeDisplayImage();
+        }
+        elseif (array_key_exists('display_image_file_input', $input) && array_key_exists('remove_display_image', $input) && $input['remove_display_image'] === '0')
+        {
+            (new DisplayImageRepository('admin_id', auth('admin')->id()))->saveDisplayImage($input['display_image_file_input']);
         }
 
+        unset($input['_token']);
+        unset($input['password']);
+        unset($input['remove_display_image']);
         unset($input['display_image_file_input']);
 
         return $this->model->where('id', $id)->update($input);
