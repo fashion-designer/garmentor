@@ -1,8 +1,11 @@
 <?php namespace App\Repositories\Admin;
 
 use App\Admin;
+use App\Mail\AdminInvitation;
+use App\Mail\Invitation;
 use App\Models\Gender\Gender;
 use App\Repositories\Common\DisplayImageRepository;
+use Illuminate\Support\Facades\Mail;
 
 /**
  * Class AdminRepository
@@ -86,9 +89,9 @@ class AdminRepository
 
     /**
      * @param $input
-     * @return Admin|\Illuminate\Database\Eloquent\Model
+     * @return boolean
      */
-    public function save($input)
+    public function sendInvitation($input)
     {
         if(!array_key_exists('is_active', $input))
         {
@@ -108,7 +111,13 @@ class AdminRepository
             $input['is_verified'] = 1;
         }
 
-        return $this->model->create($input);
+        $invitedAdmin   = $this->model->create($input);
+        $invitationCode = hyd_encrypt_string($invitedAdmin->id);
+        $invitationLink = route('verify-admin', $invitedAdmin->id);
+
+        Mail::to($invitedAdmin)->send(new Invitation('admin', $invitationCode, $invitationLink));
+
+        return true;
     }
 
     /**

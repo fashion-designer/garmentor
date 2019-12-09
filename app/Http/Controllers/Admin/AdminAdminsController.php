@@ -68,20 +68,20 @@ class AdminAdminsController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function create(Request $request)
+    public function invite(Request $request)
     {
         $genders = $this->repository->getAllGenders();
 
-        return view('admin.admins.create')->with(['genders' => $genders]);
+        return view('admin.admins.invite')->with(['genders' => $genders]);
     }
 
     /**
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function save(Request $request)
+    public function sendInvitation(Request $request)
     {
-        $this->repository->save($request->all());
+        $this->repository->sendInvitation($request->all());
 
         return redirect()->route('admin.admins-list');
     }

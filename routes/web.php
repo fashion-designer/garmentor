@@ -6,6 +6,7 @@
 Route::group(['middleware' => 'guest'], function()
 {
     Route::get('/', 'WelcomeController@welcome');
+    Route::get('/verify-admin/{id}', 'WelcomeController@verifyAdmin')->name('verify-admin');
 });
 
 /**
@@ -45,8 +46,8 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.', 'middleware' => 'admin']
 {
     Route::get('admin/dashboard', 'AdminDashboardController@getDashboard')->name('dashboard');
 
-    Route::get('admin/admins-list/create', 'AdminAdminsController@create')->name('admins-list.create');
-    Route::post('admin/admins-list/save', 'AdminAdminsController@save')->name('admins-list.save');
+    Route::get('admin/admins-list/invite', 'AdminAdminsController@invite')->name('admins-list.invite');
+    Route::post('admin/admins-list/send-invitation', 'AdminAdminsController@sendInvitation')->name('admins-list.send-invitation');
     Route::get('admin/admins-list', 'AdminAdminsController@getList')->name('admins-list');
     Route::get('admin/admins-list/edit/{id}', 'AdminAdminsController@edit')->name('admins-list.edit');
     Route::post('admin/admins-list/update/{id}', 'AdminAdminsController@update')->name('admins-list.update');

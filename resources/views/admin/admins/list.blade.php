@@ -4,7 +4,7 @@
     <div class="app-title">
         <h1><i class="fas fa-list"></i> Admins List</h1>
         <span class="pull-right">
-            <a href="{!! route('admin.admins-list.create') !!}" class="btn btn-info">Create New Admin Account</a>
+            <a href="{!! route('admin.admins-list.invite') !!}" class="btn btn-info">Invite New Admin Account</a>
         </span>
     </div>
     <div class="hyd-p-5 background-white hyd-m-6">
