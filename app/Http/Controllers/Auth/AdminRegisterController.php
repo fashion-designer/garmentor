@@ -2,6 +2,7 @@
 
 use App\Admin;
 use App\Http\Controllers\Controller;
+use App\Repositories\EmailVerification\EmailVerificationRepository;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -105,5 +106,45 @@ class AdminRegisterController extends Controller
             'is_verified'      => 1,
             'password'  => bcrypt($data['password']),
         ]);
+    }
+
+    /**
+     * Verify Admin
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function verifyAdmin(Request $request, $id)
+    {
+        return view('auth.verification')->with(['id' => $id]);
+    }
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function verifyAdminSubmit(Request $request, $id)
+    {
+        $emailVerificationRepository = new EmailVerificationRepository(new \App\Admin());
+
+        if($emailVerificationRepository->isVerificationEmailSent($id))
+        {
+            $isVerified = $emailVerificationRepository->verifyEmail($request->all(), $id);
+
+            if($isVerified)
+            {
+                return redirect(route('setup-password-admin', $id));
+            }
+
+            return redirect()->back();
+        }
+
+        return redirect('');
+    }
+
+    public function setupAdminPassword(Request $request, $id)
+    {
+        return view('emails.set-password')->with(['id' => $id]);
     }
 }

@@ -21,6 +21,7 @@ class Admin extends Authenticatable
         'gender_id',
         'is_active',
         'is_verified',
+        'verification_code',
         'password'
     ];
 

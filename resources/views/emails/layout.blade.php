@@ -7,6 +7,15 @@
 
     <title>Hire Your Designer</title>
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/3e79d2ba2e.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
@@ -46,7 +55,7 @@
         }
 
         .title {
-            font-size: 84px;
+            font-size: 60px;
         }
 
         .links > a {
@@ -75,15 +84,7 @@
 <body>
 <div class="flex-center position-ref full-height">
     <div class="content">
-        <div class="title m-b-md">
-            Verify Here
-        </div>
-        <p>
-            Enter code here!
-        </p>
-        <div class="links">
-            <a class="auth-links" href="#">Verify Link</a>
-        </div>
+        @yield('content')
     </div>
 </div>
 </body>

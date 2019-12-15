@@ -6,7 +6,16 @@
 Route::group(['middleware' => 'guest'], function()
 {
     Route::get('/', 'WelcomeController@welcome');
-    Route::get('/verify-admin/{id}', 'WelcomeController@verifyAdmin')->name('verify-admin');
+});
+
+/**
+ * Welcome Page Routes
+ */
+Route::group(['middleware' => 'guest'], function()
+{
+    Auth::get('/verify-admin/{id}', 'AdminRegisterController@verifyAdmin')->name('verify-admin');
+    Auth::post('/verify-admin/{id}', 'AdminRegisterController@verifyAdminSubmit')->name('verify-admin');
+    Auth::post('/setup-password-admin/{id}', 'AdminRegisterController@setupAdminPassword')->name('setup-password-admin');
 });
 
 /**

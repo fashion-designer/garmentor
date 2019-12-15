@@ -1,7 +1,6 @@
 <?php namespace App\Repositories\Admin;
 
 use App\Admin;
-use App\Mail\AdminInvitation;
 use App\Mail\Invitation;
 use App\Models\Gender\Gender;
 use App\Repositories\Common\DisplayImageRepository;
@@ -117,6 +116,8 @@ class AdminRepository
 
         Mail::to($invitedAdmin)->send(new Invitation('admin', $invitationCode, $invitationLink));
 
+        $invitedAdmin->update(['verification_code' => $invitationCode]);
+
         return true;
     }
 
@@ -142,6 +143,7 @@ class AdminRepository
     /**
      * @param array $input
      * @return bool
+     * @throws \Exception
      */
     public function updateMyProfile($input)
     {
