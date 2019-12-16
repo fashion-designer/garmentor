@@ -30,6 +30,35 @@ class EmailVerificationController extends Controller
     }
 
     /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function sendVerificationAdmin()
+    {
+        return view('auth.verification-email');
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function submitEmailAdmin(Request $request)
+    {
+        $emailVerificationRepository = new EmailVerificationRepository(new \App\Admin());
+
+        if($emailVerificationRepository->checkIfAccountEmailExist($request->all()))
+        {
+            $accountId = $emailVerificationRepository->sendVerificationEmail($request->all());
+
+            if($accountId)
+            {
+                return redirect(route('verify-admin', $accountId));
+            }
+        }
+
+        return redirect()->back();
+    }
+
+    /**
      * Verify Admin
      * @param Request $request
      * @param $id

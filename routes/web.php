@@ -18,6 +18,8 @@ Auth::routes();
  */
 Route::group(['middleware' => 'guest', 'namespace' => 'Auth'], function()
 {
+    Route::get('/send-verification-admin', 'EmailVerificationController@sendVerificationAdmin')->name('send-verification-admin');
+    Route::post('/send-verification-admin', 'EmailVerificationController@submitEmailAdmin')->name('send-verification-admin');
     Route::get('/verify-admin/{id}', 'EmailVerificationController@verifyAdmin')->name('verify-admin');
     Route::post('/verify-admin/{id}', 'EmailVerificationController@verifyAdminSubmit')->name('verify-admin');
     Route::get('/setup-password-admin/{id}', 'EmailVerificationController@setupAdminPassword')->name('setup-password-admin');
