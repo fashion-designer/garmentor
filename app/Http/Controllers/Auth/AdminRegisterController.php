@@ -2,11 +2,12 @@
 
 use App\Admin;
 use App\Http\Controllers\Controller;
+use App\Mail\Invitation;
 use App\Models\Gender\Gender;
-use App\Repositories\EmailVerification\EmailVerificationRepository;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -23,7 +24,7 @@ class AdminRegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = 'admin/dashboard';
+    protected $redirectTo = 'verify-admin';
 
     /**
      * Create a new controller instance.
@@ -59,10 +60,16 @@ class AdminRegisterController extends Controller
 
         event(new Registered($user = $this->create($request->all())));
 
-        $this->guard()->login($user);
+        $invitationCode = hyd_encrypt_string($user->id);
+        $invitationLink = route('verify-admin', $user->id);
 
-        return $this->registered($request, $user)
-            ?: redirect($this->redirectPath());
+        Mail::to($user)->send(new Invitation('admin', $invitationCode, $invitationLink));
+
+        $user->update(['verification_code' => $invitationCode]);
+
+        $this->redirectTo = $this->redirectTo . '/' . $user->id;
+
+        return $this->registered($request, $user) ?: redirect($this->redirectPath());
     }
 
     /**
@@ -108,45 +115,5 @@ class AdminRegisterController extends Controller
             'is_active'     => 0,
             'is_verified'   => 0,
         ]);
-    }
-
-    /**
-     * Verify Admin
-     * @param Request $request
-     * @param $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function verifyAdmin(Request $request, $id)
-    {
-        return view('auth.verification')->with(['id' => $id]);
-    }
-
-    /**
-     * @param Request $request
-     * @param $id
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function verifyAdminSubmit(Request $request, $id)
-    {
-        $emailVerificationRepository = new EmailVerificationRepository(new \App\Admin());
-
-        if($emailVerificationRepository->isVerificationEmailSent($id))
-        {
-            $isVerified = $emailVerificationRepository->verifyEmail($request->all(), $id);
-
-            if($isVerified)
-            {
-                return redirect(route('setup-password-admin', $id));
-            }
-
-            return redirect()->back();
-        }
-
-        return redirect('');
-    }
-
-    public function setupAdminPassword(Request $request, $id)
-    {
-        return view('emails.set-password')->with(['id' => $id]);
     }
 }

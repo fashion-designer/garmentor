@@ -13,7 +13,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-5 mx-auto">
-                        <h2 class="text-center" style="font-family: 'Raleway', sans-serif;">Thank you for joining, enter the verification code to compete registration!</h2>
+                        <h2 class="text-center" style="font-family: 'Raleway', sans-serif;">Thank you for joining, enter the verification code sent to your email and compete registration!</h2>
                         <form class="form-horizontal" method="POST" action="{{ route('verify-admin', [$id])}}">
                             {{ csrf_field() }}
                             <div class="form-group">
