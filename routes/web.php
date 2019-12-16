@@ -13,15 +13,16 @@ Route::group(['middleware' => 'guest'], function()
  */
 Auth::routes();
 
-///**
-// * Welcome Page Routes
-// */
-//Route::group(['middleware' => 'guest'], function()
-//{
-//    Auth::get('/verify-admin/{id}', 'AdminRegisterController@verifyAdmin')->name('verify-admin');
-//    Auth::post('/verify-admin/{id}', 'AdminRegisterController@verifyAdminSubmit')->name('verify-admin');
-//    Auth::post('/setup-password-admin/{id}', 'AdminRegisterController@setupAdminPassword')->name('setup-password-admin');
-//});
+/**
+ * Email Verification Routes
+ */
+Route::group(['middleware' => 'guest', 'namespace' => 'Auth'], function()
+{
+    Route::get('/verify-admin/{id}', 'EmailVerificationController@verifyAdmin')->name('verify-admin');
+    Route::post('/verify-admin/{id}', 'EmailVerificationController@verifyAdminSubmit')->name('verify-admin');
+    Route::get('/setup-password-admin/{id}', 'EmailVerificationController@setupAdminPassword')->name('setup-password-admin');
+    Route::post('/setup-password-admin/{id}', 'EmailVerificationController@setupAdminPasswordSubmit')->name('setup-password-admin');
+});
 
 /**
  * Designer, Admin Authentication Routes

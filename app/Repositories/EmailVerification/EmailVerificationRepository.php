@@ -1,7 +1,5 @@
 <?php namespace App\Repositories\EmailVerification;
 
-use App\Admin;
-
 class EmailVerificationRepository
 {
     public $modal;
@@ -24,7 +22,6 @@ class EmailVerificationRepository
     }
 
     /**
-     * @param Admin $modal
      * @param $input
      * @param $id
      * @return bool
@@ -35,12 +32,28 @@ class EmailVerificationRepository
 
         if($verificationCode && array_key_exists('verification_code', $input) && $input['verification_code'] === $verificationCode)
         {
-            $this->modal->where('id', $id)->update([
-                'is_active' => 1,
-                'is_verified' => 1
-            ]);
-
             return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @param $input
+     * @param $id
+     * @return bool
+     */
+    public function setPassword($input, $id)
+    {
+        if(array_key_exists('password', $input))
+        {
+            return $this->modal->where('id', $id)->update([
+                'is_active' => 1,
+                'is_verified' => 1,
+                'gender_id' => $input['gender_id'],
+                'verification_code' => null,
+                'password' => bcrypt($input['password'])
+            ]);
         }
 
         return false;

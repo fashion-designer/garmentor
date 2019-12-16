@@ -13,9 +13,24 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-5 mx-auto">
-                        <h2 class="text-center" style="font-family: 'Raleway', sans-serif;">Thank you for joining, enter the verification code to compete registration!</h2>
-                        <form class="form-horizontal" method="POST" action="{{ route('register') }}">
+                        <h2 class="text-center" style="font-family: 'Raleway', sans-serif;">Create a new password for your account!</h2>
+                        <form class="form-horizontal" method="POST" action="{{ route('setup-password-admin', $id) }}">
                             {{ csrf_field() }}
+                            <div class="form-group">
+                                <label for="gender_id" class="col-md-12 control-label">Gender</label>
+                                <div class="col-md-12">
+                                    <select name="gender_id" id="gender_id" class="form-control" required autofocus>
+                                        @foreach($genders as $gender)
+                                            <option value="{{$gender->id}}">{{$gender->name}}</option>
+                                        @endforeach
+                                    </select>
+                                    @if ($errors->has('gender_id'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('gender_id') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
                             <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                                 <label for="password" class="col-md-12 control-label">Password</label>
                                 <div class="col-md-12">

@@ -26,7 +26,7 @@
                     <td>{!! $item->first_name !!} {!! $item->last_name !!} {!! (auth('admin')->id() === $item->id) ? '<span class="badge badge-pill badge-dark">My Profile</span>' : '' !!} </td>
                     <td>{!! $item->email !!}</td>
                     <td>{!! $item->phone !!}</td>
-                    <td>{!! $item->getGender->name !!}</td>
+                    <td>{!! (isset($item->getGender->name)) ? $item->getGender->name : '' !!}</td>
                     <td class="text-center">{!! ($item->is_verified) ? '<i class="fas fa-check-circle"></i>' : '<i class="fas fa-times-circle"></i>' !!}</td>
                     <td class="text-center">{!! ($item->is_active) ? '<i class="fas fa-check-circle"></i>' : '<i class="fas fa-times-circle"></i>' !!}</td>
                     <td class="text-center"><a class="btn btn-info btn-sm" href="{!! route('admin.admins-list.edit', $item->id) !!}">Edit</a></td>

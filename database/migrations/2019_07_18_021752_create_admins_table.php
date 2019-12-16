@@ -20,7 +20,7 @@ class CreateAdminsTable extends Migration
             $table->string('last_name');
             $table->string('email')->unique();
             $table->string('phone')->nullable();
-            $table->bigInteger('gender_id');
+            $table->bigInteger('gender_id')->default(null);
             $table->boolean('is_active')->default(0);
             $table->boolean('is_verified')->default(0);
             $table->string('password');
