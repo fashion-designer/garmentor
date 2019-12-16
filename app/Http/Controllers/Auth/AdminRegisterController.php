@@ -2,6 +2,7 @@
 
 use App\Admin;
 use App\Http\Controllers\Controller;
+use App\Models\Gender\Gender;
 use App\Repositories\EmailVerification\EmailVerificationRepository;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -41,7 +42,9 @@ class AdminRegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        return view('auth.admin-register');
+        $genders = (new Gender())->get(['id', 'name']);
+
+        return view('auth.admin-register')->with(['genders' => $genders]);
     }
 
     /**
@@ -84,7 +87,7 @@ class AdminRegisterController extends Controller
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'gender_id' => 'required'
         ]);
     }
 
@@ -97,14 +100,13 @@ class AdminRegisterController extends Controller
     protected function create(array $data)
     {
         return Admin::create([
-            'first_name'        => $data['first_name'],
-            'last_name'         => $data['last_name'],
-            'email'             => $data['email'],
-            'phone'      => $data['phone'],
-            'gender_id'      => 1,
-            'is_active'      => 1,
-            'is_verified'      => 1,
-            'password'  => bcrypt($data['password']),
+            'first_name'    => $data['first_name'],
+            'last_name'     => $data['last_name'],
+            'email'         => $data['email'],
+            'phone'         => $data['phone'],
+            'gender_id'     => intval($data['gender_id']),
+            'is_active'     => 0,
+            'is_verified'   => 0,
         ]);
     }
 

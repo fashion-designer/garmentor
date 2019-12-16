@@ -9,19 +9,19 @@ Route::group(['middleware' => 'guest'], function()
 });
 
 /**
- * Welcome Page Routes
- */
-Route::group(['middleware' => 'guest'], function()
-{
-    Auth::get('/verify-admin/{id}', 'AdminRegisterController@verifyAdmin')->name('verify-admin');
-    Auth::post('/verify-admin/{id}', 'AdminRegisterController@verifyAdminSubmit')->name('verify-admin');
-    Auth::post('/setup-password-admin/{id}', 'AdminRegisterController@setupAdminPassword')->name('setup-password-admin');
-});
-
-/**
  * User Authentication Routes
  */
 Auth::routes();
+
+///**
+// * Welcome Page Routes
+// */
+//Route::group(['middleware' => 'guest'], function()
+//{
+//    Auth::get('/verify-admin/{id}', 'AdminRegisterController@verifyAdmin')->name('verify-admin');
+//    Auth::post('/verify-admin/{id}', 'AdminRegisterController@verifyAdminSubmit')->name('verify-admin');
+//    Auth::post('/setup-password-admin/{id}', 'AdminRegisterController@setupAdminPassword')->name('setup-password-admin');
+//});
 
 /**
  * Designer, Admin Authentication Routes

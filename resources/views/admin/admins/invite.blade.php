@@ -30,14 +30,6 @@
                                 <label>Phone</label>
                                 <input type="number" class="form-control" name="phone" placeholder="Enter phone here" required>
                             </div>
-                            <div class="form-group">
-                                <label>Gender</label>
-                                <select name="gender_id" class="form-control" required>
-                                    @foreach($genders as $gender)
-                                        <option value="{{$gender->id}}">{{$gender->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
                         </div>
                     </div>
                 </div>

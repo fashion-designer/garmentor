@@ -17,7 +17,7 @@
                         <form class="form-horizontal" method="POST" action="{{ route('auth.admin.register-post') }}">
                             {{ csrf_field() }}
                             <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
-                                <label for="first_name" class="col-md-12 control-label">first_name</label>
+                                <label for="first_name" class="col-md-12 control-label">First Name</label>
                                 <div class="col-md-12">
                                     <input id="first_name" type="text" class="form-control" name="first_name" value="{{ old('first_name') }}" required autofocus>
                                     @if ($errors->has('first_name'))
@@ -28,7 +28,7 @@
                                 </div>
                             </div>
                             <div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
-                                <label for="last_name" class="col-md-12 control-label">last_name</label>
+                                <label for="last_name" class="col-md-12 control-label">Last Name</label>
                                 <div class="col-md-12">
                                     <input id="last_name" type="text" class="form-control" name="last_name" value="{{ old('last_name') }}" required autofocus>
                                     @if ($errors->has('last_name'))
@@ -60,21 +60,19 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                <label for="password" class="col-md-12 control-label">Password</label>
+                            <div class="form-group">
+                                <label for="gender_id" class="col-md-12 control-label">Gender</label>
                                 <div class="col-md-12">
-                                    <input id="password" type="password" class="form-control" name="password" required>
-                                    @if ($errors->has('password'))
+                                    <select name="gender_id" id="gender_id" class="form-control" required autofocus>
+                                        @foreach($genders as $gender)
+                                            <option value="{{$gender->id}}">{{$gender->name}}</option>
+                                        @endforeach
+                                    </select>
+                                    @if ($errors->has('gender_id'))
                                         <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
+                                        <strong>{{ $errors->first('gender_id') }}</strong>
                                     </span>
                                     @endif
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="password-confirm" class="col-md-12 control-label">Confirm Password</label>
-                                <div class="col-md-12">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                                 </div>
                             </div>
                             <div class="form-group">

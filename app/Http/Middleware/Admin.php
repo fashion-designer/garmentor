@@ -15,8 +15,11 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        if(!auth()->guard('admin')->check())
+        if(!auth()->guard('admin')->check()
+            || auth()->guard('admin')->user()->is_active !== 1
+            || auth()->guard('admin')->user()->is_verified !== 1)
         {
+            auth()->guard('admin')->logout();
             return redirect('admin/login');
         }
 
