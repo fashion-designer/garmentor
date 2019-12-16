@@ -58,6 +58,23 @@ class AdminRegisterController extends Controller
     {
         $this->validator($request->all())->validate();
 
+        $accountDetails = (new Admin())->where('email', $request->get('email'))->first();
+
+        if($accountDetails)
+        {
+            if($accountDetails->is_active !== 1)
+            {
+                return redirect()->back();
+            }
+
+            if($accountDetails->is_verified !== 1)
+            {
+                $this->redirectTo = $this->redirectTo . '/' . $accountDetails->id;
+
+                return redirect('send-verification-admin');
+            }
+        }
+
         event(new Registered($user = $this->create($request->all())));
 
         $invitationCode = hyd_encrypt_string($user->id);
