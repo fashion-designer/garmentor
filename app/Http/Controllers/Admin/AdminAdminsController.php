@@ -3,6 +3,7 @@
 use App\Repositories\Admin\AdminRepository;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 /**
  * Class AdminAdminsController
@@ -22,6 +23,23 @@ class AdminAdminsController extends Controller
     {
         $this->repository = new AdminRepository();
         $this->middleware('admin');
+    }
+
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'phone' => 'required|numeric',
+            'password' => 'string|min:6|confirmed',
+        ]);
     }
 
     /**
@@ -104,10 +122,14 @@ class AdminAdminsController extends Controller
     /**
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
     public function updateMyProfile(Request $request)
     {
-        $this->repository->updateMyProfile($request->all());
+        $input = $request->all();
+
+        $this->validator($input)->validate();
+        $this->repository->updateMyProfile($input);
 
         return redirect()->route('admin.profile.edit');
     }

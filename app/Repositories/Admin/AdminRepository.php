@@ -178,10 +178,15 @@ class AdminRepository
             (new DisplayImageRepository('admin_id', auth('admin')->id()))->saveDisplayImage($input['display_image_file_input']);
         }
 
+        if(array_key_exists('password', $input) && $input['password'] === '')
+        {
+            unset($input['password']);
+        }
+
         unset($input['_token']);
-        unset($input['password']);
         unset($input['remove_display_image']);
         unset($input['display_image_file_input']);
+        unset($input['password_confirmation']);
 
         return $this->model->where('id', $id)->update($input);
     }
