@@ -65,9 +65,13 @@ class AdminAdminsController extends Controller
             return redirect()->route('admin.profile.edit');
         }
 
-        $profile = $this->repository->getAdminProfile($id);
+        $profile    = $this->repository->getAdminProfile($id);
+        $alert      = hyd_get_alert_message_cookie();
 
-        return view('admin.admins.edit')->with(['profile' => $profile[0]]);
+        return view('admin.admins.edit')->with([
+            'profile'   => $profile[0],
+            'alert'     => ($alert) ? $alert : false,
+        ]);
     }
 
     /**
@@ -77,7 +81,11 @@ class AdminAdminsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->repository->updateAdminProfile($id, $request->all());
+        $result         = $this->repository->updateAdminProfile($id, $request->all());
+        $alertMessage   = ($result) ? 'Profile data updated successfully!' : 'Failed to update profile data!';
+        $alertType      = ($result) ? 'success' : 'error';
+
+        hyd_set_alert_message_cookie($alertMessage, $alertType);
 
         return redirect()->route('admin.admins-list.edit', $id);
     }
@@ -110,12 +118,14 @@ class AdminAdminsController extends Controller
      */
     public function editMyProfile(Request $request)
     {
-        $profileData = $this->repository->getMyProfile();
-        $genders = $this->repository->getAllGenders();
+        $profileData    = $this->repository->getMyProfile();
+        $genders        = $this->repository->getAllGenders();
+        $alert          = hyd_get_alert_message_cookie();
 
         return view('admin.profile.profile')->with([
             'profile' => $profileData,
-            'genders' => $genders
+            'genders' => $genders,
+            'alert'   => ($alert) ? $alert : false,
         ]);
     }
 
@@ -128,8 +138,19 @@ class AdminAdminsController extends Controller
     {
         $input = $request->all();
 
+        if(array_key_exists('password', $input) && $input['password'] === null)
+        {
+            unset($input['password']);
+            unset($input['password_confirmation']);
+        }
+
         $this->validator($input)->validate();
-        $this->repository->updateMyProfile($input);
+
+        $result         = $this->repository->updateMyProfile($input);
+        $alertMessage   = ($result) ? 'Profile data updated successfully!' : 'Failed to update profile data!';
+        $alertType      = ($result) ? 'success' : 'error';
+
+        hyd_set_alert_message_cookie($alertMessage, $alertType);
 
         return redirect()->route('admin.profile.edit');
     }

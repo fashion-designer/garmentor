@@ -21,7 +21,7 @@
                                 <div class="col-md-12">
                                     <input id="first_name" type="text" class="form-control" name="first_name" value="{{ old('first_name') }}" required autofocus>
                                     @if ($errors->has('first_name'))
-                                        <span class="help-block">
+                                        <span class="help-block hyd-color-red">
                                             <strong>{{ $errors->first('first_name') }}</strong>
                                         </span>
                                     @endif
@@ -32,7 +32,7 @@
                                 <div class="col-md-12">
                                     <input id="last_name" type="text" class="form-control" name="last_name" value="{{ old('last_name') }}" required autofocus>
                                     @if ($errors->has('last_name'))
-                                        <span class="help-block">
+                                        <span class="help-block hyd-color-red">
                                             <strong>{{ $errors->first('last_name') }}</strong>
                                         </span>
                                     @endif
@@ -43,7 +43,7 @@
                                 <div class="col-md-12">
                                     <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
                                     @if ($errors->has('email'))
-                                        <span class="help-block">
+                                        <span class="help-block hyd-color-red">
                                             <strong>{{ $errors->first('email') }}</strong>
                                         </span>
                                     @endif
@@ -54,7 +54,7 @@
                                 <div class="col-md-12">
                                     <input id="phone" type="phone" class="form-control" name="phone" value="{{ old('phone') }}" required>
                                     @if ($errors->has('phone'))
-                                        <span class="help-block">
+                                        <span class="help-block hyd-color-red">
                                             <strong>{{ $errors->first('phone') }}</strong>
                                         </span>
                                     @endif
@@ -65,7 +65,7 @@
                                 <div class="col-md-12">
                                     <input id="password" type="password" class="form-control" name="password" required>
                                     @if ($errors->has('password'))
-                                        <span class="help-block">
+                                        <span class="help-block hyd-color-red">
                                             <strong>{{ $errors->first('password') }}</strong>
                                         </span>
                                     @endif

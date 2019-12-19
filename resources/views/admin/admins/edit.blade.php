@@ -10,6 +10,9 @@
             </span>
         </div>
         <div class="row m-0">
+            @if(isset($alert) && $alert)
+                @include('shared.alert', ['alert' => $alert])
+            @endif
             <div class="col-lg-6 p-0">
                 <div class="hyd-m-t-6 hyd-m-b-6 hyd-m-l-6 hyd-m-r-3 hyd-p-6 border-radius-5 background-white">
                     <div class="card">

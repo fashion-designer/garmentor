@@ -900,3 +900,7 @@ body {
 .border-radius-5 {
     border-radius: 5px;
 }
+
+.hyd-color-red {
+    color: red !important;
+}
