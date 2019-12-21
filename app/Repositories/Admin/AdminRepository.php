@@ -129,13 +129,6 @@ class AdminRepository
         $id                         = auth('admin')->id();
         $data                       = $this->model->where('id', $id)->get();
         $data[0]['display_image']   = (new DisplayImageRepository('admin_id', auth('admin')->id()))->getDisplayImageData();
-        $data[0]['default_image']   = false;
-
-        if($data[0]['display_image'] === false)
-        {
-            $data[0]['default_image'] = true;
-            $data[0]['display_image'] = hyd_get_default_display_image();
-        }
 
         return $data[0];
     }
