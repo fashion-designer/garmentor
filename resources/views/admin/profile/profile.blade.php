@@ -96,7 +96,8 @@
                     <div class="card">
                         <div class="card-body">
                             @include('shared.profile-image', [
-                            'imageSource' => $profile['display_image'],
+                            'imageSource'   => $profile['display_image'],
+                            'allowEdit'     => true
                             ])
                         </div>
                     </div>

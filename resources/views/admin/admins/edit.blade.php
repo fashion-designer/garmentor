@@ -58,7 +58,12 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="border rounded-lg text-center hyd-p-6">
-                                <img id="displayImage"  style="width: 80%; height: 80%;" src="{!! asset('\images\default_image.jpeg') !!}" alt="No Image Available">
+                                <div class="card-body">
+                                    @include('shared.profile-image', [
+                                    'imageSource'   => $profile['display_image'],
+                                    'allowEdit'     => false
+                                    ])
+                                </div>
                             </div>
                         </div>
                     </div>

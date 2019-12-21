@@ -1,11 +1,13 @@
-<div class="form-group">
-    <div class="custom-file">
-        <input type="file" class="custom-file-input" id="displayImageFileInput" name="display_image_file_input" style="width: 80%">
-        <label class="custom-file-label" for="displayImageFileInput" style="width: 80%">Upload New Profile Image</label>
-        <button type="button" class="{!! ($imageSource === false) ? 'btn btn-info invisible' : 'btn btn-info' !!}" id="displayImageFileInputRemoveButton" style="width: 15%" onclick="removeDisplayImage()">Remove</button>
-        <input type="hidden" name="remove_display_image" id="removeDisplayImageInput" value="0">
+@if(isset($allowEdit) && $allowEdit)
+    <div class="form-group">
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="displayImageFileInput" name="display_image_file_input" style="width: 80%">
+            <label class="custom-file-label" for="displayImageFileInput" style="width: 80%">Upload New Profile Image</label>
+            <button type="button" class="{!! ($imageSource === false) ? 'btn btn-info invisible' : 'btn btn-info' !!}" id="displayImageFileInputRemoveButton" style="width: 15%" onclick="removeDisplayImage()">Remove</button>
+            <input type="hidden" name="remove_display_image" id="removeDisplayImageInput" value="0">
+        </div>
     </div>
-</div>
+@endif
 
 <div class="border rounded-lg text-center hyd-p-6">
     <img id="displayImage"  style="width: 80%; height: 80%;" src="{!! ($imageSource === false) ? asset('/images/default_image.jpeg') : $imageSource !!}" alt="No Image Available">
