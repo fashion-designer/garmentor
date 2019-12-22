@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use App\Models\Gender\Gender;
+use App\Admin;
 use App\Repositories\EmailVerification\EmailVerificationRepository;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -34,7 +35,7 @@ class EmailVerificationController extends Controller
      */
     public function sendVerificationAdmin()
     {
-        return view('auth.verification-email');
+        return view('auth.verification.email');
     }
 
     /**
@@ -66,7 +67,7 @@ class EmailVerificationController extends Controller
      */
     public function verifyAdmin(Request $request, $id)
     {
-        return view('auth.verification')->with(['id' => $id]);
+        return view('auth.verification.invitation-code')->with(['id' => $id]);
     }
 
     /**
@@ -100,10 +101,16 @@ class EmailVerificationController extends Controller
      */
     public function setupAdminPassword(Request $request, $id)
     {
-        $genders = (new Gender())->get(['id', 'name']);
+        $genderSelected = (new Admin)->where('id', $id)->value('gender_id');
+
+        if(!$genderSelected)
+        {
+            $genders = (new Gender())->get(['id', 'name']);
+        }
+
         return view('auth.set-password')->with([
             'id' => $id,
-            'genders' => $genders
+            'genders' => (isset($genders)) ? $genders : null
         ]);
     }
 

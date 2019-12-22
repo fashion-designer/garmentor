@@ -111,15 +111,22 @@ class EmailVerificationRepository
      */
     public function setPassword($input, $id)
     {
+        $data = [
+            'is_active'         => 1,
+            'is_verified'       => 1,
+            'verification_code' => null,
+            'password'          => bcrypt($input['password'])
+        ];
+
+        if(array_key_exists('gender_id', $input))
+        {
+            $data['gender_id'] = $input['gender_id'];
+        }
+
+
         if(array_key_exists('password', $input))
         {
-            return $this->modal->where('id', $id)->update([
-                'is_active' => 1,
-                'is_verified' => 1,
-                'gender_id' => $input['gender_id'],
-                'verification_code' => null,
-                'password' => bcrypt($input['password'])
-            ]);
+            return $this->modal->where('id', $id)->update($data);
         }
 
         return false;
