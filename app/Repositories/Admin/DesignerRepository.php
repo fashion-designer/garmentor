@@ -1,7 +1,9 @@
 <?php namespace App\Repositories\Admin;
 
 use App\Designer;
+use App\Mail\Invitation;
 use App\Models\Gender\Gender;
+use Illuminate\Support\Facades\Mail;
 
 /**
  * Class DesignerRepository
@@ -78,9 +80,9 @@ class DesignerRepository
 
     /**
      * @param $input
-     * @return Designer|\Illuminate\Database\Eloquent\Model
+     * @return bool
      */
-    public function save($input)
+    public function sendInvitation($input)
     {
         if(!array_key_exists('is_active', $input))
         {
@@ -100,7 +102,13 @@ class DesignerRepository
             $input['is_verified'] = 1;
         }
 
-        return $this->model->create($input);
+        $invitedDesigner    = $this->model->create($input);
+        $invitationCode     = hyd_encrypt_string($invitedDesigner->id);
+        $invitationLink     = route('verify-designer', $invitedDesigner->id);
+
+        Mail::to($invitedDesigner)->send(new Invitation('designer', $invitationCode, $invitationLink));
+
+        return $invitedDesigner->update(['verification_code' => $invitationCode]);
     }
 
     /**

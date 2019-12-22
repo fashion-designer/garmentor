@@ -1,11 +1,14 @@
 <?php namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\Invitation;
+use App\Models\Gender\Gender;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Designer;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 /**
@@ -21,7 +24,7 @@ class DesignerRegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = 'designer/dashboard';
+    protected $redirectTo = 'verify-designer';
 
     /**
      * Create a new controller instance.
@@ -40,7 +43,9 @@ class DesignerRegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        return view('auth.designer-register');
+        $genders = (new Gender())->get(['id', 'name']);
+
+        return view('auth.designer-register')->with(['genders' => $genders]);
     }
 
     /**
@@ -53,12 +58,35 @@ class DesignerRegisterController extends Controller
     {
         $this->validator($request->all())->validate();
 
+        $accountDetails = (new Designer())->where('email', $request->get('email'))->first();
+
+        if($accountDetails)
+        {
+            if($accountDetails->is_active !== 1)
+            {
+                return redirect()->back();
+            }
+
+            if($accountDetails->is_verified !== 1)
+            {
+                $this->redirectTo = $this->redirectTo . '/' . $accountDetails->id;
+
+                return redirect('send-verification-designer');
+            }
+        }
+
         event(new Registered($user = $this->create($request->all())));
 
-        $this->guard()->login($user);
+        $invitationCode = hyd_encrypt_string($user->id);
+        $invitationLink = route('verify-designer', $user->id);
 
-        return $this->registered($request, $user)
-            ?: redirect($this->redirectPath());
+        Mail::to($user)->send(new Invitation('designer', $invitationCode, $invitationLink));
+
+        $user->update(['verification_code' => $invitationCode]);
+
+        $this->redirectTo = $this->redirectTo . '/' . $user->id;
+
+        return $this->registered($request, $user) ?: redirect($this->redirectPath());
     }
 
     /**
@@ -80,10 +108,10 @@ class DesignerRegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'first_name'    => 'required|string|max:255',
+            'last_name'     => 'required|string|max:255',
+            'email'         => 'required|string|email|max:255|unique:users',
+            'gender_id'     => 'required'
         ]);
     }
 
@@ -101,11 +129,9 @@ class DesignerRegisterController extends Controller
             'email'         => $data['email'],
             'phone'         => $data['phone'],
             'portfolio_name'=> '',
-            'gender_id'     => 1,
-            'is_active'     => 1,
-            'is_verified'   => 1,
-            'display_image' => null,
-            'password'      => bcrypt($data['password']),
+            'gender_id'     => intval($data['gender_id']),
+            'is_active'     => 0,
+            'is_verified'   => 0,
         ]);
     }
 }

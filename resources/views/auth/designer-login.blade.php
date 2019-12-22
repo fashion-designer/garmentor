@@ -40,6 +40,13 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12 col-md-offset-4">
+                                    <a href="{!! route('send-verification-designer') !!}">
+                                        Forgot password?
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary w-100">
                                         Login
                                     </button>

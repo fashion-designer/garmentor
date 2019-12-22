@@ -30,9 +30,13 @@ class AdminDesignersController extends Controller
      */
     public function getList()
     {
-        $list = $this->repository->getList();
+        $list   = $this->repository->getList();
+        $alert  = hyd_get_alert_message_cookie();
 
-        return view('admin.designers.list')->with(['list' => $list]);
+        return view('admin.designers.list')->with([
+            'list'      => $list,
+            'alert'     => ($alert) ? $alert : false,
+        ]);
     }
 
     /**
@@ -63,20 +67,24 @@ class AdminDesignersController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function create(Request $request)
+    public function invite(Request $request)
     {
         $genders = $this->repository->getAllGenders();
 
-        return view('admin.designers.create')->with(['genders' => $genders]);
+        return view('admin.designers.invite')->with(['genders' => $genders]);
     }
 
     /**
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function save(Request $request)
+    public function sendInvitation(Request $request)
     {
-        $this->repository->save($request->all());
+        $invitation     = $this->repository->sendInvitation($request->all());
+        $alertMessage   = ($invitation) ? 'Invited designer successfully!' : 'Failed to send invitation!';
+        $alertType      = ($invitation) ? 'success' : 'error';
+
+        hyd_set_alert_message_cookie($alertMessage, $alertType);
 
         return redirect()->route('admin.designers-list');
     }

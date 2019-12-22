@@ -38,11 +38,11 @@
                                 </tr>
                                 <tr>
                                     <td>Active</td>
-                                    <td><input name="is_verified" type="checkbox" class="form-control" data-toggle="toggle" data-size="sm" {!! ($profile->is_verified === 1) ? 'checked' : '' !!} data-onstyle="success" data-offstyle="danger" data-on="Yes" data-off="No"></td>
+                                    <td><input name="is_active" type="checkbox" class="form-control" data-toggle="toggle" data-size="sm" {!! ($profile->is_active === 1) ? 'checked' : '' !!} data-onstyle="success" data-offstyle="danger" data-on="Yes" data-off="No"></td>
                                 </tr>
                                 <tr>
                                     <td>Verified</td>
-                                    <td><input name="is_active" class="form-control" type="checkbox" data-toggle="toggle" data-size="sm" {!! ($profile->is_active === 1) ? 'checked' : '' !!} data-onstyle="success" data-offstyle="danger" data-on="Yes" data-off="No"></td>
+                                    <td><input name="is_verified" class="form-control" type="checkbox" data-toggle="toggle" data-size="sm" {!! ($profile->is_verified === 1) ? 'checked' : '' !!} data-onstyle="success" data-offstyle="danger" data-on="Yes" data-off="No"></td>
                                 </tr>
                                 </tbody>
                             </table>

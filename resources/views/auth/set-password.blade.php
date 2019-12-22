@@ -14,7 +14,7 @@
                 <div class="row">
                     <div class="col-md-5 mx-auto">
                         <h2 class="text-center" style="font-family: 'Raleway', sans-serif;">Create a new password for your account!</h2>
-                        <form class="form-horizontal" method="POST" action="{{ route('setup-password-admin', $id) }}">
+                        <form class="form-horizontal" method="POST" action="{{ $route }}">
                             {{ csrf_field() }}
                             @if($genders)
                                 <div class="form-group">
@@ -53,7 +53,7 @@
                             <div class="form-group">
                                 <div class="col-md-12 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary w-100">
-                                        Register
+                                        Submit
                                     </button>
                                 </div>
                             </div>

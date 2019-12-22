@@ -14,7 +14,7 @@
                 <div class="row">
                     <div class="col-md-5 mx-auto">
                         <h2 class="text-center" style="font-family: 'Raleway', sans-serif;">Enter your email to receive the verification code!</h2>
-                        <form class="form-horizontal" method="POST" action="{{route('send-verification-admin')}}">
+                        <form class="form-horizontal" method="POST" action="{{$route}}">
                             {{ csrf_field() }}
                             <div class="form-group">
                                 <div class="col-md-12">

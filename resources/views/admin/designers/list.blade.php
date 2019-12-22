@@ -4,10 +4,13 @@
     <div class="app-title">
         <h1><i class="fas fa-list"></i> Designers List</h1>
         <span class="pull-right">
-            <a href="{!! route('admin.designers-list.create') !!}" class="btn btn-info">Create New Designer Account</a>
+            <a href="{!! route('admin.designers-list.invite') !!}" class="btn btn-info">Invite New Designer Account</a>
         </span>
     </div>
     <div class="hyd-p-5 background-white hyd-m-6">
+        @if(isset($alert) && $alert)
+            @include('shared.alert', ['alert' => $alert])
+        @endif
         <table class="table">
             <thead class="thead-dark">
             <tr>
@@ -26,7 +29,7 @@
                     <td>{!! $item->first_name !!} {!! $item->last_name !!}</td>
                     <td>{!! $item->email !!}</td>
                     <td>{!! $item->phone !!}</td>
-                    <td>{!! $item->getGender->name !!}</td>
+                    <td>{!! (isset($item->getGender->name)) ? $item->getGender->name : '' !!}</td>
                     <td class="text-center">{!! ($item->is_verified) ? '<i class="fas fa-check-circle"></i>' : '<i class="fas fa-times-circle"></i>' !!}</td>
                     <td class="text-center">{!! ($item->is_active) ? '<i class="fas fa-check-circle"></i>' : '<i class="fas fa-times-circle"></i>' !!}</td>
                     <td class="text-center"><a class="btn btn-info btn-sm" href="{!! route('admin.designers-list.edit', $item->id) !!}">Edit</a></td>

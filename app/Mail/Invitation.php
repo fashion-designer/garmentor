@@ -45,5 +45,12 @@ class Invitation extends Mailable
                 'invitationLink' => $this->invitationLink
             ]);
         }
+        elseif ($this->role === 'designer')
+        {
+            return $this->view('emailS.invitations.designer')->with([
+                'invitationCode' => $this->invitationCode,
+                'invitationLink' => $this->invitationLink
+            ]);
+        }
     }
 }

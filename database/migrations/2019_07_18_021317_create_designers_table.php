@@ -21,9 +21,10 @@ class CreateDesignersTable extends Migration
             $table->string('email')->unique();
             $table->string('phone')->nullable();
             $table->string('portfolio_name', 25)->nullable();
-            $table->bigInteger('gender_id');
+            $table->bigInteger('gender_id')->default(null);
             $table->boolean('is_active')->default(0);
             $table->boolean('is_verified')->default(0);
+            $table->string('verification_code', 1000)->default(null);
             $table->binary('display_image')->nullable();
             $table->string('password');
             $table->rememberToken();

@@ -9,17 +9,24 @@ use Illuminate\Support\Facades\Mail;
 class EmailVerificationRepository
 {
     /**
+     * @var string
+     */
+    public $role;
+
+    /**
      * @var Admin|Designer|User
      */
     public $modal;
 
     /**
      * EmailVerificationRepository constructor.
+     * @param $role
      * @param $modal
      */
-    public function __construct($modal)
+    public function __construct($role, $modal)
     {
-        $this->modal = $modal;
+        $this->role     = $role;
+        $this->modal    = $modal;
     }
 
     /**
@@ -54,9 +61,21 @@ class EmailVerificationRepository
             if(isset($accountData[0]))
             {
                 $invitationCode = hyd_encrypt_string($accountData[0]->id);
-                $invitationLink = route('verify-admin', $accountData[0]->id);
 
-                Mail::to($accountData[0])->send(new Invitation('admin', $invitationCode, $invitationLink));
+                if($this->role === 'user')
+                {
+                    $invitationLink = route('verify-user', $accountData[0]->id);
+                }
+                elseif ($this->role === 'designer')
+                {
+                    $invitationLink = route('verify-designer', $accountData[0]->id);
+                }
+                else
+                {
+                    $invitationLink = route('verify-admin', $accountData[0]->id);
+                }
+
+                Mail::to($accountData[0])->send(new Invitation($this->role, $invitationCode, $invitationLink));
 
                 $accountData[0]->update([
                     'verification_code' => $invitationCode,

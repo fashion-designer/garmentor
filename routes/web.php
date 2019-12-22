@@ -24,6 +24,13 @@ Route::group(['middleware' => 'guest', 'namespace' => 'Auth'], function()
     Route::post('/verify-admin/{id}', 'EmailVerificationController@verifyAdminSubmit')->name('verify-admin');
     Route::get('/setup-password-admin/{id}', 'EmailVerificationController@setupAdminPassword')->name('setup-password-admin');
     Route::post('/setup-password-admin/{id}', 'EmailVerificationController@setupAdminPasswordSubmit')->name('setup-password-admin');
+
+    Route::get('/send-verification-designer', 'EmailVerificationController@sendVerificationDesigner')->name('send-verification-designer');
+    Route::post('/send-verification-designer', 'EmailVerificationController@submitEmailDesigner')->name('send-verification-designer');
+    Route::get('/verify-designer/{id}', 'EmailVerificationController@verifyDesigner')->name('verify-designer');
+    Route::post('/verify-designer/{id}', 'EmailVerificationController@verifyDesignerSubmit')->name('verify-designer');
+    Route::get('/setup-password-designer/{id}', 'EmailVerificationController@setupDesignerPassword')->name('setup-password-designer');
+    Route::post('/setup-password-designer/{id}', 'EmailVerificationController@setupDesignerPasswordSubmit')->name('setup-password-designer');
 });
 
 /**
@@ -64,8 +71,8 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.', 'middleware' => 'admin']
     Route::get('admin/admins-list/edit/{id}', 'AdminAdminsController@edit')->name('admins-list.edit');
     Route::post('admin/admins-list/update/{id}', 'AdminAdminsController@update')->name('admins-list.update');
 
-    Route::get('admin/designers-list/create', 'AdminDesignersController@create')->name('designers-list.create');
-    Route::post('admin/designers-list/save', 'AdminDesignersController@save')->name('designers-list.save');
+    Route::get('admin/designers-list/invite', 'AdminDesignersController@invite')->name('designers-list.invite');
+    Route::post('admin/designers-list/send-invitation', 'AdminDesignersController@sendInvitation')->name('designers-list.send-invitation');
     Route::get('admin/designers-list', 'AdminDesignersController@getList')->name('designers-list');
     Route::get('admin/designers-list/edit/{id}', 'AdminDesignersController@edit')->name('designers-list.edit');
     Route::post('admin/designers-list/update/{id}', 'AdminDesignersController@update')->name('designers-list.update');
