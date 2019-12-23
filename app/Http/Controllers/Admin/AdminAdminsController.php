@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers\Admin;
 
+use App\Admin;
 use App\Repositories\Admin\AdminRepository;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -48,9 +49,13 @@ class AdminAdminsController extends Controller
      */
     public function getList()
     {
-        $list = $this->repository->getList();
+        $list       = $this->repository->getList();
+        $alert      = hyd_get_alert_message_cookie();
 
-        return view('admin.admins.list')->with(['list' => $list]);
+        return view('admin.admins.list')->with([
+            'list'  => $list,
+            'alert' => ($alert) ? $alert : false
+        ]);
     }
 
     /**
@@ -107,7 +112,30 @@ class AdminAdminsController extends Controller
      */
     public function sendInvitation(Request $request)
     {
-        $this->repository->sendInvitation($request->all());
+        $accountDetails = (new Admin())->where('email', $request->get('email'))->first();
+
+        if($accountDetails)
+        {
+            $alertMessage   = 'An account with this email already exist!';
+            $alertType      = 'danger';
+        }
+        else
+        {
+            $invited = $this->repository->sendInvitation($request->all());
+
+            if($invited)
+            {
+                $alertMessage   = 'Invited admin successfully!';
+                $alertType      = 'success';
+            }
+            else
+            {
+                $alertMessage   = 'Failed to invite admin!';
+                $alertType      = 'danger';
+            }
+        }
+
+        hyd_set_alert_message_cookie($alertMessage, $alertType);
 
         return redirect()->route('admin.admins-list');
     }

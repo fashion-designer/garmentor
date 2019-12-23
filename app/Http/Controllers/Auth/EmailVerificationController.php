@@ -36,8 +36,11 @@ class EmailVerificationController extends Controller
      */
     public function sendVerificationAdmin()
     {
+        $alert = hyd_get_alert_message_cookie();
+
         return view('auth.verification.email')->with([
-            'route' => route('send-verification-admin')
+            'route' => route('send-verification-admin'),
+            'alert' => ($alert) ? $alert : false
         ]);
     }
 

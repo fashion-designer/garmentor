@@ -7,6 +7,9 @@
             <a href="{!! route('admin.admins-list.invite') !!}" class="btn btn-info">Invite New Admin Account</a>
         </span>
     </div>
+    @if(isset($alert) && $alert)
+        @include('shared.alert', ['alert' => $alert])
+    @endif
     <div class="hyd-p-5 background-white hyd-m-6">
         <table class="table">
             <thead class="thead-dark">

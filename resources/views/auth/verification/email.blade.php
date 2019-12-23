@@ -12,6 +12,9 @@
         <div class="card-body">
             <div class="container">
                 <div class="row">
+                    @if(isset($alert) && $alert)
+                        @include('shared.alert', ['alert' => $alert])
+                    @endif
                     <div class="col-md-5 mx-auto">
                         <h2 class="text-center" style="font-family: 'Raleway', sans-serif;">Enter your email to receive the verification code!</h2>
                         <form class="form-horizontal" method="POST" action="{{$route}}">
