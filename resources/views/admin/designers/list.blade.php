@@ -7,10 +7,10 @@
             <a href="{!! route('admin.designers-list.invite') !!}" class="btn btn-info">Invite New Designer Account</a>
         </span>
     </div>
+    @if(isset($alert) && $alert)
+        @include('shared.alert', ['alert' => $alert])
+    @endif
     <div class="hyd-p-5 background-white hyd-m-6">
-        @if(isset($alert) && $alert)
-            @include('shared.alert', ['alert' => $alert])
-        @endif
         <table class="table">
             <thead class="thead-dark">
             <tr>

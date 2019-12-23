@@ -43,9 +43,13 @@ class DesignerRegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        $genders = (new Gender())->get(['id', 'name']);
+        $genders    = (new Gender())->get(['id', 'name']);
+        $alert      = hyd_get_alert_message_cookie();
 
-        return view('auth.designer-register')->with(['genders' => $genders]);
+        return view('auth.designer-register')->with([
+            'genders'   => $genders,
+            'alert'     => ($alert) ? $alert : false,
+        ]);
     }
 
     /**
@@ -64,15 +68,30 @@ class DesignerRegisterController extends Controller
         {
             if($accountDetails->is_active !== 1)
             {
+                $alertMessage   = 'You can not create an account with this email!';
+                $alertType      = 'danger';
+
+                hyd_set_alert_message_cookie($alertMessage, $alertType);
                 return redirect()->back();
             }
 
             if($accountDetails->is_verified !== 1)
             {
+                $alertMessage   = 'An account with this email already exist!';
+                $alertType      = 'danger';
+
+                hyd_set_alert_message_cookie($alertMessage, $alertType);
                 $this->redirectTo = $this->redirectTo . '/' . $accountDetails->id;
 
                 return redirect('send-verification-designer');
             }
+
+            $alertMessage   = 'An account with this email already exist!';
+            $alertType      = 'danger';
+
+            hyd_set_alert_message_cookie($alertMessage, $alertType);
+
+            return redirect('admin/login');
         }
 
         event(new Registered($user = $this->create($request->all())));
@@ -84,7 +103,11 @@ class DesignerRegisterController extends Controller
 
         $user->update(['verification_code' => $invitationCode]);
 
-        $this->redirectTo = $this->redirectTo . '/' . $user->id;
+        $this->redirectTo   = $this->redirectTo . '/' . $user->id;
+        $alertMessage       = 'Successfully registered!';
+        $alertType          = 'success';
+
+        hyd_set_alert_message_cookie($alertMessage, $alertType);
 
         return $this->registered($request, $user) ?: redirect($this->redirectPath());
     }

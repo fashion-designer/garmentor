@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers\Admin;
 
+use App\Designer;
 use App\Http\Controllers\Controller;
 use App\Repositories\Admin\DesignerRepository;
 use Illuminate\Http\Request;
@@ -80,10 +81,27 @@ class AdminDesignersController extends Controller
      */
     public function sendInvitation(Request $request)
     {
-        $invitation     = $this->repository->sendInvitation($request->all());
-        $alertMessage   = ($invitation) ? 'Invited designer successfully!' : 'Failed to send invitation!';
-        $alertType      = ($invitation) ? 'success' : 'error';
+        $accountDetails = (new Designer())->where('email', $request->get('email'))->first();
 
+        if($accountDetails)
+        {
+            $alertMessage   = 'An account with this email already exist!';
+            $alertType      = 'danger';
+        }
+        else
+        {
+            $invited = $this->repository->sendInvitation($request->all());
+            if($invited)
+            {
+                $alertMessage   = 'Invited admin successfully!';
+                $alertType      = 'success';
+            }
+            else
+            {
+                $alertMessage   = 'Failed to invite admin!';
+                $alertType      = 'danger';
+            }
+        }
         hyd_set_alert_message_cookie($alertMessage, $alertType);
 
         return redirect()->route('admin.designers-list');

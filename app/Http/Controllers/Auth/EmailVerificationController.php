@@ -150,8 +150,11 @@ class EmailVerificationController extends Controller
      */
     public function sendVerificationDesigner()
     {
+        $alert  = hyd_get_alert_message_cookie();
+
         return view('auth.verification.email')->with([
-            'route' => route('send-verification-designer')
+            'route'     => route('send-verification-designer'),
+            'alert'     => ($alert) ? $alert : false,
         ]);
     }
 
