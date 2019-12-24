@@ -153,7 +153,7 @@ class AdminRegisterController extends Controller
             'email'         => $data['email'],
             'phone'         => $data['phone'],
             'gender_id'     => intval($data['gender_id']),
-            'is_active'     => 0,
+            'is_active'     => 1,
             'is_verified'   => 0,
         ]);
     }

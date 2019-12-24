@@ -176,6 +176,8 @@ class EmailVerificationController extends Controller
             }
         }
 
+        hyd_set_alert_message_cookie('Recovering this account is not possible!', 'danger');
+
         return redirect()->back();
     }
 

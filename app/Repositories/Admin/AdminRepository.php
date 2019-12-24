@@ -93,27 +93,11 @@ class AdminRepository
      */
     public function sendInvitation($input)
     {
-        if(!array_key_exists('is_active', $input))
-        {
-            $input['is_active'] = 0;
-        }
-        else
-        {
-            $input['is_active'] = 1;
-        }
-
-        if(!array_key_exists('is_verified', $input))
-        {
-            $input['is_verified'] = 0;
-        }
-        else
-        {
-            $input['is_verified'] = 1;
-        }
-
-        $invitedAdmin   = $this->model->create($input);
-        $invitationCode = hyd_encrypt_string($invitedAdmin->id);
-        $invitationLink = route('verify-admin', $invitedAdmin->id);
+        $input['is_active']     = 1;
+        $input['is_verified']   = 0;
+        $invitedAdmin           = $this->model->create($input);
+        $invitationCode         = hyd_encrypt_string($invitedAdmin->id);
+        $invitationLink         = route('verify-admin', $invitedAdmin->id);
 
         Mail::to($invitedAdmin)->send(new Invitation('admin', $invitationCode, $invitationLink));
 

@@ -84,27 +84,11 @@ class DesignerRepository
      */
     public function sendInvitation($input)
     {
-        if(!array_key_exists('is_active', $input))
-        {
-            $input['is_active'] = 0;
-        }
-        else
-        {
-            $input['is_active'] = 1;
-        }
-
-        if(!array_key_exists('is_verified', $input))
-        {
-            $input['is_verified'] = 0;
-        }
-        else
-        {
-            $input['is_verified'] = 1;
-        }
-
-        $invitedDesigner    = $this->model->create($input);
-        $invitationCode     = hyd_encrypt_string($invitedDesigner->id);
-        $invitationLink     = route('verify-designer', $invitedDesigner->id);
+        $input['is_active']     = 1;
+        $input['is_verified']   = 0;
+        $invitedDesigner        = $this->model->create($input);
+        $invitationCode         = hyd_encrypt_string($invitedDesigner->id);
+        $invitationLink         = route('verify-designer', $invitedDesigner->id);
 
         Mail::to($invitedDesigner)->send(new Invitation('designer', $invitationCode, $invitationLink));
 

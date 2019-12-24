@@ -88,7 +88,7 @@ class AdminAdminsController extends Controller
     {
         $result         = $this->repository->updateAdminProfile($id, $request->all());
         $alertMessage   = ($result) ? 'Profile data updated successfully!' : 'Failed to update profile data!';
-        $alertType      = ($result) ? 'success' : 'error';
+        $alertType      = ($result) ? 'success' : 'danger';
 
         hyd_set_alert_message_cookie($alertMessage, $alertType);
 
@@ -176,7 +176,7 @@ class AdminAdminsController extends Controller
 
         $result         = $this->repository->updateMyProfile($input);
         $alertMessage   = ($result) ? 'Profile data updated successfully!' : 'Failed to update profile data!';
-        $alertType      = ($result) ? 'success' : 'error';
+        $alertType      = ($result) ? 'success' : 'danger';
 
         hyd_set_alert_message_cookie($alertMessage, $alertType);
 

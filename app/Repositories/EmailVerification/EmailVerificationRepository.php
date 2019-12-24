@@ -39,7 +39,7 @@ class EmailVerificationRepository
         {
             $accountData = $this->modal->where('email', $input['email'])->get();
 
-            if(isset($accountData[0]))
+            if(isset($accountData[0]) && array_key_exists('is_active', $accountData[0]) && $accountData[0]['is_active'] === 1)
             {
                 return true;
             }
@@ -131,7 +131,6 @@ class EmailVerificationRepository
     public function setPassword($input, $id)
     {
         $data = [
-            'is_active'         => 1,
             'is_verified'       => 1,
             'verification_code' => null,
             'password'          => bcrypt($input['password'])

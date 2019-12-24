@@ -153,7 +153,7 @@ class DesignerRegisterController extends Controller
             'phone'         => $data['phone'],
             'portfolio_name'=> '',
             'gender_id'     => intval($data['gender_id']),
-            'is_active'     => 0,
+            'is_active'     => 1,
             'is_verified'   => 0,
         ]);
     }
