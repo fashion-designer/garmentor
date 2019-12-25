@@ -60,7 +60,7 @@ class EmailVerificationRepository
 
             if(isset($accountData[0]))
             {
-                $invitationCode = hyd_encrypt_string($accountData[0]->id);
+                $invitationCode = str_random(6);
 
                 if($this->role === 'user')
                 {

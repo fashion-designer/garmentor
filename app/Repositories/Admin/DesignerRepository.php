@@ -87,7 +87,7 @@ class DesignerRepository
         $input['is_active']     = 1;
         $input['is_verified']   = 0;
         $invitedDesigner        = $this->model->create($input);
-        $invitationCode         = hyd_encrypt_string($invitedDesigner->id);
+        $invitationCode         = str_random(6);
         $invitationLink         = route('verify-designer', $invitedDesigner->id);
 
         Mail::to($invitedDesigner)->send(new Invitation('designer', $invitationCode, $invitationLink));

@@ -96,7 +96,7 @@ class AdminRepository
         $input['is_active']     = 1;
         $input['is_verified']   = 0;
         $invitedAdmin           = $this->model->create($input);
-        $invitationCode         = hyd_encrypt_string($invitedAdmin->id);
+        $invitationCode         = str_random(6);
         $invitationLink         = route('verify-admin', $invitedAdmin->id);
 
         Mail::to($invitedAdmin)->send(new Invitation('admin', $invitationCode, $invitationLink));

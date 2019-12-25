@@ -65,6 +65,7 @@ class DisplayImageRepository
 
     /**
      * @param $imageFile
+     * @throws \Exception
      */
     public function saveDisplayImage($imageFile)
     {

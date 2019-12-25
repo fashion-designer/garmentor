@@ -96,7 +96,7 @@ class DesignerRegisterController extends Controller
 
         event(new Registered($user = $this->create($request->all())));
 
-        $invitationCode = hyd_encrypt_string($user->id);
+        $invitationCode = str_random(6);
         $invitationLink = route('verify-designer', $user->id);
 
         Mail::to($user)->send(new Invitation('designer', $invitationCode, $invitationLink));
