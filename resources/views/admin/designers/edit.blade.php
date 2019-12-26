@@ -30,11 +30,11 @@
                                 </tr>
                                 <tr>
                                     <td>Phone</td>
-                                    <td>{!! $profile->phone !!}</td>
+                                    <td>{!! $profile->country_code !!} {!! $profile->phone !!}</td>
                                 </tr>
                                 <tr>
                                     <td>Gender</td>
-                                    <td>{!! $profile->getGender->name !!}</td>
+                                    <td>{!! isset($profile->getGender->name) ? $profile->getGender->name : '---' !!}</td>
                                 </tr>
                                 <tr>
                                     <td>Active</td>

@@ -19,6 +19,7 @@ class CreateDesignersTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email')->unique();
+            $table->string('country_code', 10);
             $table->string('phone')->nullable();
             $table->string('portfolio_name', 25)->nullable();
             $table->bigInteger('gender_id')->default(null);

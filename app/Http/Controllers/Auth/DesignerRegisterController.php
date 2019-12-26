@@ -150,6 +150,7 @@ class DesignerRegisterController extends Controller
             'first_name'    => $data['first_name'],
             'last_name'     => $data['last_name'],
             'email'         => $data['email'],
+            'country_code'  => $data['country_code'],
             'phone'         => $data['phone'],
             'portfolio_name'=> '',
             'gender_id'     => intval($data['gender_id']),

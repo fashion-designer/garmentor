@@ -52,17 +52,7 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
-                                <label for="phone" class="col-md-12 control-label">Phone</label>
-                                <div class="col-md-12">
-                                    <input id="phone" type="text" class="form-control" name="phone" value="{{ old('phone') }}" required autofocus>
-                                    @if ($errors->has('phone'))
-                                        <span class="help-block hyd-color-red">
-                                        <strong>{{ $errors->first('phone') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
+                            @include('shared.country-codes')
                             <div class="form-group">
                                 <label for="gender_id" class="col-md-12 control-label">Gender</label>
                                 <div class="col-md-12">

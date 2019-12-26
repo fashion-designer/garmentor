@@ -26,10 +26,7 @@
                                 <label>Email address</label>
                                 <input type="email" class="form-control" name="email" placeholder="Enter email here" required>
                             </div>
-                            <div class="form-group">
-                                <label>Phone</label>
-                                <input type="number" class="form-control" name="phone" placeholder="Enter phone here" required>
-                            </div>
+                            @include('shared.country-codes')
                         </div>
                     </div>
                 </div>

@@ -22,6 +22,7 @@ class Designer extends Authenticatable
         'first_name',
         'last_name',
         'email',
+        'country_code',
         'phone',
         'portfolio_name',
         'gender_id',

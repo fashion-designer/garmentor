@@ -44,6 +44,10 @@
                                     </span>
                                 @endif
                             </div>
+                            @include('shared.country-codes', [
+                                'selectedCountryCode'   => $profile->country_code,
+                                'selectedPhone'         => $profile->phone
+                            ])
                             <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
                                 <label for="phone" class="col-md-12 control-label">Phone</label>
                                 <input id="phone" type="text" class="form-control" name="phone" value="{!! $profile->phone !!}" autofocus>

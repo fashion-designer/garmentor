@@ -28,7 +28,7 @@
                 <tr>
                     <td>{!! $item->first_name !!} {!! $item->last_name !!}</td>
                     <td>{!! $item->email !!}</td>
-                    <td>{!! $item->phone !!}</td>
+                    <td>{!! $item->country_code !!} {!! $item->phone !!}</td>
                     <td>{!! (isset($item->getGender->name)) ? $item->getGender->name : '' !!}</td>
                     <td class="text-center">{!! ($item->is_verified) ? '<i class="fas fa-check-circle"></i>' : '<i class="fas fa-times-circle"></i>' !!}</td>
                     <td class="text-center">{!! ($item->is_active) ? '<i class="fas fa-check-circle"></i>' : '<i class="fas fa-times-circle"></i>' !!}</td>
