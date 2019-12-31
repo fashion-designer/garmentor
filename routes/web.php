@@ -31,6 +31,13 @@ Route::group(['middleware' => 'guest', 'namespace' => 'Auth'], function()
     Route::post('/verify-designer/{id}', 'EmailVerificationController@verifyDesignerSubmit')->name('verify-designer');
     Route::get('/setup-password-designer/{id}', 'EmailVerificationController@setupDesignerPassword')->name('setup-password-designer');
     Route::post('/setup-password-designer/{id}', 'EmailVerificationController@setupDesignerPasswordSubmit')->name('setup-password-designer');
+
+    Route::get('/send-verification-user', 'EmailVerificationController@sendVerificationUser')->name('send-verification-user');
+    Route::post('/send-verification-user', 'EmailVerificationController@submitEmailUser')->name('send-verification-user');
+    Route::get('/verify-user/{id}', 'EmailVerificationController@verifyUser')->name('verify-user');
+    Route::post('/verify-user/{id}', 'EmailVerificationController@verifyUserSubmit')->name('verify-user');
+    Route::get('/setup-password-user/{id}', 'EmailVerificationController@setupUserPassword')->name('setup-password-user');
+    Route::post('/setup-password-user/{id}', 'EmailVerificationController@setupUserPasswordSubmit')->name('setup-password-user');
 });
 
 /**
@@ -77,8 +84,8 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.', 'middleware' => 'admin']
     Route::get('admin/designers-list/edit/{id}', 'AdminDesignersController@edit')->name('designers-list.edit');
     Route::post('admin/designers-list/update/{id}', 'AdminDesignersController@update')->name('designers-list.update');
 
-    Route::get('admin/users-list/create', 'AdminUsersController@create')->name('users-list.create');
-    Route::post('admin/users-list/save', 'AdminUsersController@save')->name('users-list.save');
+    Route::get('admin/users-list/invite', 'AdminUsersController@invite')->name('users-list.invite');
+    Route::post('admin/users-list/send-invitation', 'AdminUsersController@sendInvitation')->name('users-list.send-invitation');
     Route::get('admin/users-list', 'AdminUsersController@getList')->name('users-list');
     Route::get('admin/users-list/edit/{id}', 'AdminUsersController@edit')->name('users-list.edit');
     Route::post('admin/users-list/update/{id}', 'AdminUsersController@update')->name('users-list.update');

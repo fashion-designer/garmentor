@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Mail\Invitation;
+use App\Models\Gender\Gender;
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -27,7 +32,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = 'user/dashboard';
+    protected $redirectTo = 'verify-user';
 
     /**
      * Create a new controller instance.
@@ -40,6 +45,82 @@ class RegisterController extends Controller
     }
 
     /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showRegistrationForm()
+    {
+        $genders    = (new Gender())->get(['id', 'name']);
+        $alert      = hyd_get_alert_message_cookie();
+
+        return view('auth.register')->with([
+            'genders'   => $genders,
+            'alert'     => ($alert) ? $alert : false,
+        ]);
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        $accountDetails = (new User())->where('email', $request->get('email'))->first();
+
+        if($accountDetails)
+        {
+            if($accountDetails->is_active !== 1)
+            {
+                $alertMessage   = 'You can not create an account with this email!';
+                $alertType      = 'danger';
+
+                hyd_set_alert_message_cookie($alertMessage, $alertType);
+                return redirect()->back();
+            }
+
+            if($accountDetails->is_verified !== 1)
+            {
+                $alertMessage   = 'An account with this email already exist!';
+                $alertType      = 'danger';
+
+                hyd_set_alert_message_cookie($alertMessage, $alertType);
+                $this->redirectTo = $this->redirectTo . '/' . $accountDetails->id;
+
+                return redirect('send-verification-user');
+            }
+
+            $alertMessage   = 'An account with this email already exist!';
+            $alertType      = 'danger';
+
+            hyd_set_alert_message_cookie($alertMessage, $alertType);
+
+            return redirect('admin/login');
+        }
+
+        event(new Registered($user = $this->create($request->all())));
+
+        $invitationCode = str_random(6);
+        $invitationLink = route('verify-user', $user->id);
+
+        Mail::to($user)->send(new Invitation('user', $invitationCode, $invitationLink));
+
+        $user->update(['verification_code' => $invitationCode]);
+
+        $this->redirectTo   = $this->redirectTo . '/' . $user->id;
+        $alertMessage       = 'Successfully registered!';
+        $alertType          = 'success';
+
+        hyd_set_alert_message_cookie($alertMessage, $alertType);
+
+        return $this->registered($request, $user) ?: redirect($this->redirectPath());
+    }
+
+    /**
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data
@@ -48,10 +129,10 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'first_name'    => 'required|string|max:255',
+            'last_name'     => 'required|string|max:255',
+            'email'         => 'required|string|email|max:255|unique:users',
+            'gender_id'     => 'required'
         ]);
     }
 
@@ -64,14 +145,14 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
-            'email' => $data['email'],
-            'phone' => $data['phone'],
-            'gender_id' => 1,
-            'is_active' => 1,
-            'is_verified' => 1,
-            'password' => bcrypt($data['password']),
+            'first_name'    => $data['first_name'],
+            'last_name'     => $data['last_name'],
+            'email'         => $data['email'],
+            'country_code'  => $data['country_code'],
+            'phone'         => $data['phone'],
+            'gender_id'     => intval($data['gender_id']),
+            'is_active'     => 1,
+            'is_verified'   => 0,
         ]);
     }
 }

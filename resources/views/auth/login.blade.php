@@ -12,6 +12,9 @@
         <div class="card-body">
             <div class="container">
                 <div class="row">
+                    @if(isset($alert) && $alert)
+                        @include('shared.alert', ['alert' => $alert])
+                    @endif
                     <div class="col-md-5 mx-auto">
                         <h2 class="text-center">Login User</h2>
                         <form class="form-horizontal" method="POST" action="{{ route('login') }}">
@@ -36,6 +39,13 @@
                                             <strong>{{ $errors->first('password') }}</strong>
                                         </span>
                                     @endif
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12 col-md-offset-4">
+                                    <a href="{!! route('send-verification-user') !!}">
+                                        Forgot password?
+                                    </a>
                                 </div>
                             </div>
                             <div class="form-group">

@@ -25,8 +25,8 @@
                                     <input id="first_name" type="text" class="form-control" name="first_name" value="{{ old('first_name') }}" required autofocus>
                                     @if ($errors->has('first_name'))
                                         <span class="help-block hyd-color-red">
-                                        <strong>{{ $errors->first('first_name') }}</strong>
-                                    </span>
+                                            <strong>{{ $errors->first('first_name') }}</strong>
+                                        </span>
                                     @endif
                                 </div>
                             </div>
@@ -36,8 +36,8 @@
                                     <input id="last_name" type="text" class="form-control" name="last_name" value="{{ old('last_name') }}" required autofocus>
                                     @if ($errors->has('last_name'))
                                         <span class="help-block hyd-color-red">
-                                        <strong>{{ $errors->first('last_name') }}</strong>
-                                    </span>
+                                            <strong>{{ $errors->first('last_name') }}</strong>
+                                        </span>
                                     @endif
                                 </div>
                             </div>

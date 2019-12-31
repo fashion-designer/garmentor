@@ -1,20 +1,30 @@
 <?php
-
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class Invitation extends Mailable
 {
     use Queueable, SerializesModels;
 
+    /**
+     * Role
+     * @var string
+     */
     public $role;
 
+    /**
+     * Invitation Code
+     * @var string
+     */
     public $invitationCode;
 
+    /**
+     * Invitation link
+     * @var string
+     */
     public $invitationLink;
 
     /**
@@ -48,6 +58,13 @@ class Invitation extends Mailable
         elseif ($this->role === 'designer')
         {
             return $this->view('emailS.invitations.designer')->with([
+                'invitationCode' => $this->invitationCode,
+                'invitationLink' => $this->invitationLink
+            ]);
+        }
+        elseif ($this->role === 'user')
+        {
+            return $this->view('emailS.invitations.user')->with([
                 'invitationCode' => $this->invitationCode,
                 'invitationLink' => $this->invitationLink
             ]);

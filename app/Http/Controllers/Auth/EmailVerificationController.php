@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Gender\Gender;
 use App\Admin;
 use App\Repositories\EmailVerification\EmailVerificationRepository;
+use App\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
@@ -255,6 +256,121 @@ class EmailVerificationController extends Controller
         if($registrationCompleted)
         {
             return redirect('designer/login');
+        }
+
+        return redirect('/');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function sendVerificationUser()
+    {
+        $alert  = hyd_get_alert_message_cookie();
+
+        return view('auth.verification.email')->with([
+            'route'     => route('send-verification-user'),
+            'alert'     => ($alert) ? $alert : false,
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function submitEmailUser(Request $request)
+    {
+        $emailVerificationRepository = new EmailVerificationRepository('user', new \App\User());
+
+        if($emailVerificationRepository->checkIfAccountEmailExist($request->all()))
+        {
+            $accountId = $emailVerificationRepository->sendVerificationEmail($request->all());
+
+            if($accountId)
+            {
+                return redirect(route('verify-user', $accountId));
+            }
+        }
+
+        hyd_set_alert_message_cookie('Recovering this account is not possible!', 'danger');
+
+        return redirect()->back();
+    }
+
+    /**
+     * Verify User
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function verifyUser(Request $request, $id)
+    {
+        return view('auth.verification.invitation-code')->with([
+            'id' => $id,
+            'route' => route('verify-user', [$id])
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function verifyUserSubmit(Request $request, $id)
+    {
+        $emailVerificationRepository = new EmailVerificationRepository('user', new \App\User());
+
+        if($emailVerificationRepository->isVerificationEmailSent($id))
+        {
+            $isVerified = $emailVerificationRepository->verifyEmail($request->all(), $id);
+
+            if($isVerified)
+            {
+                return redirect(route('setup-password-user', $id));
+            }
+
+            return redirect()->back();
+        }
+
+        return redirect('');
+    }
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function setupUserPassword(Request $request, $id)
+    {
+        $genderSelected = (new User())->where('id', $id)->value('gender_id');
+
+        if(!$genderSelected)
+        {
+            $genders = (new Gender())->get(['id', 'name']);
+        }
+
+        return view('auth.set-password')->with([
+            'id'        => $id,
+            'genders'   => (isset($genders)) ? $genders : null,
+            'route'     => route('setup-password-user', $id)
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function setupUserPasswordSubmit(Request $request, $id)
+    {
+        $this->validator($request->all())->validate();
+        $emailVerificationRepository = new EmailVerificationRepository('user', new \App\User());
+
+        $registrationCompleted = $emailVerificationRepository->setPassword($request->all(), $id);
+
+        if($registrationCompleted)
+        {
+            return redirect('login');
         }
 
         return redirect('/');

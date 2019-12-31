@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use App\Repositories\Admin\UserRepository;
+use App\User;
 use Illuminate\Http\Request;
 
 /**
@@ -25,14 +26,18 @@ class AdminUsersController extends Controller
     }
 
     /**
-     * Designers List
+     * Users List
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getList()
     {
-        $list = $this->repository->getList();
+        $list   = $this->repository->getList();
+        $alert  = hyd_get_alert_message_cookie();
 
-        return view('admin.users.list')->with(['list' => $list]);
+        return view('admin.users.list')->with([
+            'list'      => $list,
+            'alert'     => ($alert) ? $alert : false,
+        ]);
     }
 
     /**
@@ -42,7 +47,7 @@ class AdminUsersController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        $profile = $this->repository->getDesignerProfile($id);
+        $profile = $this->repository->getUserProfile($id);
 
         return view('admin.users.edit')->with(['profile' => $profile[0]]);
     }
@@ -54,7 +59,7 @@ class AdminUsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->repository->updateDesignerProfile($id, $request->all());
+        $this->repository->updateUserProfile($id, $request->all());
 
         return redirect()->route('admin.users-list.edit', $id);
     }
@@ -63,20 +68,41 @@ class AdminUsersController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function create(Request $request)
+    public function invite(Request $request)
     {
         $genders = $this->repository->getAllGenders();
 
-        return view('admin.users.create')->with(['genders' => $genders]);
+        return view('admin.users.invite')->with(['genders' => $genders]);
     }
 
     /**
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function save(Request $request)
+    public function sendInvitation(Request $request)
     {
-        $this->repository->save($request->all());
+        $accountDetails = (new User())->where('email', $request->get('email'))->first();
+
+        if($accountDetails)
+        {
+            $alertMessage   = 'An account with this email already exist!';
+            $alertType      = 'danger';
+        }
+        else
+        {
+            $invited = $this->repository->sendInvitation($request->all());
+            if($invited)
+            {
+                $alertMessage   = 'Invited admin successfully!';
+                $alertType      = 'success';
+            }
+            else
+            {
+                $alertMessage   = 'Failed to invite admin!';
+                $alertType      = 'danger';
+            }
+        }
+        hyd_set_alert_message_cookie($alertMessage, $alertType);
 
         return redirect()->route('admin.users-list');
     }

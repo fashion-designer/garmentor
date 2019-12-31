@@ -1,7 +1,9 @@
 <?php namespace App\Repositories\Admin;
 
+use App\Mail\Invitation;
 use App\Models\Gender\Gender;
 use App\User;
+use Illuminate\Support\Facades\Mail;
 
 /**
  * Class UserRepository
@@ -36,7 +38,7 @@ class UserRepository
      * @param int $id
      * @return User[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
      */
-    public function getDesignerProfile($id)
+    public function getUserProfile($id)
     {
         $profile = $this->model->where('id', $id)->with(['getGender'])->get();
 
@@ -48,7 +50,7 @@ class UserRepository
      * @param array $input
      * @return bool
      */
-    public function updateDesignerProfile($id, $input)
+    public function updateUserProfile($id, $input)
     {
         if(!array_key_exists('is_active', $input))
         {
@@ -75,29 +77,19 @@ class UserRepository
 
     /**
      * @param $input
-     * @return User|\Illuminate\Database\Eloquent\Model
+     * @return bool
      */
-    public function save($input)
+    public function sendInvitation($input)
     {
-        if(!array_key_exists('is_active', $input))
-        {
-            $input['is_active'] = 0;
-        }
-        else
-        {
-            $input['is_active'] = 1;
-        }
+        $input['is_active']     = 1;
+        $input['is_verified']   = 0;
+        $invitedUser            = $this->model->create($input);
+        $invitationCode         = str_random(6);
+        $invitationLink         = route('verify-user', $invitedUser->id);
 
-        if(!array_key_exists('is_verified', $input))
-        {
-            $input['is_verified'] = 0;
-        }
-        else
-        {
-            $input['is_verified'] = 1;
-        }
+        Mail::to($invitedUser)->send(new Invitation('user', $invitationCode, $invitationLink));
 
-        return $this->model->create($input);
+        return $invitedUser->update(['verification_code' => $invitationCode]);
     }
 
     /**

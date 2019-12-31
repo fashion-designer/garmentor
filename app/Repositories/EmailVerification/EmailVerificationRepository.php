@@ -39,7 +39,7 @@ class EmailVerificationRepository
         {
             $accountData = $this->modal->where('email', $input['email'])->get();
 
-            if(isset($accountData[0]) && array_key_exists('is_active', $accountData[0]) && $accountData[0]['is_active'] === 1)
+            if(isset($accountData[0]) && $accountData[0]['is_active'] === 1)
             {
                 return true;
             }
@@ -79,8 +79,7 @@ class EmailVerificationRepository
 
                 $accountData[0]->update([
                     'verification_code' => $invitationCode,
-                    'is_verified' => 0,
-                    'is_active' => 0
+                    'is_verified'       => 0
                 ]);
 
                 return $accountData[0]->id;

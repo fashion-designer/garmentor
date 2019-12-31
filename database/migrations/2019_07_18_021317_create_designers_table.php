@@ -27,7 +27,7 @@ class CreateDesignersTable extends Migration
             $table->boolean('is_verified')->default(0);
             $table->string('verification_code', 1000)->default(null);
             $table->binary('display_image')->nullable();
-            $table->string('password');
+            $table->string('password')->default(null);
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
