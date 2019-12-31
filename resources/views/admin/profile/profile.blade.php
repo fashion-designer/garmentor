@@ -48,15 +48,6 @@
                                 'selectedCountryCode'   => $profile->country_code,
                                 'selectedPhone'         => $profile->phone
                             ])
-                            <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
-                                <label for="phone" class="col-md-12 control-label">Phone</label>
-                                <input id="phone" type="text" class="form-control" name="phone" value="{!! $profile->phone !!}" autofocus>
-                                @if ($errors->has('phone'))
-                                    <span class="help-block hyd-color-red">
-                                        <strong>{{ $errors->first('phone') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
                             <div class="form-group">
                                 <label for="gender_id" class="col-md-12 control-label">Gender</label>
                                 <select name="gender_id" id="gender_id" class="form-control" required autofocus>
