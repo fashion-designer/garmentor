@@ -100,6 +100,9 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.', 'middleware' => 'admin']
 Route::group(['namespace' => 'User', 'as' => 'user.', 'middleware' => 'auth'], function()
 {
     Route::get('user/dashboard', 'UserDashboardController@getDashboard')->name('user.dashboard');
+
+    Route::get('user/profile/edit', 'UserDashboardController@editMyProfile')->name('profile.edit');
+    Route::post('user/profile/update', 'UserDashboardController@updateMyProfile')->name('profile.update');
 });
 
 /**

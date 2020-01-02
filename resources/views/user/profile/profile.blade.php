@@ -1,7 +1,7 @@
-@extends('admin.layouts.layout', ['activeTab' => 'profile'])
+@extends('user.layouts.layout', ['activeTab' => 'profile'])
 
 @section('content')
-    <form method="post" action="{!! route('admin.profile.update') !!}" enctype='multipart/form-data'>
+    <form method="post" action="{!! route('user.profile.update') !!}" enctype='multipart/form-data'>
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="app-title">
             <h1><i class="fas fa-id-card"></i> Profile</h1>

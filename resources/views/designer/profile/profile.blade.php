@@ -1,7 +1,7 @@
-@extends('admin.layouts.layout', ['activeTab' => 'profile'])
+@extends('designer.layouts.layout', ['activeTab' => 'profile'])
 
 @section('content')
-    <form method="post" action="{!! route('admin.profile.update') !!}" enctype='multipart/form-data'>
+    <form method="post" action="{!! route('designer.profile.update') !!}" enctype='multipart/form-data'>
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="app-title">
             <h1><i class="fas fa-id-card"></i> Profile</h1>
@@ -73,14 +73,6 @@
                             <div class="form-group">
                                 <label for="password-confirm" class="col-md-12 control-label">Confirm Password</label>
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
-                            </div>
-                            <div class="form-group">
-                                <label class="hyd-m-r-6">Active</label>
-                                <input name="is_active" class="form-control" type="checkbox" {!! ($profile->is_active === 1) ? 'checked' : '' !!} data-toggle="toggle" data-size="sm" data-onstyle="success" data-offstyle="danger" data-on="Yes" data-off="No">
-                            </div>
-                            <div class="form-group">
-                                <label class="hyd-m-r-6">Verified</label>
-                                <input name="is_verified" class="form-control" type="checkbox" {!! ($profile->is_verified === 1) ? 'checked' : '' !!} data-toggle="toggle" data-size="sm" data-onstyle="success" data-offstyle="danger" data-on="Yes" data-off="No">
                             </div>
                         </div>
                     </div>
