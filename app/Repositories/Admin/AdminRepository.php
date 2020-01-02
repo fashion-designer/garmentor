@@ -125,26 +125,7 @@ class AdminRepository
      */
     public function updateMyProfile($input)
     {
-        $id = auth('admin')->id();
-
-        if(!array_key_exists('is_active', $input))
-        {
-            $input['is_active'] = 0;
-        }
-        else
-        {
-            $input['is_active'] = 1;
-        }
-
-        if(!array_key_exists('is_verified', $input))
-        {
-            $input['is_verified'] = 0;
-        }
-        else
-        {
-            $input['is_verified'] = 1;
-        }
-
+        $id                 = auth('admin')->id();
         $input['gender_id'] = intval($input['gender_id']);
 
         if(array_key_exists('remove_display_image', $input) && $input['remove_display_image'] === '1')

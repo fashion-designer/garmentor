@@ -15,5 +15,5 @@
 @stop
 
 @section('sidebar_link')
-    @include('designer.layouts.sidebar-navigation')
+    @include('designer.layouts.sidebar-navigation', ['activeTab' => $activeTab])
 @stop

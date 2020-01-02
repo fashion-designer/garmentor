@@ -1,4 +1,4 @@
-@extends('designer.layouts.layout')
+@extends('designer.layouts.layout', ['activeTab' => 'dashboard'])
 
 @section('content')
     <div class="app-title">

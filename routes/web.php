@@ -108,4 +108,7 @@ Route::group(['namespace' => 'User', 'as' => 'user.', 'middleware' => 'auth'], f
 Route::group(['namespace' => 'Designer', 'as' => 'designer.', 'middleware' => 'designer'], function()
 {
     Route::get('designer/dashboard', 'DesignerDashboardController@getDashboard')->name('dashboard');
+
+    Route::get('designer/profile/edit', 'DesignerDashboardController@editMyProfile')->name('profile.edit');
+    Route::post('designer/profile/update', 'DesignerDashboardController@updateMyProfile')->name('profile.update');
 });

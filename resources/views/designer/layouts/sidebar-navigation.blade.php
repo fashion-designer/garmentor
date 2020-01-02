@@ -1,8 +1,15 @@
 <!-- Dashboard -->
 <li>
-    <a class="app-menu__item active" href="{{ url('/') }}">
+    <a class="app-menu__item {!! ($activeTab === 'dashboard') ? 'active' : '' !!}" href="{{ url('/') }}">
         <i class="fa fa-dashboard"></i>
         <span class="app-menu__label">Dashboard</span>
+    </a>
+</li>
+<!-- My Profile -->
+<li>
+    <a class="app-menu__item {!! ($activeTab === 'profile') ? 'active' : '' !!}" href="{{ route('designer.profile.edit') }}">
+        <i class="fas fa-id-card"></i>
+        <span class="app-menu__label">My Profile</span>
     </a>
 </li>
 <!-- Demo -->
