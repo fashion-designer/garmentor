@@ -10,7 +10,7 @@
     @if(isset($alert) && $alert)
         @include('shared.alert', ['alert' => $alert])
     @endif
-    <div class="hyd-p-5 background-white hyd-m-6">
+    <div class="garmentor-p-5 background-white garmentor-m-6">
         <table class="table">
             <thead class="thead-dark">
             <tr>

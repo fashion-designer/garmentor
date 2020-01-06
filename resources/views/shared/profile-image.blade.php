@@ -9,7 +9,7 @@
     </div>
 @endif
 
-<div class="border rounded-lg text-center hyd-p-6">
+<div class="border rounded-lg text-center garmentor-p-6">
     <img id="displayImage"  style="width: 80%; height: 80%;" src="{!! ($imageSource === false) ? asset('/images/default_image.jpeg') : $imageSource !!}" alt="No Image Available">
 </div>
 

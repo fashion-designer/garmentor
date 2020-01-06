@@ -1,7 +1,7 @@
 @extends('auth.layout')
 
 @section('title')
-    User Registration - HYD
+    User Registration - GARMENTOR
 @stop
 
 @section('content')
@@ -26,7 +26,7 @@
                                             @endforeach
                                         </select>
                                         @if ($errors->has('gender_id'))
-                                            <span class="help-block hyd-color-red">
+                                            <span class="help-block garmentor-color-red">
                                         <strong>{{ $errors->first('gender_id') }}</strong>
                                     </span>
                                         @endif
@@ -38,7 +38,7 @@
                                 <div class="col-md-12">
                                     <input id="password" type="password" class="form-control" name="password" required>
                                     @if ($errors->has('password'))
-                                        <span class="help-block hyd-color-red">
+                                        <span class="help-block garmentor-color-red">
                                             <strong>{{ $errors->first('password') }}</strong>
                                         </span>
                                     @endif

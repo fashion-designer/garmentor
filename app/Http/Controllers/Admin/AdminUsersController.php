@@ -32,7 +32,7 @@ class AdminUsersController extends Controller
     public function getList()
     {
         $list   = $this->repository->getList();
-        $alert  = hyd_get_alert_message_cookie();
+        $alert  = garmentor_get_alert_message_cookie();
 
         return view('admin.users.list')->with([
             'list'      => $list,
@@ -102,7 +102,7 @@ class AdminUsersController extends Controller
                 $alertType      = 'danger';
             }
         }
-        hyd_set_alert_message_cookie($alertMessage, $alertType);
+        garmentor_set_alert_message_cookie($alertMessage, $alertType);
 
         return redirect()->route('admin.users-list');
     }

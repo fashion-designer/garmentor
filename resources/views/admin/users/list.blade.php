@@ -7,7 +7,7 @@
             <a href="{!! route('admin.users-list.invite') !!}" class="btn btn-info">Invite New User Account</a>
         </span>
     </div>
-    <div class="hyd-p-5 background-white hyd-m-6">
+    <div class="garmentor-p-5 background-white garmentor-m-6">
         <table class="table">
             <thead class="thead-dark">
             <tr>

@@ -44,7 +44,7 @@ class AdminRegisterController extends Controller
     public function showRegistrationForm()
     {
         $genders    = (new Gender())->get(['id', 'name']);
-        $alert      = hyd_get_alert_message_cookie();
+        $alert      = garmentor_get_alert_message_cookie();
 
         return view('auth.admin-register')->with([
             'genders'   => $genders,
@@ -71,7 +71,7 @@ class AdminRegisterController extends Controller
                 $alertMessage   = 'You can not create an account with this email!';
                 $alertType      = 'danger';
 
-                hyd_set_alert_message_cookie($alertMessage, $alertType);
+                garmentor_set_alert_message_cookie($alertMessage, $alertType);
 
                 return redirect()->back();
             }
@@ -81,7 +81,7 @@ class AdminRegisterController extends Controller
                 $alertMessage   = 'An account with this email already exist!';
                 $alertType      = 'danger';
 
-                hyd_set_alert_message_cookie($alertMessage, $alertType);
+                garmentor_set_alert_message_cookie($alertMessage, $alertType);
                 $this->redirectTo = $this->redirectTo . '/' . $accountDetails->id;
 
                 return redirect('send-verification-admin');
@@ -90,7 +90,7 @@ class AdminRegisterController extends Controller
             $alertMessage   = 'An account with this email already exist!';
             $alertType      = 'danger';
 
-            hyd_set_alert_message_cookie($alertMessage, $alertType);
+            garmentor_set_alert_message_cookie($alertMessage, $alertType);
 
             return redirect('admin/login');
         }
@@ -108,7 +108,7 @@ class AdminRegisterController extends Controller
         $alertMessage       = 'Successfully registered!';
         $alertType          = 'success';
 
-        hyd_set_alert_message_cookie($alertMessage, $alertType);
+        garmentor_set_alert_message_cookie($alertMessage, $alertType);
 
         return $this->registered($request, $user) ?: redirect($this->redirectPath());
     }

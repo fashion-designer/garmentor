@@ -20,7 +20,7 @@
             <input type="number" class="form-control" name="phone" placeholder="Enter phone here" value="{!! (isset($selectedPhone)) ? $selectedPhone : '' !!}" required>
         </div>
         @if ($errors->has('phone'))
-            <span class="help-block hyd-color-red">
+            <span class="help-block garmentor-color-red">
                 <strong>{{ $errors->first('phone') }}</strong>
             </span>
         @endif

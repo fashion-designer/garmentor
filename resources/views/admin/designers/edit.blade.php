@@ -11,7 +11,7 @@
         </div>
         <div class="row m-0">
             <div class="col-lg-6 p-0">
-                <div class="hyd-m-t-6 hyd-m-b-6 hyd-m-l-6 hyd-m-r-3 hyd-p-6 border-radius-5 background-white">
+                <div class="garmentor-m-t-6 garmentor-m-b-6 garmentor-m-l-6 garmentor-m-r-3 garmentor-p-6 border-radius-5 background-white">
                     <div class="card">
                         <div class="card-body">
                             <table class="table table-striped">
@@ -51,10 +51,10 @@
                 </div>
             </div>
             <div class="col-lg-6 p-0">
-                <div class="hyd-m-t-6 hyd-m-b-6 hyd-m-l-3 hyd-m-r-6 hyd-p-6 border-radius-5 background-white">
+                <div class="garmentor-m-t-6 garmentor-m-b-6 garmentor-m-l-3 garmentor-m-r-6 garmentor-p-6 border-radius-5 background-white">
                     <div class="card">
                         <div class="card-body">
-                            <div class="border rounded-lg text-center hyd-p-6">
+                            <div class="border rounded-lg text-center garmentor-p-6">
                                 <img id="displayImage"  style="width: 80%; height: 80%;" src="{!! asset('\images\default_image.jpeg') !!}" alt="No Image Available">
                             </div>
                         </div>

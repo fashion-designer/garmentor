@@ -37,7 +37,7 @@ class EmailVerificationController extends Controller
      */
     public function sendVerificationAdmin()
     {
-        $alert = hyd_get_alert_message_cookie();
+        $alert = garmentor_get_alert_message_cookie();
 
         return view('auth.verification.email')->with([
             'route' => route('send-verification-admin'),
@@ -151,7 +151,7 @@ class EmailVerificationController extends Controller
      */
     public function sendVerificationDesigner()
     {
-        $alert  = hyd_get_alert_message_cookie();
+        $alert  = garmentor_get_alert_message_cookie();
 
         return view('auth.verification.email')->with([
             'route'     => route('send-verification-designer'),
@@ -177,7 +177,7 @@ class EmailVerificationController extends Controller
             }
         }
 
-        hyd_set_alert_message_cookie('Recovering this account is not possible!', 'danger');
+        garmentor_set_alert_message_cookie('Recovering this account is not possible!', 'danger');
 
         return redirect()->back();
     }
@@ -266,7 +266,7 @@ class EmailVerificationController extends Controller
      */
     public function sendVerificationUser()
     {
-        $alert  = hyd_get_alert_message_cookie();
+        $alert  = garmentor_get_alert_message_cookie();
 
         return view('auth.verification.email')->with([
             'route'     => route('send-verification-user'),
@@ -292,7 +292,7 @@ class EmailVerificationController extends Controller
             }
         }
 
-        hyd_set_alert_message_cookie('Recovering this account is not possible!', 'danger');
+        garmentor_set_alert_message_cookie('Recovering this account is not possible!', 'danger');
 
         return redirect()->back();
     }

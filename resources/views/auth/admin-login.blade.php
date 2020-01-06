@@ -1,7 +1,7 @@
 @extends('auth.layout')
 
 @section('title')
-    Admin Login - HYD
+    Admin Login - GARMENTOR
 @stop
 
 @section('content')
@@ -24,7 +24,7 @@
                                 <div class="col-md-12">
                                     <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
                                     @if ($errors->has('email'))
-                                        <span class="help-block hyd-color-red">
+                                        <span class="help-block garmentor-color-red">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                     @endif
@@ -35,7 +35,7 @@
                                 <div class="col-md-12">
                                     <input id="password" type="password" class="form-control" name="password" required>
                                     @if ($errors->has('password'))
-                                        <span class="help-block hyd-color-red">
+                                        <span class="help-block garmentor-color-red">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                     @endif

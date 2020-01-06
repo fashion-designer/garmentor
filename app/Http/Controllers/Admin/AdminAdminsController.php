@@ -50,7 +50,7 @@ class AdminAdminsController extends Controller
     public function getList()
     {
         $list       = $this->repository->getList();
-        $alert      = hyd_get_alert_message_cookie();
+        $alert      = garmentor_get_alert_message_cookie();
 
         return view('admin.admins.list')->with([
             'list'  => $list,
@@ -71,7 +71,7 @@ class AdminAdminsController extends Controller
         }
 
         $profile    = $this->repository->getAdminProfile($id);
-        $alert      = hyd_get_alert_message_cookie();
+        $alert      = garmentor_get_alert_message_cookie();
 
         return view('admin.admins.edit')->with([
             'profile'   => $profile[0],
@@ -90,7 +90,7 @@ class AdminAdminsController extends Controller
         $alertMessage   = ($result) ? 'Profile data updated successfully!' : 'Failed to update profile data!';
         $alertType      = ($result) ? 'success' : 'danger';
 
-        hyd_set_alert_message_cookie($alertMessage, $alertType);
+        garmentor_set_alert_message_cookie($alertMessage, $alertType);
 
         return redirect()->route('admin.admins-list.edit', $id);
     }
@@ -135,7 +135,7 @@ class AdminAdminsController extends Controller
             }
         }
 
-        hyd_set_alert_message_cookie($alertMessage, $alertType);
+        garmentor_set_alert_message_cookie($alertMessage, $alertType);
 
         return redirect()->route('admin.admins-list');
     }
@@ -148,7 +148,7 @@ class AdminAdminsController extends Controller
     {
         $profileData    = $this->repository->getMyProfile();
         $genders        = $this->repository->getAllGenders();
-        $alert          = hyd_get_alert_message_cookie();
+        $alert          = garmentor_get_alert_message_cookie();
 
         return view('admin.profile.profile')->with([
             'profile' => $profileData,
@@ -178,7 +178,7 @@ class AdminAdminsController extends Controller
         $alertMessage   = ($result) ? 'Profile data updated successfully!' : 'Failed to update profile data!';
         $alertType      = ($result) ? 'success' : 'danger';
 
-        hyd_set_alert_message_cookie($alertMessage, $alertType);
+        garmentor_set_alert_message_cookie($alertMessage, $alertType);
 
         return redirect()->route('admin.profile.edit');
     }

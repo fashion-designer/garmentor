@@ -41,7 +41,7 @@ class UserDashboardController extends Controller
     {
         $profileData    = $this->repository->getMyProfile();
         $genders        = $this->repository->getAllGenders();
-        $alert          = hyd_get_alert_message_cookie();
+        $alert          = garmentor_get_alert_message_cookie();
 
         return view('user.profile.profile')->with([
             'profile' => $profileData,
@@ -73,7 +73,7 @@ class UserDashboardController extends Controller
         $alertMessage   = ($result) ? 'Profile data updated successfully!' : 'Failed to update profile data!';
         $alertType      = ($result) ? 'success' : 'danger';
 
-        hyd_set_alert_message_cookie($alertMessage, $alertType);
+        garmentor_set_alert_message_cookie($alertMessage, $alertType);
 
         return redirect()->route('designer.profile.edit');
     }

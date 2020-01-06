@@ -1,17 +1,17 @@
 <?php
 /**
- * HYD Helpers
+ * garmentor Helpers
  */
 
 use Illuminate\Support\Facades\Cookie;
 
-if (! function_exists('hyd_encrypt_with_time')) {
+if (! function_exists('garmentor_encrypt_with_time')) {
     /**
      * Encrypt String With Time
      * @param $string
      * @return string
      */
-    function hyd_encrypt_with_time($string)
+    function garmentor_encrypt_with_time($string)
     {
         $encryption = openssl_encrypt($string . microtime(true), env('CIPHERING_METHOD'), env('CIPHERING_KEY'), 0, env('CIPHERING_IV'));
 
@@ -19,11 +19,11 @@ if (! function_exists('hyd_encrypt_with_time')) {
     }
 }
 
-if (! function_exists('hyd_get_default_display_image')) {
+if (! function_exists('garmentor_get_default_display_image')) {
     /**
      * Get Default Display Image
      */
-    function hyd_get_default_display_image()
+    function garmentor_get_default_display_image()
     {
         $content = file_get_contents(public_path('images/default_image.jpeg'));
 
@@ -31,25 +31,25 @@ if (! function_exists('hyd_get_default_display_image')) {
     }
 }
 
-if (! function_exists('hyd_set_alert_message_cookie')) {
+if (! function_exists('garmentor_set_alert_message_cookie')) {
     /**
      * Set alert message to cookie
      * @param $alertMessage
      * @param $alertType
      */
-    function hyd_set_alert_message_cookie($alertMessage, $alertType)
+    function garmentor_set_alert_message_cookie($alertMessage, $alertType)
     {
         Cookie::queue('alertMessage', $alertMessage, 10);
         Cookie::queue('alertType', $alertType, 10);
     }
 }
 
-if (! function_exists('hyd_get_alert_message_cookie')) {
+if (! function_exists('garmentor_get_alert_message_cookie')) {
     /**
      * Get alert message from cookie
      * @return array|bool
      */
-    function hyd_get_alert_message_cookie()
+    function garmentor_get_alert_message_cookie()
     {
         if(isset($_COOKIE['alertMessage']) && isset($_COOKIE['alertType']))
         {

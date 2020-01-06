@@ -11,7 +11,7 @@
         </div>
         <div class="row m-0">
             <div class="col-lg-12 p-0">
-                <div class="hyd-m-t-6 hyd-m-b-6 hyd-m-l-6 hyd-m-r-6 hyd-p-6 border-radius-5 background-white">
+                <div class="garmentor-m-t-6 garmentor-m-b-6 garmentor-m-l-6 garmentor-m-r-6 garmentor-p-6 border-radius-5 background-white">
                     <div class="card">
                         <div class="card-body">
                             <div class="form-group">

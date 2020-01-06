@@ -24,7 +24,7 @@
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
 
                                 @if ($errors->has('email'))
-                                    <span class="help-block hyd-color-red">
+                                    <span class="help-block garmentor-color-red">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif

@@ -861,43 +861,43 @@ body {
     margin: 5px 0 5px 0;
 }
 
-.hyd-p-6 {
+.garmentor-p-6 {
     padding: 6px;
 }
 
-.hyd-m-6 {
+.garmentor-m-6 {
     margin: 6px;
 }
 
-.hyd-m-t-6 {
+.garmentor-m-t-6 {
     margin-top: 6px;
 }
 
-.hyd-m-b-6 {
+.garmentor-m-b-6 {
     margin-bottom: 6px;
 }
 
-.hyd-m-r-6 {
+.garmentor-m-r-6 {
     margin-right: 6px;
 }
 
-.hyd-m-l-6 {
+.garmentor-m-l-6 {
     margin-left: 6px;
 }
 
-.hyd-m-t-3 {
+.garmentor-m-t-3 {
     margin-top: 3px;
 }
 
-.hyd-m-b-3 {
+.garmentor-m-b-3 {
     margin-bottom: 3px;
 }
 
-.hyd-m-r-3 {
+.garmentor-m-r-3 {
     margin-right: 3px;
 }
 
-.hyd-m-l-3 {
+.garmentor-m-l-3 {
     margin-left: 3px;
 }
 
@@ -905,6 +905,6 @@ body {
     border-radius: 5px;
 }
 
-.hyd-color-red {
+.garmentor-color-red {
     color: red !important;
 }

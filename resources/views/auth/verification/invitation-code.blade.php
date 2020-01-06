@@ -1,7 +1,7 @@
 @extends('auth.layout')
 
 @section('title')
-    Account Verification - HYD
+    Account Verification - GARMENTOR
 @stop
 
 @section('content')

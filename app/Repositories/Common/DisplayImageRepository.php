@@ -71,7 +71,7 @@ class DisplayImageRepository
     {
         $extension      = $imageFile->getClientOriginalExtension();
         $imagickFile    = Image::make($imageFile);
-        $newImageName   = hyd_encrypt_with_time($this->roleId);
+        $newImageName   = garmentor_encrypt_with_time($this->roleId);
 
         if($this->imageId && $this->imageName)
         {
