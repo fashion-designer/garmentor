@@ -5,10 +5,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Hire Your Designer</title>
+        <title>GARMENTOR</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Poiret+One&display=swap" rel="stylesheet">
 
         <!-- Styles -->
         <style>
@@ -33,12 +34,6 @@
 
             .position-ref {
                 position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
             }
 
             .content {
@@ -70,13 +65,16 @@
             .auth-links :hover {
                 background-color: #2a88bd;
             }
+            .app-logo {
+                font-family: 'Poiret One';
+            }
         </style>
     </head>
     <body>
         <div class="flex-center position-ref full-height">
             <div class="content">
                 <div class="title m-b-md">
-                    Welcome to Hire Your Designer
+                    Welcome to <span class="app-logo">GARMENTOR</span>
                 </div>
 
                 <div class="links">

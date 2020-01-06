@@ -2,6 +2,7 @@
 
 @import url(https://fonts.googleapis.com/css?family=Lato:300,400,400i,700);
 @import url(https://fonts.googleapis.com/css?family=Niconne);
+@import url('https://fonts.googleapis.com/css?family=Poiret+One&display=swap');
 
 @media (min-width: 768px) {
     .sidebar-mini.sidenav-toggled .app-sidebar__user-name,
@@ -110,11 +111,14 @@
     flex: 1 0 auto;
     color: #fff;
     text-align: center;
-    font-family: 'Niconne';
     padding: 0 15px;
     font-size: 26px;
     font-weight: 400;
     line-height: 50px;
+}
+
+.app-logo {
+    font-family: 'Poiret One';
 }
 
 @media (min-width: 768px) {

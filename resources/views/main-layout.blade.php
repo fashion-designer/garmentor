@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Hire Your Designer</title>
+    <title>GARMENTOR</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,7 +27,7 @@
 <!-- Topbar Header -->
 <header class="app-header">
     <!-- Logo Name -->
-    <a class="app-header__logo" href="{{ url('/') }}">Hire Your Designer</a>
+    <a class="app-header__logo app-logo" href="{{ url('/') }}">GARMENTOR</a>
     <!-- Sidebar Toggle Button -->
     <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"><i class="fas fa-stream"></i></a>
 

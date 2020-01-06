@@ -7,7 +7,7 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <a href="{!! url('/') !!}">Hire Your Designer</a>
+            <a class="app-logo" href="{!! url('/') !!}">GARMENTOR</a>
         </div>
         <div class="card-body">
             <div class="container">
