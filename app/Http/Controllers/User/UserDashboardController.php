@@ -66,7 +66,6 @@ class UserDashboardController extends Controller
 
         $this->validator($input)->validate();
 
-        dd(1);
         unset($input['password_confirmation']);
 
         $result         = $this->repository->updateMyProfile($input);
@@ -75,7 +74,7 @@ class UserDashboardController extends Controller
 
         garmentor_set_alert_message_cookie($alertMessage, $alertType);
 
-        return redirect()->route('designer.profile.edit');
+        return redirect()->route('user.profile.edit');
     }
 
     /**

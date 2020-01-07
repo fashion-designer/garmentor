@@ -48,7 +48,7 @@ class DisplayImageRepository
     public $imageName = null;
 
     /**
-     * AdminRepository constructor.
+     * DisplayImageRepository constructor.
      * @param $role
      * @param $roleId
      */
@@ -71,7 +71,7 @@ class DisplayImageRepository
     {
         $extension      = $imageFile->getClientOriginalExtension();
         $imagickFile    = Image::make($imageFile);
-        $newImageName   = garmentor_encrypt_with_time($this->roleId);
+        $newImageName   = garmentor_encrypt_with_time($this->role . $this->roleId);
 
         if($this->imageId && $this->imageName)
         {
@@ -82,7 +82,7 @@ class DisplayImageRepository
         $imagickFile->resize(200, 200)->save($this->displayThumbsFolder . $newImageName . '.' . $extension);
 
         $this->imageId = $this->model->create([
-            'admin_id'          => auth('admin')->id(),
+            $this->role         => $this->roleId,
             'image_name'        => $newImageName,
             'image_extension'   => $imageFile->getClientOriginalExtension()
         ]);

@@ -127,11 +127,11 @@ class UserRepository
 
         if(array_key_exists('remove_display_image', $input) && $input['remove_display_image'] === '1')
         {
-            (new DisplayImageRepository('admin_id', auth('admin')->id()))->removeDisplayImage();
+            (new DisplayImageRepository('user_id', auth()->id()))->removeDisplayImage();
         }
         elseif (array_key_exists('display_image_file_input', $input) && array_key_exists('remove_display_image', $input) && $input['remove_display_image'] === '0')
         {
-            (new DisplayImageRepository('admin_id', auth('admin')->id()))->saveDisplayImage($input['display_image_file_input']);
+            (new DisplayImageRepository('user_id', auth()->id()))->saveDisplayImage($input['display_image_file_input']);
         }
 
         if(array_key_exists('password', $input))
