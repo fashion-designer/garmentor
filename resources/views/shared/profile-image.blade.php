@@ -1,10 +1,14 @@
 @if(isset($allowEdit) && $allowEdit)
-    <div class="form-group">
+    <div class="form-group row">
         <div class="custom-file">
-            <input type="file" class="custom-file-input" id="displayImageFileInput" name="display_image_file_input" style="width: 80%">
-            <label class="custom-file-label" for="displayImageFileInput" style="width: 80%">Upload New Profile Image</label>
-            <button type="button" class="{!! ($imageSource === false) ? 'btn btn-info invisible' : 'btn btn-info' !!}" id="displayImageFileInputRemoveButton" style="width: 15%" onclick="removeDisplayImage()">Remove</button>
-            <input type="hidden" name="remove_display_image" id="removeDisplayImageInput" value="0">
+            <div class="col-md-8">
+                <input type="file" class="custom-file-input" id="displayImageFileInput" name="display_image_file_input" accept="image/x-png,image/gif,image/jpeg" style="width: 80%">
+                <label class="custom-file-label" for="displayImageFileInput" style="width: 80%">Upload New Profile Image</label>
+                <input type="hidden" name="remove_display_image" id="removeDisplayImageInput" value="0">
+            </div>
+            <div class="col-md-4">
+                <button type="button" class="{!! ($imageSource === false) ? 'btn btn-info invisible' : 'btn btn-info' !!}" id="displayImageFileInputRemoveButton" style="width: 15%" onclick="removeDisplayImage()">Remove</button>
+            </div>
         </div>
     </div>
 @endif
