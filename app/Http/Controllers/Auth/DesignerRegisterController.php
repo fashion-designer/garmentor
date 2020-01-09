@@ -46,7 +46,7 @@ class DesignerRegisterController extends Controller
         $genders    = (new Gender())->get(['id', 'name']);
         $alert      = garmentor_get_alert_message_cookie();
 
-        return view('auth.designer-register')->with([
+        return view('auth.designer.register')->with([
             'genders'   => $genders,
             'alert'     => ($alert) ? $alert : false,
         ]);

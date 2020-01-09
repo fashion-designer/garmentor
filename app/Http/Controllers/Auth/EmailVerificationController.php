@@ -39,7 +39,7 @@ class EmailVerificationController extends Controller
     {
         $alert = garmentor_get_alert_message_cookie();
 
-        return view('auth.verification.email')->with([
+        return view('auth.admin.forgot-password')->with([
             'route' => route('send-verification-admin'),
             'alert' => ($alert) ? $alert : false
         ]);
@@ -74,7 +74,7 @@ class EmailVerificationController extends Controller
      */
     public function verifyAdmin(Request $request, $id)
     {
-        return view('auth.verification.invitation-code')->with([
+        return view('auth.admin.verification-code')->with([
             'id'    => $id,
             'route' => route('verify-admin', [$id])
         ]);
@@ -118,7 +118,7 @@ class EmailVerificationController extends Controller
             $genders = (new Gender())->get(['id', 'name']);
         }
 
-        return view('auth.set-password')->with([
+        return view('auth.admin.set-password')->with([
             'id'        => $id,
             'genders'   => (isset($genders)) ? $genders : null,
             'route'     => route('setup-password-admin', $id)
@@ -153,7 +153,7 @@ class EmailVerificationController extends Controller
     {
         $alert  = garmentor_get_alert_message_cookie();
 
-        return view('auth.verification.email')->with([
+        return view('auth.designer.forgot-password')->with([
             'route'     => route('send-verification-designer'),
             'alert'     => ($alert) ? $alert : false,
         ]);
@@ -190,7 +190,7 @@ class EmailVerificationController extends Controller
      */
     public function verifyDesigner(Request $request, $id)
     {
-        return view('auth.verification.invitation-code')->with([
+        return view('auth.designer.verification-code')->with([
             'id' => $id,
             'route' => route('verify-designer', [$id])
         ]);
@@ -234,7 +234,7 @@ class EmailVerificationController extends Controller
             $genders = (new Gender())->get(['id', 'name']);
         }
 
-        return view('auth.set-password')->with([
+        return view('auth.designer.set-password')->with([
             'id'        => $id,
             'genders'   => (isset($genders)) ? $genders : null,
             'route'     => route('setup-password-designer', $id)
@@ -268,7 +268,7 @@ class EmailVerificationController extends Controller
     {
         $alert  = garmentor_get_alert_message_cookie();
 
-        return view('auth.verification.email')->with([
+        return view('auth.user.forgot-password')->with([
             'route'     => route('send-verification-user'),
             'alert'     => ($alert) ? $alert : false,
         ]);
@@ -305,7 +305,7 @@ class EmailVerificationController extends Controller
      */
     public function verifyUser(Request $request, $id)
     {
-        return view('auth.verification.invitation-code')->with([
+        return view('auth.user.verification-code')->with([
             'id' => $id,
             'route' => route('verify-user', [$id])
         ]);
@@ -349,7 +349,7 @@ class EmailVerificationController extends Controller
             $genders = (new Gender())->get(['id', 'name']);
         }
 
-        return view('auth.set-password')->with([
+        return view('auth.user.set-password')->with([
             'id'        => $id,
             'genders'   => (isset($genders)) ? $genders : null,
             'route'     => route('setup-password-user', $id)

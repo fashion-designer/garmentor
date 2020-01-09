@@ -37,7 +37,7 @@ class DesignerLoginController extends Controller
      */
     public function showLoginForm()
     {
-        return view('auth.designer-login');
+        return view('auth.designer.login');
     }
 
     /**

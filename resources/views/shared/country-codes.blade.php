@@ -1,28 +1,28 @@
 <div class="form-group">
-    <label>Phone</label>
-    <div class="row">
-        <div class="col-lg-4">
+    <label for="phone" class="col-md-12 control-label">Phone</label>
+    <div class="row" style="padding: 0 35px 0 35px;">
+        <div class="col-lg-5">
             <select class="form-control{{ $errors->has('phone') ? ' has-error' : '' }}" name="country_code" id="country_code">
                 @foreach(config('country_codes') as $countryData)
                     @if(isset($selectedCountryCode))
                         <option value="{!! $countryData[0] !!}" {!! ($countryData[0] === $selectedCountryCode) ? 'selected' : '' !!}>
-                            {!! $countryData[1] !!} ({!! $countryData[0] !!})
+                            {!! $countryData[0] !!}
                         </option>
                     @else
                         <option value="{!! $countryData[0] !!}" {!! ($countryData[1] === 'India') ? 'selected' : '' !!}>
-                            {!! $countryData[1] !!} ({!! $countryData[0] !!})
+                            {!! $countryData[0] !!}
                         </option>
                     @endif
                 @endforeach
             </select>
         </div>
-        <div class="col-lg-8">
-            <input type="number" class="form-control" name="phone" placeholder="Enter phone here" value="{!! (isset($selectedPhone)) ? $selectedPhone : '' !!}" required>
+        <div class="col-lg-7">
+            <input type="number" class="form-control" name="phone" placeholder="enter phone" value="{!! (isset($selectedPhone)) ? $selectedPhone : '' !!}" required>
         </div>
-        @if ($errors->has('phone'))
-            <span class="help-block garmentor-color-red">
-                <strong>{{ $errors->first('phone') }}</strong>
-            </span>
-        @endif
     </div>
+    @if ($errors->has('phone'))
+        <div class="error">
+            {{ $errors->first('email') }}
+        </div>
+    @endif
 </div>

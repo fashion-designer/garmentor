@@ -54,7 +54,7 @@ class RegisterController extends Controller
         $genders    = (new Gender())->get(['id', 'name']);
         $alert      = garmentor_get_alert_message_cookie();
 
-        return view('auth.register')->with([
+        return view('auth.user.register')->with([
             'genders'   => $genders,
             'alert'     => ($alert) ? $alert : false,
         ]);
