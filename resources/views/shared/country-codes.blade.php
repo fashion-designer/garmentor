@@ -1,7 +1,7 @@
 <div class="form-group">
     <label for="phone" class="col-md-12 control-label">Phone</label>
     <div class="row" style="padding: 0 35px 0 35px;">
-        <div class="col-lg-5">
+        <div class="col-lg-5 garmentor-m-b-3">
             <select class="form-control{{ $errors->has('phone') ? ' has-error' : '' }}" name="country_code" id="country_code">
                 @foreach(config('country_codes') as $countryData)
                     @if(isset($selectedCountryCode))
@@ -16,7 +16,7 @@
                 @endforeach
             </select>
         </div>
-        <div class="col-lg-7">
+        <div class="col-lg-7 garmentor-m-b-3">
             <input type="number" class="form-control" name="phone" placeholder="enter phone" value="{!! (isset($selectedPhone)) ? $selectedPhone : '' !!}" required>
         </div>
     </div>
