@@ -6,6 +6,7 @@
 Route::group(['middleware' => 'guest'], function()
 {
     Route::get('/', 'WelcomeController@welcome');
+    Route::get('/contact-us', 'WelcomeController@contactUs')->name('contact-us');
 });
 
 /**
