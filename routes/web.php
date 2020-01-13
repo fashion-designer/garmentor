@@ -7,6 +7,7 @@ Route::group(['middleware' => 'guest'], function()
 {
     Route::get('/', 'WelcomeController@welcome');
     Route::get('/contact-us', 'WelcomeController@contactUs')->name('contact-us');
+    Route::post('/contact-us', 'WelcomeController@submitContactForm')->name('contact-us');
 });
 
 /**

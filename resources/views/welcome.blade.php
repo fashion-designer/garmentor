@@ -183,11 +183,14 @@
         <a class="navbar-brand app-logo" href="#">GARMENTOR</a>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Sign Up As User</a>
+                <li class="nav-item" style="margin-right: 10px">
+                    <a class="btn btn-light" href="{!! route('login') !!}">User Login</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Log In As User</a>
+                <li class="nav-item" style="margin-right: 10px">
+                    <a class="btn btn-secondary" href="{{route('auth.designer.login')}}">Designer Login</a>
+                </li>
+                <li class="nav-item" style="margin-right: 10px">
+                    <a class="btn btn-secondary" href="{{route('auth.admin.login')}}">Admin Login</a>
                 </li>
             </ul>
         </div>
@@ -268,7 +271,6 @@
     <div class="container">
         <a class="text-white float-right" href="{!! route('contact-us') !!}">Contact Us</a>
     </div>
-    <!-- /.container -->
 </footer>
 
 </body>
