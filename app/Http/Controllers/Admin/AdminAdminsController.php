@@ -3,6 +3,7 @@
 use App\Admin;
 use App\Repositories\Admin\AdminRepository;
 use App\Http\Controllers\Controller;
+use App\Repositories\Admin\ContactFormRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -181,5 +182,15 @@ class AdminAdminsController extends Controller
         garmentor_set_alert_message_cookie($alertMessage, $alertType);
 
         return redirect()->route('admin.profile.edit');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function contactRequests()
+    {
+        $allRequests = (new ContactFormRepository())->getAllRequests();
+
+        return view('admin.contact-requests.list')->with(['allRequests' => $allRequests]);
     }
 }

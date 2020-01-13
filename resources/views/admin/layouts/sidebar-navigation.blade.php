@@ -26,6 +26,13 @@
         <span class="app-menu__label">Admins List</span>
     </a>
 </li>
+<!-- Contact Requests -->
+<li>
+    <a class="app-menu__item {!! ($activeTab === 'contact-requests') ? 'active' : '' !!}" href="{{ route('admin.contact-requests') }}">
+        <i class="fas fa-file-signature"></i>
+        <span class="app-menu__label">Contact Requests</span>
+    </a>
+</li>
 <!-- My Profile -->
 <li>
     <a class="app-menu__item {!! ($activeTab === 'profile') ? 'active' : '' !!}" href="{{ route('admin.profile.edit') }}">

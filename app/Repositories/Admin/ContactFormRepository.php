@@ -14,9 +14,20 @@ class ContactFormRepository
      */
     public $model;
 
+    /**
+     * ContactFormRepository constructor.
+     */
     public function __construct()
     {
         $this->model = new ContactForm();
+    }
+
+    /**
+     * @return ContactForm[]|\Illuminate\Database\Eloquent\Collection
+     */
+    public function getAllRequests()
+    {
+        return $this->model->get();
     }
 
     /**

@@ -4,6 +4,7 @@
  */
 
 use Illuminate\Support\Facades\Cookie;
+use Carbon\Carbon;
 
 if (! function_exists('garmentor_encrypt_with_time')) {
     /**
@@ -66,5 +67,17 @@ if (! function_exists('garmentor_get_alert_message_cookie')) {
         }
 
         return false;
+    }
+}
+
+if (! function_exists('garmentor_get_human_readable_time')) {
+    /**
+     * Get date time in human readable format
+     * @param $dateString
+     * @return array|bool
+     */
+    function garmentor_get_human_readable_time($dateString)
+    {
+        return Carbon::make($dateString)->diffForHumans();
     }
 }
