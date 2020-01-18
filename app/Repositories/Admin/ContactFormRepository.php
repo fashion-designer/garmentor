@@ -27,7 +27,7 @@ class ContactFormRepository
      */
     public function getAllRequests()
     {
-        return $this->model->get();
+        return $this->model->orderBy('id', 'DESC')->get();
     }
 
     /**
@@ -37,5 +37,14 @@ class ContactFormRepository
     public function submitContactForm($input)
     {
         return $this->model->create($input);
+    }
+
+    /**
+     * @param $id
+     * @return ContactForm[]|\Illuminate\Database\Eloquent\Collection
+     */
+    public function getRequestDetails($id)
+    {
+        return $this->model->where('id', $id)->get();
     }
 }

@@ -96,7 +96,7 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.', 'middleware' => 'admin']
     Route::post('admin/profile/update', 'AdminAdminsController@updateMyProfile')->name('profile.update');
 
     Route::get('admin/contact-requests', 'AdminAdminsController@contactRequests')->name('contact-requests');
-    Route::get('admin/contact-requests/view/{id}', 'AdminAdminsController@contactRequests')->name('contact-requests.view');
+    Route::get('admin/contact-requests/view/{id}', 'AdminAdminsController@viewContactRequests')->name('contact-requests.view');
 });
 
 /**

@@ -193,4 +193,16 @@ class AdminAdminsController extends Controller
 
         return view('admin.contact-requests.list')->with(['allRequests' => $allRequests]);
     }
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function viewContactRequests(Request $request, $id)
+    {
+        $details = (new ContactFormRepository())->getRequestDetails($id);
+
+        return view('admin.contact-requests.view')->with(['details' => $details[0]]);
+    }
 }

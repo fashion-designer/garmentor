@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="app-title">
-        <h1><i class="fas fa-list"></i> Contact Requests</h1>
+        <h1><i class="fas fa-file-signature"></i> Contact Requests</h1>
     </div>
     @if(isset($alert) && $alert)
         @include('shared.alert', ['alert' => $alert])
