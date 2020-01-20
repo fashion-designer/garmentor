@@ -31,7 +31,7 @@ class CreateUsersTable extends Migration
             $table->softDeletes();
         });
 
-        Schema::table('designers', function (Blueprint $table)
+        Schema::table('users', function (Blueprint $table)
         {
             $table->foreign('gender_id')->references('id')->on('genders');
         });
