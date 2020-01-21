@@ -16,9 +16,9 @@ class CreateDisplayImagesTable extends Migration
         Schema::create('display_images', function (Blueprint $table)
         {
             $table->increments('id');
-            $table->bigInteger('admin_id')->nullable();
-            $table->bigInteger('designer_id')->nullable();
-            $table->bigInteger('user_id')->nullable();
+            $table->unsignedInteger('admin_id')->nullable();
+            $table->unsignedInteger('designer_id')->nullable();
+            $table->unsignedInteger('user_id')->nullable();
             $table->string('image_name', 30);
             $table->string('image_extension', 10);
             $table->timestamps();
