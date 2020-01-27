@@ -22,12 +22,12 @@ class CreateDesignersTable extends Migration
             $table->string('country_code', 10);
             $table->string('phone')->nullable();
             $table->string('portfolio_name', 25)->nullable();
-            $table->unsignedInteger('gender_id')->default(null);
+            $table->unsignedInteger('gender_id')->nullable();
             $table->boolean('is_active')->default(0);
             $table->boolean('is_verified')->default(0);
-            $table->string('verification_code', 1000)->default(null);
+            $table->string('verification_code', 1000)->nullable();
             $table->binary('display_image')->nullable();
-            $table->string('password')->default(null);
+            $table->string('password')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
