@@ -19,7 +19,7 @@ class CreateDisplayImagesTable extends Migration
             $table->unsignedInteger('admin_id')->nullable();
             $table->unsignedInteger('designer_id')->nullable();
             $table->unsignedInteger('user_id')->nullable();
-            $table->string('image_name', 30);
+            $table->string('image_name', 1000);
             $table->string('image_extension', 10);
             $table->timestamps();
         });
