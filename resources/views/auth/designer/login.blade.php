@@ -6,6 +6,7 @@
 
 @section('content')
     <div class="loginFormWrap">
+        <a class="app-logo" href="{{ url('/') }}">GARMENTOR</a>
         <div class="heading">Designer Login</div>
         @if ($errors->has('email'))
             <div class="error">
@@ -14,7 +15,7 @@
         @endif
         <div class="carousel" data-ride="carousel">
             <div class="carousel-inner" role="listbox">
-                <form method="POST" action="{{ route('auth.designer.login-post') }}">
+                <form method="POST" action="{{ route('designer.login-post') }}">
                     {{ csrf_field() }}
                     <div class="form-group">
                         <input type="email" name="email" id="email" class="login-input" placeholder="Email Address" autofocus/>
@@ -26,7 +27,8 @@
                         <input type="submit" value="Login" class="login-button" />
                     </div>
                     <div class="form-group">
-                        <a href="{!! route('send-verification-designer') !!}" class="login-forgot-password">Forgot Password?</a>
+                        <a href="{!! route('send-verification-designer') !!}" class="login-forgot-password">forgot password?</a>
+                        <a href="{!! route('designer.register') !!}" class="login-forgot-password">register as Designer</a>
                     </div>
                 </form>
             </div>

@@ -6,6 +6,7 @@
 
 @section('content')
     <div class="loginFormWrap">
+        <a class="app-logo" href="{{ url('/') }}">GARMENTOR</a>
         <div class="heading">User Register</div>
         <div class="carousel" data-ride="carousel">
             <div class="carousel-inner" role="listbox">
@@ -56,6 +57,9 @@
                     </div>
                     <div class="form-group">
                         <input type="submit" value="Register" class="login-button" />
+                    </div>
+                    <div class="form-group">
+                        <a href="{!! route('login') !!}" class="login-forgot-password">already have an account? Login</a>
                     </div>
                 </form>
             </div>

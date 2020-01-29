@@ -45,7 +45,7 @@ Route::group(['middleware' => 'guest', 'namespace' => 'Auth'], function()
 /**
  * Designer, Admin Authentication Routes
  */
-Route::group(['namespace' => 'Auth', 'as' => 'auth.', 'middleware' => 'guest'], function()
+Route::group(['namespace' => 'Auth', 'middleware' => 'guest'], function()
 {
     Route::get('admin/register', 'AdminRegisterController@showRegistrationForm')->name('admin.register');
     Route::post('admin/register-post', 'AdminRegisterController@register')->name('admin.register-post');

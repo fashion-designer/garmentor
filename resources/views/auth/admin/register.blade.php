@@ -6,10 +6,11 @@
 
 @section('content')
     <div class="loginFormWrap">
+        <a class="app-logo" href="{{ url('/') }}">GARMENTOR</a>
         <div class="heading">Admin Register</div>
         <div class="carousel" data-ride="carousel">
             <div class="carousel-inner" role="listbox">
-                <form class="form-horizontal" method="POST" action="{{ route('auth.admin.register-post') }}">
+                <form class="form-horizontal" method="POST" action="{{ route('admin.register-post') }}">
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label for="first_name" class="col-md-12 control-label">First Name</label>
@@ -56,6 +57,9 @@
                     </div>
                     <div class="form-group">
                         <input type="submit" value="Register" class="login-button" />
+                    </div>
+                    <div class="form-group">
+                        <a href="{!! route('admin.login') !!}" class="login-forgot-password">already have an account? Login</a>
                     </div>
                 </form>
             </div>

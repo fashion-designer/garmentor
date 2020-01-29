@@ -187,10 +187,10 @@
                     <a class="btn btn-light" href="{!! route('login') !!}">User Login</a>
                 </li>
                 <li class="nav-item" style="margin-right: 10px">
-                    <a class="btn btn-secondary" href="{{route('auth.designer.login')}}">Designer Login</a>
+                    <a class="btn btn-secondary" href="{{route('designer.login')}}">Designer Login</a>
                 </li>
                 <li class="nav-item" style="margin-right: 10px">
-                    <a class="btn btn-secondary" href="{{route('auth.admin.login')}}">Admin Login</a>
+                    <a class="btn btn-secondary" href="{{route('admin.login')}}">Admin Login</a>
                 </li>
             </ul>
         </div>

@@ -6,6 +6,7 @@
 
 @section('content')
     <div class="loginFormWrap">
+        <a class="app-logo" href="{{ url('/') }}">GARMENTOR</a>
         <div class="heading">User Login</div>
         @if ($errors->has('email'))
             <div class="error">
@@ -26,7 +27,8 @@
                         <input type="submit" value="Login" class="login-button" />
                     </div>
                     <div class="form-group">
-                        <a href="{!! route('send-verification-user') !!}" class="login-forgot-password">Forgot Password?</a>
+                        <a href="{!! route('send-verification-user') !!}" class="login-forgot-password">forgot password?</a>
+                        <a href="{!! route('register') !!}" class="login-forgot-password">register as User</a>
                     </div>
                 </form>
             </div>
