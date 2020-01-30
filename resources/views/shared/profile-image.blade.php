@@ -3,7 +3,7 @@
         <div class="custom-file">
             <div class="row" style="margin: 0">
                 <div class="col-lg-8 col-md-6 col-sm-6">
-                    <input type="file" class="custom-file-input" id="displayImageFileInput" name="display_image_file_input" accept="image/x-png,image/gif,image/jpeg">
+                    <input type="file" class="custom-file-input" id="displayImageFileInput" name="display_image_file_input" accept="image/x-png,image/gif,image/jpeg,image/jpg">
                     <label class="custom-file-label" for="displayImageFileInput">Upload New Profile Image</label>
                     <input type="hidden" name="remove_display_image" id="removeDisplayImageInput" value="0">
                 </div>

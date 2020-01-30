@@ -12,6 +12,13 @@
         <span class="app-menu__label">My Profile</span>
     </a>
 </li>
+<!-- Orders -->
+<li>
+    <a class="app-menu__item {!! ($activeTab === 'orders') ? 'active' : '' !!}" href="{{ route('designer.orders') }}">
+        <i class="fas fa-tshirt"></i>
+        <span class="app-menu__label">Orders</span>
+    </a>
+</li>
 <!-- Demo -->
 <li class="treeview">
     <a class="app-menu__item" href="#" data-toggle="treeview">

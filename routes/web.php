@@ -97,6 +97,8 @@ Route::group(['namespace' => 'Admin', 'as' => 'admin.', 'middleware' => 'admin']
 
     Route::get('admin/contact-requests', 'AdminAdminsController@contactRequests')->name('contact-requests');
     Route::get('admin/contact-requests/view/{id}', 'AdminAdminsController@viewContactRequests')->name('contact-requests.view');
+
+    Route::get('admin/orders', 'AdminOrdersController@ordersList')->name('orders');
 });
 
 /**
@@ -108,6 +110,8 @@ Route::group(['namespace' => 'User', 'as' => 'user.', 'middleware' => 'auth'], f
 
     Route::get('user/profile/edit', 'UserDashboardController@editMyProfile')->name('profile.edit');
     Route::post('user/profile/update', 'UserDashboardController@updateMyProfile')->name('profile.update');
+
+    Route::get('user/orders', 'UserOrdersController@ordersList')->name('orders');
 });
 
 /**
@@ -119,4 +123,6 @@ Route::group(['namespace' => 'Designer', 'as' => 'designer.', 'middleware' => 'd
 
     Route::get('designer/profile/edit', 'DesignerDashboardController@editMyProfile')->name('profile.edit');
     Route::post('designer/profile/update', 'DesignerDashboardController@updateMyProfile')->name('profile.update');
+
+    Route::get('designer/orders', 'DesignerOrdersController@ordersList')->name('orders');
 });
