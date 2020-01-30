@@ -37,7 +37,10 @@ class DesignerLoginController extends Controller
      */
     public function showLoginForm()
     {
-        return view('auth.designer.login');
+        $alert = garmentor_get_alert_message_cookie();
+        return view('auth.designer.login')->with([
+            'alert'   => ($alert) ? $alert : false
+        ]);
     }
 
     /**

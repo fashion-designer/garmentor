@@ -13,6 +13,9 @@
                 {{ $errors->first('email') }}
             </div>
         @endif
+        @if(isset($alert) && $alert)
+            @include('shared.alert', ['alert' => $alert])
+        @endif
         <div class="carousel" data-ride="carousel">
             <div class="carousel-inner" role="listbox">
                 <form method="POST" action="{{ route('admin.login-post') }}">

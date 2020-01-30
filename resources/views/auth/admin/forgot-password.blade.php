@@ -6,6 +6,7 @@
 
 @section('content')
     <div class="loginFormWrap">
+        <a class="app-logo" href="{{ url('/') }}">GARMENTOR</a>
         <div class="heading">Enter your email to receive the verification code!</div>
         @if(isset($alert) && $alert)
             <div class="error">

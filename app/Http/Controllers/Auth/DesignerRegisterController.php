@@ -91,7 +91,7 @@ class DesignerRegisterController extends Controller
 
             garmentor_set_alert_message_cookie($alertMessage, $alertType);
 
-            return redirect('admin/login');
+            return redirect('designer/login');
         }
 
         event(new Registered($user = $this->create($request->all())));

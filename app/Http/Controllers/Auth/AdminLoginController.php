@@ -37,7 +37,10 @@ class AdminLoginController extends Controller
      */
     public function showLoginForm()
     {
-        return view('auth.admin.login');
+        $alert = garmentor_get_alert_message_cookie();
+        return view('auth.admin.login')->with([
+            'alert'   => ($alert) ? $alert : false
+        ]);
     }
 
     /**

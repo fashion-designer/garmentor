@@ -8,6 +8,9 @@
     <div class="loginFormWrap">
         <a class="app-logo" href="{{ url('/') }}">GARMENTOR</a>
         <div class="heading">Admin Register</div>
+        @if(isset($alert) && $alert)
+            @include('shared.alert', ['alert' => $alert])
+        @endif
         <div class="carousel" data-ride="carousel">
             <div class="carousel-inner" role="listbox">
                 <form class="form-horizontal" method="POST" action="{{ route('admin.register-post') }}">

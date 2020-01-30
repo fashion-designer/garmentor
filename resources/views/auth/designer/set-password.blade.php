@@ -6,6 +6,7 @@
 
 @section('content')
     <div class="loginFormWrap">
+        <a class="app-logo" href="{{ url('/') }}">GARMENTOR</a>
         <div class="heading">Create a new password for your account!</div>
         <div class="carousel" data-ride="carousel">
             <div class="carousel-inner" role="listbox">
