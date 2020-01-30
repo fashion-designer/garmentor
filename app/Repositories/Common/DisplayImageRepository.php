@@ -60,6 +60,16 @@ class DisplayImageRepository
         $this->displayImagesFolder  = storage_path('DisplayImages/');
         $this->displayThumbsFolder  = storage_path('DisplayThumbs/');
 
+        if(!is_dir($this->displayImagesFolder))
+        {
+            mkdir($this->displayImagesFolder);
+        }
+
+        if(!is_dir($this->displayThumbsFolder))
+        {
+            mkdir($this->displayThumbsFolder);
+        }
+
         $this->getDisplayImageIdName();
     }
 
