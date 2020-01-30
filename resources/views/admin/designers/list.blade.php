@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="app-title">
-        <h1><i class="fas fa-list"></i> Designers List</h1>
+        <h1><i class="fas fa-user-cog"></i> Designers List</h1>
         <span class="pull-right">
             <a href="{!! route('admin.designers-list.invite') !!}" class="btn btn-info">Invite New Designer Account</a>
         </span>

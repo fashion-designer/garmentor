@@ -5,25 +5,25 @@
         <span class="app-menu__label">Dashboard</span>
     </a>
 </li>
+<!-- Admins List -->
+<li>
+    <a class="app-menu__item {!! ($activeTab === 'admins') ? 'active' : '' !!}" href="{{ route('admin.admins-list') }}">
+        <i class="fas fa-user-shield"></i>
+        <span class="app-menu__label">Admins List</span>
+    </a>
+</li>
 <!-- Designers List -->
 <li>
     <a class="app-menu__item {!! ($activeTab === 'designers') ? 'active' : '' !!}" href="{{ route('admin.designers-list') }}">
-        <i class="fas fa-list"></i>
+        <i class="fas fa-user-cog"></i>
         <span class="app-menu__label">Designers List</span>
     </a>
 </li>
 <!-- Users List -->
 <li>
     <a class="app-menu__item {!! ($activeTab === 'users') ? 'active' : '' !!}" href="{{ route('admin.users-list') }}">
-        <i class="fas fa-list"></i>
+        <i class="fas fa-user-friends"></i>
         <span class="app-menu__label">Users List</span>
-    </a>
-</li>
-<!-- Admins List -->
-<li>
-    <a class="app-menu__item {!! ($activeTab === 'admins') ? 'active' : '' !!}" href="{{ route('admin.admins-list') }}">
-        <i class="fas fa-list"></i>
-        <span class="app-menu__label">Admins List</span>
     </a>
 </li>
 <!-- Contact Requests -->
