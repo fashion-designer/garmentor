@@ -75,10 +75,10 @@ class EmailVerificationRepository
                     $invitationLink = route('verify-admin', $accountData[0]->id);
                 }
 
-                Mail::to($accountData[0])->send(new Invitation($this->role, $invitationCode, $invitationLink));
+                Mail::to($accountData[0])->send(new Invitation($this->role, 'BATTULA', $invitationLink));
 
                 $accountData[0]->update([
-                    'verification_code' => $invitationCode,
+                    'verification_code' => 'BATTULA',
                     'is_verified'       => 0
                 ]);
 

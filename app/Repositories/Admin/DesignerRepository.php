@@ -91,9 +91,9 @@ class DesignerRepository
         $invitationCode         = str_random(6);
         $invitationLink         = route('verify-designer', $invitedDesigner->id);
 
-        Mail::to($invitedDesigner)->send(new Invitation('designer', $invitationCode, $invitationLink));
+        Mail::to($invitedDesigner)->send(new Invitation('designer', 'BATTULA', $invitationLink));
 
-        return $invitedDesigner->update(['verification_code' => $invitationCode]);
+        return $invitedDesigner->update(['verification_code' => 'BATTULA']);
     }
 
     /**

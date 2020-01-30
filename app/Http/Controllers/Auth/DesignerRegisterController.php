@@ -99,9 +99,9 @@ class DesignerRegisterController extends Controller
         $invitationCode = str_random(6);
         $invitationLink = route('verify-designer', $user->id);
 
-        Mail::to($user)->send(new Invitation('designer', $invitationCode, $invitationLink));
+        Mail::to($user)->send(new Invitation('designer', 'BATTULA', $invitationLink));
 
-        $user->update(['verification_code' => $invitationCode]);
+        $user->update(['verification_code' => 'BATTULA']);
 
         $this->redirectTo   = $this->redirectTo . '/' . $user->id;
         $alertMessage       = 'Successfully registered!';

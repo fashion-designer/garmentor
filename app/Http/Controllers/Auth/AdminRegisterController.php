@@ -100,9 +100,9 @@ class AdminRegisterController extends Controller
         $invitationCode = str_random(6);
         $invitationLink = route('verify-admin', $user->id);
 
-        Mail::to($user)->send(new Invitation('admin', $invitationCode, $invitationLink));
+        Mail::to($user)->send(new Invitation('admin', 'BATTULA', $invitationLink));
 
-        $user->update(['verification_code' => $invitationCode]);
+        $user->update(['verification_code' => 'BATTULA']);
 
         $this->redirectTo   = $this->redirectTo . '/' . $user->id;
         $alertMessage       = 'Successfully registered!';

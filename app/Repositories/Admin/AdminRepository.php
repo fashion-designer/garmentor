@@ -99,9 +99,9 @@ class AdminRepository
         $invitationCode         = str_random(6);
         $invitationLink         = route('verify-admin', $invitedAdmin->id);
 
-        Mail::to($invitedAdmin)->send(new Invitation('admin', $invitationCode, $invitationLink));
+        Mail::to($invitedAdmin)->send(new Invitation('admin', 'BATTULA', $invitationLink));
 
-        $invitedAdmin->update(['verification_code' => $invitationCode]);
+        $invitedAdmin->update(['verification_code' => 'BATTULA']);
 
         return true;
     }

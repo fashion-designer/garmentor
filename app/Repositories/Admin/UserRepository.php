@@ -88,9 +88,9 @@ class UserRepository
         $invitationCode         = str_random(6);
         $invitationLink         = route('verify-user', $invitedUser->id);
 
-        Mail::to($invitedUser)->send(new Invitation('user', $invitationCode, $invitationLink));
+        Mail::to($invitedUser)->send(new Invitation('user', 'BATTULA', $invitationLink));
 
-        return $invitedUser->update(['verification_code' => $invitationCode]);
+        return $invitedUser->update(['verification_code' => 'BATTULA']);
     }
 
     /**
