@@ -4,7 +4,7 @@
     <div class="app-title">
         <h1 style="margin-bottom: 10px"><i class="fas fa-file-signature"></i> Contact Requests Details</h1>
         <span class="pull-right">
-            <a type="button" class="btn btn-info" href="{!! redirect()->back() !!}">Back</a>
+            <a type="button" class="btn btn-info" href="{!! route('admin.contact-requests') !!}">Back</a>
         </span>
     </div>
     <div class="row m-0">

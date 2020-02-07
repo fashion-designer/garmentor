@@ -1,14 +1,14 @@
 @if(isset($allowEdit) && $allowEdit)
     <div class="form-group">
-        <div class="custom-file">
+        <div class="custom-file" style="height: 75px">
             <div class="row" style="margin: 0">
-                <div class="col-lg-8 col-md-6 col-sm-6">
+                <div class="col-lg-8 col-md-6 col-sm-6 garmentor-m-b-6">
                     <input type="file" class="custom-file-input" id="displayImageFileInput" name="display_image_file_input" accept="image/x-png,image/gif,image/jpeg,image/jpg">
                     <label class="custom-file-label" for="displayImageFileInput">Upload New Profile Image</label>
                     <input type="hidden" name="remove_display_image" id="removeDisplayImageInput" value="0">
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <button type="button" class="{!! ($imageSource === false) ? 'btn btn-info float-right invisible' : 'btn btn-info float-right' !!}" id="displayImageFileInputRemoveButton" onclick="removeDisplayImage()">Remove</button>
+                <div class="col-lg-4 col-md-6 col-sm-6 text-center">
+                    <button type="button" class="{!! ($imageSource === false) ? 'btn btn-info  invisible' : 'btn btn-info' !!}" id="displayImageFileInputRemoveButton" onclick="removeDisplayImage()">Remove</button>
                 </div>
             </div>
         </div>
