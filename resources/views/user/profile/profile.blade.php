@@ -4,7 +4,7 @@
     <form method="post" action="{!! route('user.profile.update') !!}" enctype='multipart/form-data'>
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="app-title">
-            <h1><i class="fas fa-id-card"></i> Profile</h1>
+            <h1 style="margin-bottom: 10px"><i class="fas fa-id-card"></i> Profile</h1>
             <span class="pull-right">
                 <button type="submit" class="btn btn-success">Update</button>
             </span>

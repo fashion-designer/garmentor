@@ -4,7 +4,7 @@
     <form method="post" action="{!! route('admin.designers-list.update', [$profile->id]) !!}">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="app-title">
-            <h1><i class="fas fa-id-card"></i> Designers Profile</h1>
+            <h1 style="margin-bottom: 10px"><i class="fas fa-id-card"></i> Designers Profile</h1>
             <span class="pull-right">
                 <button type="submit" class="btn btn-success">Update Profile</button>
             </span>
@@ -13,7 +13,7 @@
             <div class="col-lg-6 p-0">
                 <div class="garmentor-m-t-6 garmentor-m-b-6 garmentor-m-l-6 garmentor-m-r-3 garmentor-p-6 border-radius-5 background-white">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body table-responsive">
                             <table class="table table-striped">
                                 <tbody>
                                 <tr>

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="app-title">
-        <h1><i class="fas fa-file-signature"></i> Contact Requests Details</h1>
+        <h1 style="margin-bottom: 10px"><i class="fas fa-file-signature"></i> Contact Requests Details</h1>
         <span class="pull-right">
             <a type="button" class="btn btn-info" href="{!! redirect()->back() !!}">Back</a>
         </span>
@@ -11,7 +11,7 @@
         <div class="col-lg-6 p-0">
             <div class="garmentor-m-t-6 garmentor-m-b-6 garmentor-m-l-6 garmentor-m-r-3 garmentor-p-6 border-radius-5 background-white">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body table-responsive">
                         <table class="table table-striped">
                             <tbody>
                             <tr>

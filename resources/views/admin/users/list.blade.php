@@ -2,12 +2,12 @@
 
 @section('content')
     <div class="app-title">
-        <h1><i class="fas fa-user-friends"></i> Users List</h1>
+        <h1 style="margin-bottom: 10px"><i class="fas fa-user-friends"></i> Users List</h1>
         <span class="pull-right">
             <a href="{!! route('admin.users-list.invite') !!}" class="btn btn-info">Invite New User Account</a>
         </span>
     </div>
-    <div class="garmentor-p-5 background-white garmentor-m-6">
+    <div class="garmentor-p-5 background-white garmentor-m-6 table-responsive">
         <table class="table">
             <thead class="thead-dark">
             <tr>

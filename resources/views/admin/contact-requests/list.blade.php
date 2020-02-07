@@ -2,12 +2,12 @@
 
 @section('content')
     <div class="app-title">
-        <h1><i class="fas fa-file-signature"></i> Contact Requests</h1>
+        <h1 style="margin-bottom: 10px"><i class="fas fa-file-signature"></i> Contact Requests</h1>
     </div>
     @if(isset($alert) && $alert)
         @include('shared.alert', ['alert' => $alert])
     @endif
-    <div class="garmentor-p-5 background-white garmentor-m-6">
+    <div class="garmentor-p-5 background-white garmentor-m-6 table-responsive">
         <table class="table">
             <thead class="thead-dark">
             <tr>

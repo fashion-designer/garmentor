@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="app-title">
-        <h1><i class="fa fa-dashboard"></i> Admin Dashboard</h1>
+        <h1 style="margin-bottom: 10px"><i class="fa fa-dashboard"></i> Admin Dashboard</h1>
     </div>
     <div class="container">
         <div class="row">
