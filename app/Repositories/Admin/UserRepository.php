@@ -41,7 +41,7 @@ class UserRepository
      */
     public function getUserProfile($id)
     {
-        $profile = $this->model->where('id', $id)->with(['getGender'])->get();
+        $profile = $this->model->where('id', $id)->with(['getGender'])->get()->first();
 
         return $profile;
     }

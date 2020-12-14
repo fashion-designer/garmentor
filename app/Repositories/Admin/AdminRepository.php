@@ -51,8 +51,8 @@ class AdminRepository
      */
     public function getAdminProfile($id)
     {
-        $profile                        = $this->model->where('id', $id)->with(['getGender'])->get();
-        $profile[0]['display_image']    = (new DisplayImageRepository('admin_id', $id))->getDisplayImageData();
+        $profile                        = $this->model->where('id', $id)->with(['getGender'])->get()->first();
+        $profile['display_image']    = (new DisplayImageRepository('admin_id', $id))->getDisplayImageData();
 
         return $profile;
     }

@@ -11,10 +11,10 @@
         @include('shared.alert', ['alert' => $alert])
     @endif
     <div class="garmentor-p-5 background-white garmentor-m-6 table-responsive">
-        <div id="app">
-            <table-list :items="{{$list}}"/>
+        <div id="admins-container">
+            <admins-container :items="{{$list}}"/>
         </div>
     </div>
 
-    <script src="{{asset('js/app.js')}}"></script>
+    <script src="{{asset('js/admin/admins/launch.js')}}"></script>
 @endsection

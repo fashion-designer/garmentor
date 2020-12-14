@@ -4,6 +4,7 @@ use App\Admin;
 use App\Repositories\Admin\AdminRepository;
 use App\Http\Controllers\Controller;
 use App\Repositories\Admin\ContactFormRepository;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -62,22 +63,13 @@ class AdminAdminsController extends Controller
     /**
      * @param Request $request
      * @param int $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return JsonResponse
      */
     public function edit(Request $request, $id)
     {
-        if($id == auth('admin')->id())
-        {
-            return redirect()->route('admin.profile.edit');
-        }
+        $profile = $this->repository->getAdminProfile($id);
 
-        $profile    = $this->repository->getAdminProfile($id);
-        $alert      = garmentor_get_alert_message_cookie();
-
-        return view('admin.admins.edit')->with([
-            'profile'   => $profile[0],
-            'alert'     => ($alert) ? $alert : false,
-        ]);
+        return response()->json($profile);
     }
 
     /**

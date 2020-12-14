@@ -3,6 +3,7 @@
 use App\Designer;
 use App\Http\Controllers\Controller;
 use App\Repositories\Admin\DesignerRepository;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 /**
@@ -43,13 +44,13 @@ class AdminDesignersController extends Controller
     /**
      * @param Request $request
      * @param int $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return JsonResponse
      */
     public function edit(Request $request, $id)
     {
         $profile = $this->repository->getDesignerProfile($id);
 
-        return view('admin.designers.edit')->with(['profile' => $profile[0]]);
+        return response()->json($profile);
     }
 
     /**

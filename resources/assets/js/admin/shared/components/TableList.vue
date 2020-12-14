@@ -19,7 +19,9 @@
                 <td class="text-center"> {{ item.is_verified }} </td>
                 <td class="text-center"> {{ item.is_active }} </td>
                 <td class="text-center">
-                    <a class="btn btn-info btn-sm" href="#">Edit</a>
+                    <router-link :to="getEditLink(item.id)">
+                        <button class="btn btn-info btn-sm">Edit</button>
+                    </router-link>
                 </td>
             </tr>
             </tbody>
@@ -34,7 +36,12 @@
         props: {
             items: {
                 type: Array,
-                default: []
+                default: () => []
+            }
+        },
+        methods: {
+            getEditLink(id) {
+                return `edit/${id}`;
             }
         }
     }

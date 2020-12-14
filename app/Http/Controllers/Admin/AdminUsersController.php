@@ -3,6 +3,7 @@
 use App\Http\Controllers\Controller;
 use App\Repositories\Admin\UserRepository;
 use App\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 /**
@@ -43,13 +44,13 @@ class AdminUsersController extends Controller
     /**
      * @param Request $request
      * @param int $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return JsonResponse
      */
     public function edit(Request $request, $id)
     {
         $profile = $this->repository->getUserProfile($id);
 
-        return view('admin.users.edit')->with(['profile' => $profile[0]]);
+        return response()->json($profile);
     }
 
     /**
